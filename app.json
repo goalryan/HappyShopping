@@ -1,0 +1,35 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "海外购物小帮手",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#d81e06",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath":"/css/icon/home_light.png",
+        "selectedIconPath": "/css/icon/home_fill_light.png"        
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "购物车",
+        "iconPath": "/css/icon/cart_light.png",
+        "selectedIconPath": "/css/icon/cart_fill_light.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "我的",
+        "iconPath": "/css/icon/my_light.png",
+        "selectedIconPath": "/css/icon/my_fill_light.png"
+      }
+    ]
+  }
+}
