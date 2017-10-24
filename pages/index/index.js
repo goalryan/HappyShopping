@@ -58,6 +58,11 @@ Page({
       hiddenData: true
     });
   },
+  clearInput:function(e){
+    this.setData({
+      barcode: ""
+    });
+  },
   query: function (e) {
     var url = "https://www.xxx.com/query";//查询数据的URL
     var that = this;
