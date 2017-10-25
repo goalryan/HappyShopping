@@ -1,6 +1,8 @@
 {
   "pages": [
+    "pages/product/add/add",
     "pages/index/index",
+    "pages/express/express",    
     "pages/logs/logs"
   ],
   "window": {
@@ -13,14 +15,14 @@
     "selectedColor": "#d81e06",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/product/add/add",
         "text": "首页",
         "iconPath":"/css/icon/home_light.png",
         "selectedIconPath": "/css/icon/home_fill_light.png"        
       },
       {
-        "pagePath": "pages/index/index",
-        "text": "购物车",
+        "pagePath": "pages/express/express",
+        "text": "快递单",
         "iconPath": "/css/icon/cart_light.png",
         "selectedIconPath": "/css/icon/cart_fill_light.png"
       },
