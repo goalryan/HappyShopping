@@ -1,7 +1,30 @@
 Page({
   data: {
-    focus: false,
-    inputValue: ''
+    focusName: true,
+    focusQuantity: false,
+    quantity: 1,
+    inputValue: '',
+    items: [
+      {
+        radios: [
+          { name: 'USA', value: '168' },
+          { name: 'CHN', value: 'beautity', checked: 'true' },
+          { name: 'BRA', value: 'DFS' },
+          { name: 'JPN', value: '海港城' }]
+      },
+      {
+        radios: [
+          { name: 'ENG', value: '万宁' },
+          { name: 'TUR', value: '华润堂' }]
+      }
+    ]
+  },
+  bindNameInput: function (e) {
+    this.setData({
+      focusName: false,
+      focusQuantity: true
+    });
+
   },
   bindKeyInput: function (e) {
     this.setData({
