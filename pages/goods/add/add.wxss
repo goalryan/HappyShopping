@@ -1,0 +1,88 @@
+@import "../../common/lib/weui.wxss";
+
+.page-section {
+  margin-bottom: 40rpx;
+}
+
+.radio-group {
+  flex: 1;
+  margin-left: 20rpx;
+}
+
+.radio-row {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 6rpx;
+}
+
+.radio-cell {
+  flex: 1;
+}
+
+.search-result {
+  position: fixed; /*悬停搜索框的关键样式*/
+  width: 100%;
+  z-index: 999;
+  padding: 10rpx;
+  flex-direction: row;
+  background-color: #eee;
+  padding-left: 40px;
+  align-items: flex-start;
+}
+
+.wrap {
+  height: auto;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: none;
+}
+
+.row {
+  display: flex;
+  line-height: 90rpx;
+  border-bottom: 1rpx solid #d9d9d9;
+  background-color: #fff;
+}
+
+text {
+  width: 150rpx;
+  font-size: 28rpx;
+  letter-spacing: 2rpx;
+  color: #999;
+  padding: 0 36rpx;
+}
+
+.ec-input {
+  width: 528rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 34rpx;
+}
+
+.title {
+  height: auto;
+  min-height: 40rpx;
+  line-height: 40rpx;
+  margin: 0;
+  padding-top: 26rpx;
+}
+
+textarea {
+  width: 528rpx;
+  min-height: 416rpx;
+  line-height: 52rpx;
+  margin-top: 20rpx;
+  font-size: 32rpx;
+}
+
+.btn {
+  margin-top: 73rpx;
+  justify-content: center;
+  border: none;
+}
+
+.btn button {
+  font-size: 28rpx;
+}

@@ -1,9 +1,21 @@
 Page({
   data: {
-    focusName: true,
+    model: {
+      docNo: '',
+      customerId: '',
+      customerNickName: '',
+      goodsId: '',
+      goodsName: '',
+      quantity: 1,
+      inUnitPrice: 0,
+      outUnitPrice: 0,
+      isRMB: false,
+      positionId: 'Í'
+    },
+    focusCustomer: true,
+    focusGoods: false,
     focusQuantity: false,
-    quantity: 1,
-    inputValue: '',
+    hiddenDropdown: true,
     items: [
       {
         radios: [
@@ -17,11 +29,34 @@ Page({
           { name: 'ENG', value: '万宁' },
           { name: 'TUR', value: '华润堂' }]
       }
-    ]
+    ],
+    searchViewStyle: {
+      top: 0,
+      left: 0
+    }
+  },
+  bindCustomerInput: function (e) {
+    this.setData({
+      searchViewStyle: {
+        top: 50,
+        left: 0
+      }
+    })
+  },
+  bindCustomerConfirm: function (e) {
+    this.setData({
+      focusCustomer: false,
+      focusGoods: true
+    })
+    wx.showToast({
+      title: '成功',
+      icon: 'success',
+      duration: 2000
+    })
   },
   bindNameInput: function (e) {
     this.setData({
-      focusName: false,
+      focusGoods: false,
       focusQuantity: true
     });
 

@@ -7,7 +7,7 @@
       </view>
       <view class="search-input-wrapper">
         <input bindinput="bindBarcodeInput" bindconfirm="query" bindfocus="bindBarcodeFocus" bindblur="bindBarcodeBlur" class="search-input" placeholder="输入手机号查询快递单" value="{{barcode}}" confirm-type="search" />
-        <view class='search-clear-button'  wx:if="{{barcode.length > 0}}" bindtap="clearInput">
+        <view class='search-clear-button' wx:if="{{barcode.length > 0}}" bindtap="clearInput">
           <icon type="clear" size="20"></icon>
         </view>
       </view>
@@ -20,4 +20,32 @@
     <button size="mini" bindtap="setDemoData">示例</button>
     <button size="mini" bindtap="clear" style="margin-left:10px;">清空</button>
   </view>
+  <view>8888</view>
+</view>
+<view>
+  aaa
+</view>
+<view>
+  bbb
+</view>
+<view>
+  ccc
+</view>
+<view>
+  sss
+</view>
+<view>
+  sss
+</view>
+<view>
+  sss
+</view>
+<view>
+  sss
+</view>
+<view>
+  sss
+</view>
+<view>
+  sss
 </view>

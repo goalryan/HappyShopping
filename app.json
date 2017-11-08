@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/product/add/add",
+    "pages/goods/add/add",
     "pages/index/index",
     "pages/express/express",    
     "pages/logs/logs"
@@ -15,7 +15,7 @@
     "selectedColor": "#d81e06",
     "list": [
       {
-        "pagePath": "pages/product/add/add",
+        "pagePath": "pages/goods/add/add",
         "text": "首页",
         "iconPath":"/css/icon/home_light.png",
         "selectedIconPath": "/css/icon/home_fill_light.png"        
