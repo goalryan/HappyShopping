@@ -8,13 +8,21 @@
 
     <view class="wrap">
       <form>
+        <view class="row">
+          <text>账单号</text>
+          <picker class="ec-picker" bindchange="bindDocNoChange" value="{{model.docNo}}" range="{{docNoArray}}">
+            <view>
+              {{docNoArray[docNoIndex]}}
+            </view>
+          </picker>
+        </view>
         <view class='row'>
           <text>客户名称</text>
           <input class="ec-input" focus="{{focusCustomer}}" placeholder="请输入客户名称" confirm-type="next" bindinput="bindCustomerInput" bindblur="bindCustomerBlur" bindconfirm="bindCustomerConfirm" />
         </view>
         <view class='row'>
           <text>商品名称</text>
-          <input class="ec-input" focus="{{focusGoods}}" placeholder="请输入商品名称" confirm-type="next" bindinput="bindGoodsInput" bindblur="bindGoodsBlur" bindconfirm="bindGoodsInput" />
+          <input class="ec-input" focus="{{focusGoods}}" placeholder="请输入商品名称" confirm-type="next" bindinput="bindGoodsInput" bindblur="bindGoodsBlur" bindconfirm="bindGoodsConfirm" />
         </view>
         <view class='row'>
           <text>数量</text>

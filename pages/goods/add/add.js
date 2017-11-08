@@ -10,8 +10,10 @@ Page({
       inUnitPrice: 0,
       outUnitPrice: 0,
       isRMB: false,
-      positionId: 'Í'
+      positionId: ''
     },
+    docNoIndex: 0,
+    docNoArray: ['20171101001', '20171101002', '20171101003'],
     focusCustomer: true,
     focusGoods: false,
     focusQuantity: false,
@@ -35,6 +37,16 @@ Page({
       left: 0
     }
   },
+  bindDocNoChange: function (e) {
+    this.setData({
+      docNoIndex: e.detail.value
+    })
+    wx.showToas({
+      title: ,
+      icon: 'success',
+      duration: 2000
+    })
+  },
   bindCustomerInput: function (e) {
     this.setData({
       searchViewStyle: {
@@ -48,23 +60,26 @@ Page({
       focusCustomer: false,
       focusGoods: true
     })
-    wx.showToast({
-      title: '成功',
-      icon: 'success',
-      duration: 2000
+  },
+  bindCustomerBlur: function (e) {
+
+  },
+  bindGoodsInput: function (e) {
+    this.setData({
+      searchViewStyle: {
+        top: 50,
+        left: 0
+      }
     })
   },
-  bindNameInput: function (e) {
+  bindGoodsConfirm: function (e) {
     this.setData({
       focusGoods: false,
       focusQuantity: true
-    });
-
-  },
-  bindKeyInput: function (e) {
-    this.setData({
-      inputValue: e.detail.value
     })
+  },
+  bindGoodsBlur: function (e) {
+
   },
   bindReplaceInput: function (e) {
     var value = e.detail.value

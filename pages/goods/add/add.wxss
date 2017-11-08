@@ -61,6 +61,10 @@ text {
   font-size: 34rpx;
 }
 
+.ec-picker {
+  flex: 1;
+}
+
 .title {
   height: auto;
   min-height: 40rpx;
