@@ -32,8 +32,22 @@ App({
         }
       }
     })
+    wx.getSystemInfo({
+      success: res => {
+        this.globalData.systemInfo = res;
+        console.log(res)
+      }
+    })
+  },
+  /**
+   * 生成唯一ID
+   */
+  getGuid: function () {
+    var timestamp = new Date().getTime();
+    return `${timestamp}${Math.random().toString().split('.')[1].substring(0, 5)}`;
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    systemInfo: {}
   }
 })

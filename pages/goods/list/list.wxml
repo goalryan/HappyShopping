@@ -1,0 +1,44 @@
+<import src="../../common/head.wxml" />
+<import src="../../common/foot.wxml" />
+
+<view class="container">
+  <view class="page-body">
+    <view class="ec-header">
+      <view class="row">
+        <text>账单号</text>
+        <picker class="ec-picker" bindchange="bindDocNoChange" value="{{model.docNo}}" range="{{docNoArray}}">
+          <view>
+            {{docNoArray[docNoIndex]}}
+          </view>
+        </picker>
+      </view>
+      <view class='row'>
+        <text>客户名称</text>
+        <input class="ec-input" focus="{{focusCustomer}}" placeholder="请输入客户名称" confirm-type="next" bindinput="bindCustomerInput" bindblur="bindCustomerBlur" bindconfirm="bindCustomerConfirm" />
+      </view>
+      <view class='row'>
+        <text>付款</text>
+        <switch bindchange="switch2Change" checked="{{model.isPaid}}" />
+      </view>
+    </view>
+
+    <view class="ec-body">
+      <scroll-view style="height:{{scrollHeight}}px" scroll-top="{{scrollTop}}" scroll-y="true" bindscroll="scrll" bindscrolltolower="loadMore">
+        <view class="block" wx:for="{{listLi}}" wx:for-item="item">
+          <text>{{item}}</text>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="ec-footer">
+      <view class='ec-button-list'>
+        <button type="primary" hover-class="button-hover" bindtap="newCustomer">新客户</button>
+        <button type="primary" hover-class="button-hover" bindtap="addGoods">添加商品</button>
+      </view>
+    </view>
+  </view>
+  <component-search-view search-key="{{model.customerNickName}}"></component-search-view>
+  <!-- <view class="search-result" style="top:{{searchViewStyle.top}}px;left:{{searchViewStyle.left}}px" hidden="{{hiddenDropdown}}">
+    <button size="mini" bindtap="">示例</button>
+    <button size="mini" bindtap="" style="margin-left:10px;">清空</button>
+  </view> -->
+</view>

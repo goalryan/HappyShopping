@@ -1,0 +1,10 @@
+.search-result {
+  position: fixed; /*悬停搜索框的关键样式*/
+  width: 100%;
+  z-index: 999;
+  padding: 10rpx;
+  flex-direction: row;
+  background-color: #eee;
+  padding-left: 40px;
+  align-items: flex-start;
+}

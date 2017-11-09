@@ -42,7 +42,7 @@ Page({
       docNoIndex: e.detail.value
     })
     wx.showToas({
-      title: ,
+      title: this.model.docNo,
       icon: 'success',
       duration: 2000
     })

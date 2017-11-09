@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/goods/list/list",
     "pages/goods/add/add",
+    "pages/express/express",
     "pages/index/index",
-    "pages/express/express",    
     "pages/logs/logs"
   ],
   "window": {
@@ -16,18 +17,18 @@
     "list": [
       {
         "pagePath": "pages/goods/add/add",
-        "text": "首页",
-        "iconPath":"/css/icon/home_light.png",
-        "selectedIconPath": "/css/icon/home_fill_light.png"        
+        "text": "账单",
+        "iconPath": "/css/icon/home_light.png",
+        "selectedIconPath": "/css/icon/home_fill_light.png"
       },
       {
-        "pagePath": "pages/express/express",
-        "text": "快递单",
+        "pagePath": "pages/goods/list/list",
+        "text": "购物",
         "iconPath": "/css/icon/cart_light.png",
         "selectedIconPath": "/css/icon/cart_fill_light.png"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/express/express",
         "text": "我的",
         "iconPath": "/css/icon/my_light.png",
         "selectedIconPath": "/css/icon/my_fill_light.png"
