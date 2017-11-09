@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "添加商品",
   "usingComponents": {
-    "component-search-view":"../../components/search"
+    "component-search-view":"../../components/search/search"
   }
 }

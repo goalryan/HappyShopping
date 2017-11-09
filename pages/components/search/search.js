@@ -1,15 +1,15 @@
+var app = getApp();
 Component({
   behaviors: [],
   properties: {
     position: {
       type: Object,
-      value: { top: 0, left: 0 }
+      value: { top: 200, left: 100 }
     },
     searchKey: {
       type: String,
       value: '',
       observer: function (newVal, oldVal) {
-        console.log('fsfadaf');
         if (newVal != oldVal) { this.fetchData() }
       }
     },
@@ -20,23 +20,47 @@ Component({
   },
   data: {
     list: [],
-    isHidden: true
+    isHidden: true,
+    height: 'auto',
+    width: app.globalData.systemInfo.windowWidth - 75,
   },
 
   // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
-  attached: function () {
-    this.fetchData();
+  created: function () {
   },
-  moved: function () { },
-  detached: function () { },
+  ready: function () {
+  },
+  attached: function () {
+  },
 
   methods: {
     fetchData: function () {
-      console.log('sssssss');
-      var resData = [{ id: '1', name: 'a' }, { id: '2', name: 'aa' }, { id: '3', name: 'aaa' }, { id: '4', name: 'aaaa' }];
-      this.setData({
-        list: resData,
-        ishidden: list.length > 0
+      var url = "http://happyshopping.com/api/customer/search";//查询数据的URL
+      var that = this;
+      wx.request({
+        url: url,
+        data: { nickName: this.data.searchKey },
+        method: 'GET',
+        success: function (res) {
+          that.setData({
+            list: res.data.data,
+            isHidden: res.data.data.length === 0
+          });
+        },
+        fail: function (e) {
+          var toastText = '获取数据失败' + JSON.stringify(e);
+          that.setData({
+            isHidden: true
+          });
+          wx.showToast({
+            title: toastText,
+            icon: '',
+            duration: 2000
+          })
+        },
+        complete: function () {
+          // complete
+        }
       })
     },
     onMyButtonTap: function () {

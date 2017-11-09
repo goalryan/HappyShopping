@@ -1,5 +1,6 @@
-<scroll-view style="height:{{scrollHeight}}px" class="search-result" style="top:{{position.top}}px;left:{{position.left}}px" hidden="{{isHidden}}" scroll-top="{{scrollTop}}" scroll-y="true" bindscroll="scrll" bindscrolltolower="loadMore">
+<scroll-view class="search-result" style="width:{{width}}px;height:{{height}}px;top:{{position.top}}px;left:{{position.left}}px" hidden="{{isHidden}}" scroll-top="{{scrollTop}}" scroll-y="true" bindscroll="scrll" bindscrolltolower="loadMore">
+
   <view class="block" wx:for="{{list}}" wx:for-item="item">
-    <text>{{item.name}}</text>
+    <text>{{item.nickName}}</text>
   </view>
 </scroll-view>

@@ -36,9 +36,6 @@
       </view>
     </view>
   </view>
-  <component-search-view search-key="{{model.customerNickName}}"></component-search-view>
-  <!-- <view class="search-result" style="top:{{searchViewStyle.top}}px;left:{{searchViewStyle.left}}px" hidden="{{hiddenDropdown}}">
-    <button size="mini" bindtap="">示例</button>
-    <button size="mini" bindtap="" style="margin-left:10px;">清空</button>
-  </view> -->
+
+  <component-search-view search-key="{{model.customerNickName}}" position="{{searchPosition}}"></component-search-view>
 </view>

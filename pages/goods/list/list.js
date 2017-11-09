@@ -5,8 +5,8 @@ Page({
     docNoIndex: 0,
     docNoArray: ['20171101001', '20171101002', '20171101003'],
     focusCustomer: true,
-    hiddenDropdown: true,
-    scrollHeight: app.globalData.systemInfo.windowHeight - 183,
+    searchPosition: { top: 92, left: 100},
+    scrollHeight: app.globalData.systemInfo.windowHeight - 185,
     listLi: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'],
   },
   onLoad: function () {

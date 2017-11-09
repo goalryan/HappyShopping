@@ -32,7 +32,7 @@ button {
 }
 
 .ec-footer {
-  height: 90rpx;
+  height: 45px;
 }
 
 .ec-button-list {
@@ -46,15 +46,15 @@ button {
 
 .row {
   display: flex;
-  line-height: 90rpx;
+  line-height: 45px;
   border-bottom: 1rpx solid #d9d9d9;
   background-color: #fff;
 }
 
 .ec-input {
   width: 528rpx;
-  height: 90rpx;
-  line-height: 90rpx;
+  height: 45px;
+  line-height: 45px;
   font-size: 34rpx;
 }
 
