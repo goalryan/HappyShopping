@@ -10,16 +10,19 @@ Component({
       type: String,
       value: '',
       observer: function (newVal, oldVal) {
-        if (newVal != oldVal) { this.fetchData() }
+        if (newVal != oldVal) { this.searchByKey() }
+      }
+    },
+    onFocus: {
+      type: Boolean,
+      value: false,
+      observer: function (newVal, oldVal) {
+        if (newVal != oldVal) { if (newVal) this.searchOnFocus() }
       }
     },
     url: {
       type: String,
       value: ''
-    },
-    isHidden: {
-      type: Boolean,
-      value: true
     }
   },
   data: {
@@ -27,6 +30,7 @@ Component({
     height: 'auto',
     width: app.globalData.systemInfo.windowWidth - 75,
     selectItem: {},
+    isHidden: true,
     oldKey: ''
   },
   // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
@@ -37,10 +41,15 @@ Component({
   attached: function () {
   },
   methods: {
-    fetchData: function () {
+    searchByKey: function () {
       if (this.data.searchKey === '') return;
-      // if (this.data.searchKey === this.data.oldKey) return
-      // if (this.data.isHidden) return;
+      if (this.data.searchKey === this.data.oldKey) return;
+      this.fetchData();
+    },
+    searchOnFocus: function () {
+      this.fetchData();
+    },
+    fetchData: function () {
       var url = app.globalData.domain + "api/customer/search";//查询数据的URL
       var that = this;
       wx.request({

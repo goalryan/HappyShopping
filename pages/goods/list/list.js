@@ -5,6 +5,7 @@ Page({
     docNoIndex: 0,
     docNoArray: ['20171101001', '20171101002', '20171101003'],
     focusCustomer: true,
+    customerFocus: false,
     searchPosition: { top: 92, left: 200 * app.globalData.rpx2px },
     scrollHeight: app.globalData.systemInfo.windowHeight - 185,
     listLi: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'],
@@ -43,6 +44,12 @@ Page({
   newCustomer: function (e) {
 
   },
+  bindCustomerFocus: function (e) {
+    this.setData({
+      customerFocus: true
+    })
+
+  },
   bindCustomerInput: function (e) {
     console.log(e);
     this.setData({
@@ -58,7 +65,9 @@ Page({
     })
   },
   bindCustomerBlur: function (e) {
-
+    this.setData({
+      customerFocus: false
+    })
   },
   /**
    * 添加商品
