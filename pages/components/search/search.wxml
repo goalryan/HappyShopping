@@ -1,6 +1,6 @@
 <scroll-view class="search-result" style="width:{{width}}px;height:{{height}}px;top:{{position.top}}px;left:{{position.left}}px" hidden="{{isHidden}}" scroll-top="{{scrollTop}}" scroll-y="true" bindscroll="scrll" bindscrolltolower="loadMore">
 
-  <view class="block" wx:for="{{list}}" wx:for-item="item">
-    <text>{{item.nickName}}</text>
+  <view class="search-item" wx:for="{{list}}" wx:for-item="{{item}}" data-item="item.value" data-id='item.id' bindtap="itemTap">
+    <text>{{item.value}}</text>
   </view>
 </scroll-view>

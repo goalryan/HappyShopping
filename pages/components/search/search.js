@@ -32,19 +32,22 @@ Component({
   },
   attached: function () {
   },
-
   methods: {
     fetchData: function () {
-      var url = "http://happyshopping.com/api/customer/search";//查询数据的URL
+      var url = app.globalData.domain + "api/customer/search";//查询数据的URL
       var that = this;
       wx.request({
         url: url,
         data: { nickName: this.data.searchKey },
         method: 'GET',
         success: function (res) {
+          var responseData = [];
+          if (res.data.success) {
+            responseData = res.data.data
+          }
           that.setData({
-            list: res.data.data,
-            isHidden: res.data.data.length === 0
+            list: responseData,
+            isHidden: responseData.length === 0
           });
         },
         fail: function (e) {
@@ -62,6 +65,10 @@ Component({
           // complete
         }
       })
+    },
+
+    itemTap: function (e) {
+      console.log(e);
     },
     onMyButtonTap: function () {
       this.setData({

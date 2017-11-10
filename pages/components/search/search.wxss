@@ -1,10 +1,21 @@
 .search-result {
-  position: fixed; /*悬停搜索框的关键样式*/
+  position: fixed; /* 悬停搜索框的关键样式 */
   width: 100%;
   z-index: 999;
-  padding: 10rpx;
   flex-direction: row;
-  background-color: #eee;
-  padding-left: 40px;
   align-items: flex-start;
+  border-top: 1rpx solid #d1dbe5;
+  border-left: 1rpx solid #d1dbe5;
+  border-right: 1rpx solid #d1dbe5;
+}
+
+.search-item {
+  height: 36px;
+  line-height: 36px;
+  border-bottom: 0.5rpx solid #c1cbd8;
+  background-color: #fff;
+}
+
+.search-item:hover {
+  background-color: #e4e8f1;
 }

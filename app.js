@@ -1,4 +1,3 @@
-// require("pages/components/search/search")
 //app.js
 App({
   onLaunch: function () {
@@ -36,7 +35,10 @@ App({
     wx.getSystemInfo({
       success: res => {
         this.globalData.systemInfo = res;
-        console.log(res)
+        var width = res.windowWidth;
+        this.globalData.px2rpx = 750 / width;
+        this.globalData.rpx2px = width / 750;
+        console.log(this.globalData);
       }
     })
   },
@@ -49,6 +51,9 @@ App({
   },
   globalData: {
     userInfo: null,
-    systemInfo: {}
+    systemInfo: {},
+    px2rpx: 1,
+    rpx2px: 1,
+    domain: 'http://happyshopping.com/',
   }
 })
