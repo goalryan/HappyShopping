@@ -27,7 +27,7 @@ Component({
   },
   data: {
     list: [],
-    height: 'auto',
+    height: 20,
     width: app.globalData.systemInfo.windowWidth - 75,
     selectItem: {},
     isHidden: true,
@@ -63,6 +63,7 @@ Component({
           }
           that.setData({
             list: responseData,
+            height: responseData.length * 35 > 250 ? 250 : responseData.length * 35,
             isHidden: responseData.length === 0
           });
         },
