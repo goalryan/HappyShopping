@@ -16,15 +16,19 @@ Component({
     url: {
       type: String,
       value: ''
+    },
+    isHidden: {
+      type: Boolean,
+      value: true
     }
   },
   data: {
     list: [],
-    isHidden: true,
     height: 'auto',
     width: app.globalData.systemInfo.windowWidth - 75,
+    selectItem: {},
+    oldKey: ''
   },
-
   // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
   created: function () {
   },
@@ -34,6 +38,9 @@ Component({
   },
   methods: {
     fetchData: function () {
+      if (this.data.searchKey === '') return;
+      // if (this.data.searchKey === this.data.oldKey) return
+      // if (this.data.isHidden) return;
       var url = app.globalData.domain + "api/customer/search";//查询数据的URL
       var that = this;
       wx.request({
@@ -53,22 +60,50 @@ Component({
         fail: function (e) {
           var toastText = '获取数据失败' + JSON.stringify(e);
           that.setData({
+            list: [],
             isHidden: true
           });
-          wx.showToast({
-            title: toastText,
-            icon: '',
-            duration: 2000
-          })
         },
         complete: function () {
-          // complete
+          that.autoBindItem();
         }
       })
     },
-
+    /**
+     * 选择查询项
+     */
     itemTap: function (e) {
-      console.log(e);
+      this.setData({
+        selectItem: {
+          id: e.currentTarget.dataset.id,
+          value: e.currentTarget.dataset.value
+        },
+        oldKey: e.currentTarget.dataset.value,
+        isHidden: true
+      })
+      this.triggerEvent('confirmitemevent', this.data.selectItem)
+    },
+    /**
+     * 自动匹配查询项
+     */
+    autoBindItem: function () {
+      let findItem = this.data.list.find((item) => item.value === this.data.searchKey.trim().toLowerCase());
+      if (findItem !== undefined) {
+        this.setData({
+          selectItem: {
+            id: findItem.id,
+            value: findItem.value
+          },
+        })
+      } else {
+        this.setData({
+          selectItem: {
+            id: '',
+            value: ''
+          }
+        })
+      }
+      this.triggerEvent('finditemevent', this.data.selectItem)
     },
     onMyButtonTap: function () {
       this.setData({

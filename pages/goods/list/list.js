@@ -65,5 +65,22 @@ Page({
    */
   addGoods: function (e) {
 
-  }
+  },
+  /**
+   * 选择客户回调事件
+   */
+  onConfirmItemEvent: function (e) {
+    console.log(e);
+    this.setData({
+      model: {
+        customerNickName: e.detail.value
+      }
+    });
+  },
+  /**
+   * 输入客户回调事件
+   */
+  onFindItemEvent: function (e) {
+    console.log(e);
+  },
 })
