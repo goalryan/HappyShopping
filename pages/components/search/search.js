@@ -17,7 +17,14 @@ Component({
       type: Boolean,
       value: false,
       observer: function (newVal, oldVal) {
-        if (newVal != oldVal) { if (newVal) this.searchOnFocus() }
+        if (newVal != oldVal) {
+          if (newVal) this.searchOnFocus()
+          else {
+            this.setData({
+              isHidden: true
+            })
+          }
+        }
       }
     },
     url: {
@@ -41,12 +48,26 @@ Component({
   attached: function () {
   },
   methods: {
+    initData: function () {
+      this.setData({
+        selectItem: {
+          id: '',
+          value: ''
+        }
+      })
+    },
     searchByKey: function () {
-      if (this.data.searchKey === '') return;
+      if (this.data.searchKey === '') {
+        this.setData({
+          isHidden: true
+        })
+        return;
+      }
       if (this.data.searchKey === this.data.oldKey) return;
       this.fetchData();
     },
     searchOnFocus: function () {
+      if (this.data.searchKey === '') return;
       this.fetchData();
     },
     fetchData: function () {
@@ -63,7 +84,8 @@ Component({
           }
           that.setData({
             list: responseData,
-            height: responseData.length * 35 > 250 ? 250 : responseData.length * 35,
+            height: 300,
+            // height: responseData.length * 40 > 400 ? 400 : responseData.length * 40,
             isHidden: responseData.length === 0
           });
         },
@@ -106,25 +128,9 @@ Component({
           },
         })
       } else {
-        this.setData({
-          selectItem: {
-            id: '',
-            value: ''
-          }
-        })
+        this.initData();
       }
       this.triggerEvent('finditemevent', this.data.selectItem)
-    },
-    onMyButtonTap: function () {
-      this.setData({
-        // 更新属性和数据的方法与更新页面数据的方法类似
-      })
-    },
-    _myPrivateMethod: function () {
-      // 内部方法建议以下划线开头
-      this.replaceDataOnPath(['A', 0, 'B'], 'myPrivateData') // 这里将 data.A[0].B 设为 'myPrivateData'
-      this.applyDataUpdates()
     }
   }
-
 })

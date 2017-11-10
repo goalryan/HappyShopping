@@ -135,9 +135,6 @@ form{
   padding-left: 0;
   padding-right: 0;
 }
-.page-section-ctn{
-
-}
 
 /* widget */
 .btn-area{
@@ -223,4 +220,71 @@ form{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* 我的样式 */
+text {
+  width: 150rpx;
+  font-size: 28rpx;
+  letter-spacing: 2rpx;
+  color: #999;
+  padding: 0 36rpx;
+}
+
+textarea {
+  width: 528rpx;
+  min-height: 416rpx;
+  line-height: 52rpx;
+  margin-top: 20rpx;
+  font-size: 32rpx;
+}
+
+button {
+  flex: 1;
+  margin: 0 10rpx 0 10rpx;
+  font-size: 28rpx;
+}
+
+.ec-header {
+  border-top: 1px solid #e0e0e0;
+  border-bottom: none;
+}
+
+.ec-body {
+  height: auto;
+}
+
+.ec-footer {
+  height: 45px;
+}
+
+.ec-button-list {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  line-height: 45px;
+  border-bottom: 1rpx solid #d9d9d9;
+  background-color: #fff;
+}
+
+.ec-input {
+  width: 528rpx;
+  height: 45px;
+  line-height: 45px;
+  font-size: 34rpx;
+}
+
+.ec-picker {
+  flex: 1;
+}
+
+.button-hover {
+  background-color: red;
 }

@@ -18,7 +18,7 @@
       </view>
       <view class='row'>
         <text>付款</text>
-        <switch bindchange="switch2Change" checked="{{model.isPaid}}" />
+        <switch bindchange="changePaid" checked="{{model.isPaid}}" />
       </view>
     </view>
 

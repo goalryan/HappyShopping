@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/goods/list/list",
-    "pages/goods/add/add",
-    "pages/express/express",
+    "pages/express/express",    
+    "pages/goods/add/add",    
     "pages/index/index",
     "pages/logs/logs"
   ],
@@ -16,7 +16,7 @@
     "selectedColor": "#d81e06",
     "list": [
       {
-        "pagePath": "pages/goods/add/add",
+        "pagePath": "pages/express/express",
         "text": "账单",
         "iconPath": "/css/icon/home_light.png",
         "selectedIconPath": "/css/icon/home_fill_light.png"

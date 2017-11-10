@@ -4,14 +4,13 @@
   z-index: 999;
   flex-direction: row;
   align-items: flex-start;
-  border-top: 1rpx solid #d1dbe5;
-  border-left: 1rpx solid #d1dbe5;
-  border-right: 1rpx solid #d1dbe5;
+  border: 1rpx solid #d1dbe5;
+  background-color: #fff;
 }
 
 .search-item {
-  height: 36px;
-  line-height: 36px;
+  height: 40px;
+  line-height: 40px;
   border-bottom: 0.5rpx solid #c1cbd8;
   background-color: #fff;
 }

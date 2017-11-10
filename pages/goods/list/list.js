@@ -69,11 +69,20 @@ Page({
       customerFocus: false
     })
   },
+  changePaid:function(e){
+    this.setData({
+      model: {
+        isPaid: e.detail.value
+      }
+    })
+  },
   /**
    * 添加商品
    */
   addGoods: function (e) {
-
+    wx.navigateTo({
+      url: '../add/add',
+    })
   },
   /**
    * 选择客户回调事件

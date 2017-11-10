@@ -1,3 +1,4 @@
+// require("../pages/components/search")
 //app.js
 App({
   onLaunch: function () {

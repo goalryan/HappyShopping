@@ -6,58 +6,44 @@
 
   <view class="page-body">
 
-    <view class="wrap">
-      <form>
-        <view class="row">
-          <text>账单号</text>
-          <picker class="ec-picker" bindchange="bindDocNoChange" value="{{model.docNo}}" range="{{docNoArray}}">
-            <view>
-              {{docNoArray[docNoIndex]}}
-            </view>
-          </picker>
-        </view>
-        <view class='row'>
-          <text>客户名称</text>
-          <input class="ec-input" focus="{{focusCustomer}}" placeholder="请输入客户名称" confirm-type="next" bindinput="bindCustomerInput" bindblur="bindCustomerBlur" bindconfirm="bindCustomerConfirm" />
-        </view>
-        <view class='row'>
-          <text>商品名称</text>
-          <input class="ec-input" focus="{{focusGoods}}" placeholder="请输入商品名称" confirm-type="next" bindinput="bindGoodsInput" bindblur="bindGoodsBlur" bindconfirm="bindGoodsConfirm" />
-        </view>
-        <view class='row'>
-          <text>数量</text>
-          <input class="ec-input" value="{{model.quantity}}" focus="{{focusQuantity}}" type="number" />
-        </view>
-        <view class='row'>
-          <text>卖出价格</text>
-          <input class="ec-input" value="{{model.outUnitPrice}}" focus="{{focusQuantity}}" type="digit" />
-        </view>
-        <view class='row'>
-          <radio-group class="radio-group" bindchange="radioChange">
-            <view class='radio-row' wx:for="{{items}}" wx:for-item="group" wx:key="unique">
-              <label class="radio-cell" wx:for="{{group.radios}}" wx:key="unique">
-                <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
-              </label>
-            </view>
-          </radio-group>
-        </view>
-        <view class="btn">
-          <button formType="submit" type="warn" hover-class="none">我要定制</button>
-        </view>
-      </form>
+    <view class="ec-header">
+      <view class='row'>
+        <text>商品名称</text>
+        <input class="ec-input" focus="{{focusGoods}}" placeholder="请输入商品名称" confirm-type="next" bindinput="bindGoodsInput" bindblur="bindGoodsBlur" bindconfirm="bindGoodsConfirm" />
+      </view>
+      <view class='row'>
+        <text>数量</text>
+        <input class="ec-input" value="{{model.quantity}}" focus="{{focusQuantity}}" type="number" />
+      </view>
+      <view class='row'>
+        <text>成本价格</text>
+        <input class="ec-input" value="{{model.outUnitPrice}}" focus="{{focusQuantity}}" type="digit" />
+      </view>
+      <view class='row'>
+        <text>卖出价格</text>
+        <input class="ec-input" value="{{model.outUnitPrice}}" focus="{{focusQuantity}}" type="digit" />
+      </view>
+      <view class='row'>
+        <text>人民币</text>
+        <switch bindchange="changeCurrency" checked="{{model.isRMB}}" />
+      </view>
+      <view class='row'>
+        <radio-group class="radio-group" bindchange="radioChange">
+          <view class='radio-row' wx:for="{{items}}" wx:for-item="group" wx:key="unique">
+            <label class="radio-cell" wx:for="{{group.radios}}" wx:key="unique">
+              <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+            </label>
+          </view>
+        </radio-group>
+      </view>
+
+    </view>
+
+    <view class="ec-footer">
+      <view class='ec-button-list'>
+        <button type="primary" hover-class="button-hover" bindtap="newCustomer">新客户</button>
+        <button type="primary" hover-class="button-hover" bindtap="addGoods">继续添加</button>
+      </view>
     </view>
   </view>
-
-  <template is="foot" />
-
-  <view class="search-result" style="top:{{searchViewStyle.top}}px;left:{{searchViewStyle.left}}px" hidden="{{hiddenDropdown}}">
-    <button size="mini" bindtap="">示例</button>
-    <button size="mini" bindtap="" style="margin-left:10px;">清空</button>
-  </view>
-
-
-
-
-
-
 </view>
