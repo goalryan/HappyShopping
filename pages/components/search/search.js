@@ -6,7 +6,15 @@ Component({
       type: Object,
       value: { top: 200, left: 100 }
     },
+    url: {
+      type: String,
+      value: ''
+    },
     searchKey: {
+      type: String,
+      value: 'name'
+    },
+    searchValue: {
       type: String,
       value: '',
       observer: function (newVal, oldVal) {
@@ -38,7 +46,7 @@ Component({
     width: app.globalData.systemInfo.windowWidth - 75,
     selectItem: {},
     isHidden: true,
-    oldKey: ''
+    oldValue: ''
   },
   // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
   created: function () {
@@ -57,25 +65,25 @@ Component({
       })
     },
     searchByKey: function () {
-      if (this.data.searchKey === '') {
+      if (this.data.searchValue === '') {
         this.setData({
           isHidden: true
         })
         return;
       }
-      if (this.data.searchKey === this.data.oldKey) return;
+      if (this.data.searchValue === this.data.oldValue) return;
       this.fetchData();
     },
     searchOnFocus: function () {
-      if (this.data.searchKey === '') return;
+      if (this.data.searchValue === '') return;
       this.fetchData();
     },
     fetchData: function () {
-      var url = app.globalData.domain + "api/customer/search";//查询数据的URL
+      var url = this.data.url;//查询数据的URL
       var that = this;
       wx.request({
         url: url,
-        data: { nickName: this.data.searchKey },
+        data: { [that.data.searchKey]: this.data.searchValue },
         method: 'GET',
         success: function (res) {
           var responseData = [];
@@ -100,6 +108,8 @@ Component({
           that.autoBindItem();
         }
       })
+      //设置旧值
+      that.setData({ oldValue: that.data.searchValue });
     },
     /**
      * 选择查询项
@@ -110,7 +120,7 @@ Component({
           id: e.currentTarget.dataset.id,
           value: e.currentTarget.dataset.value
         },
-        oldKey: e.currentTarget.dataset.value,
+        oldValue: e.currentTarget.dataset.value,
         isHidden: true
       })
       this.triggerEvent('confirmitemevent', this.data.selectItem)
@@ -119,7 +129,7 @@ Component({
      * 自动匹配查询项
      */
     autoBindItem: function () {
-      let findItem = this.data.list.find((item) => item.value === this.data.searchKey.trim().toLowerCase());
+      let findItem = this.data.list.find((item) => item.value === this.data.searchValue.trim().toLowerCase());
       if (findItem !== undefined) {
         this.setData({
           selectItem: {

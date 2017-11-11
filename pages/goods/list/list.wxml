@@ -37,5 +37,5 @@
     </view>
   </view>
 
-  <component-search-view on-focus="{{customerFocus}}" search-key="{{model.customerNickName}}" position="{{searchPosition}}" bind:finditemevent="onFindItemEvent" bind:confirmitemevent="onConfirmItemEvent"></component-search-view>
+  <component-search-view on-focus="{{searchObj.onFocus}}" search-key="nickName" search-value="{{model.customerNickName}}" url="{{searchObj.url}}" position="{{searchObj.position}}" bind:finditemevent="onFindItemEvent" bind:confirmitemevent="onConfirmItemEvent"></component-search-view>
 </view>

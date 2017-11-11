@@ -242,7 +242,7 @@ textarea {
 button {
   flex: 1;
   margin: 0 10rpx 0 10rpx;
-  font-size: 28rpx;
+  font-size: 30rpx;
 }
 
 .ec-header {

@@ -2,14 +2,11 @@
 <import src="../../common/foot.wxml" />
 
 <view class="container">
-  <!-- <template is="head" data="{{title: 'input'}}"/> -->
-
   <view class="page-body">
-
     <view class="ec-header">
       <view class='row'>
         <text>商品名称</text>
-        <input class="ec-input" focus="{{focusGoods}}" placeholder="请输入商品名称" confirm-type="next" bindinput="bindGoodsInput" bindblur="bindGoodsBlur" bindconfirm="bindGoodsConfirm" />
+        <input class="ec-input" value="{{model.goodsName}}" focus="{{focusGoods}}" placeholder="请输入商品名称" confirm-type="next" bindfocus='bindGoodsFocus' bindinput="bindGoodsInput" bindblur="bindGoodsBlur" bindconfirm="bindGoodsConfirm" />
       </view>
       <view class='row'>
         <text>数量</text>
@@ -27,7 +24,9 @@
         <text>人民币</text>
         <switch bindchange="changeCurrency" checked="{{model.isRMB}}" />
       </view>
-      <view class='row'>
+    </view>
+    <view class="ec-body">
+      <scroll-view style="height:{{scrollHeight}}px" scroll-top="{{scrollTop}}" scroll-y="true" bindscroll="scrll" bindscrolltolower="loadMore">
         <radio-group class="radio-group" bindchange="radioChange">
           <view class='radio-row' wx:for="{{items}}" wx:for-item="group" wx:key="unique">
             <label class="radio-cell" wx:for="{{group.radios}}" wx:key="unique">
@@ -35,10 +34,8 @@
             </label>
           </view>
         </radio-group>
-      </view>
-
+      </scroll-view>
     </view>
-
     <view class="ec-footer">
       <view class='ec-button-list'>
         <button type="primary" hover-class="button-hover" bindtap="newCustomer">新客户</button>
@@ -46,4 +43,5 @@
       </view>
     </view>
   </view>
+  <component-search-view on-focus="{{searchObj.onFocus}}" search-value="{{model.goodsName}}" url="{{searchObj.url}}" position="{{searchObj.position}}" bind:finditemevent="onFindItemEvent" bind:confirmitemevent="onConfirmItemEvent"></component-search-view>
 </view>

@@ -1,3 +1,4 @@
+var app = getApp();
 Page({
   data: {
     model: {
@@ -12,10 +13,8 @@ Page({
       isRMB: false,
       positionId: ''
     },
-    focusCustomer: true,
     focusGoods: false,
     focusQuantity: false,
-    hiddenDropdown: true,
     items: [
       {
         radios: [
@@ -30,18 +29,24 @@ Page({
           { name: 'TUR', value: '华润堂' }]
       }
     ],
-    searchViewStyle: {
-      top: 0,
-      left: 0
-    }
+    searchObj: {
+      url: app.globalData.domain + 'api/goods/search',
+      position: { top: 46, left: 200 * app.globalData.rpx2px },
+      onFocus: false
+    },
+    scrollHeight: app.globalData.systemInfo.windowHeight - 275 + 98 * app.globalData.rpx2px,
+  },
+  bindGoodsFocus: function (e) {
+    var setOnFocus = "searchObj.onFocus";
+    this.setData({
+      [setOnFocus]: true
+    });
   },
   bindGoodsInput: function (e) {
+    var setGoodsName = "model.goodsName";
     this.setData({
-      searchViewStyle: {
-        top: 50,
-        left: 0
-      }
-    })
+      [setGoodsName]: e.detail.value
+    });
   },
   bindGoodsConfirm: function (e) {
     this.setData({
@@ -50,13 +55,15 @@ Page({
     })
   },
   bindGoodsBlur: function (e) {
-
+    var setOnFocus = "searchObj.onFocus";
+    this.setData({
+      [setOnFocus]: false
+    });
   },
   changeCurrency: function (e) {
+    var setIsRMB = "model.isRMB";
     this.setData({
-      model: {
-        isRMB: e.detail.value
-      }
+      [setIsRMB]: e.detail.value
     })
   },
   newCustomer: function (e) {
@@ -65,30 +72,20 @@ Page({
   addGoods: function (e) {
 
   },
-  bindReplaceInput: function (e) {
-    var value = e.detail.value
-    var pos = e.detail.cursor
-    var left
-    if (pos !== -1) {
-      // 光标在中间
-      left = e.detail.value.slice(0, pos)
-      // 计算光标的位置
-      pos = left.replace(/11/g, '2').length
-    }
-
-    // 直接返回对象，可以对输入进行过滤处理，同时可以控制光标的位置
-    return {
-      value: value.replace(/11/g, '2'),
-      cursor: pos
-    }
-
-    // 或者直接返回字符串,光标在最后边
-    // return value.replace(/11/g,'2'),
+  /**
+   * 选择客户回调事件
+   */
+  onConfirmItemEvent: function (e) {
+    console.log(e);
+    var setGoodsName = "model.goodsName";
+    this.setData({
+      [setGoodsName]: e.detail.value
+    });
   },
-  bindHideKeyboard: function (e) {
-    if (e.detail.value === '123') {
-      // 收起键盘
-      wx.hideKeyboard()
-    }
-  }
+  /**
+   * 输入客户回调事件
+   */
+  onFindItemEvent: function (e) {
+    console.log(e);
+  },
 })

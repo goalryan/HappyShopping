@@ -5,8 +5,11 @@ Page({
     docNoIndex: 0,
     docNoArray: ['20171101001', '20171101002', '20171101003'],
     focusCustomer: true,
-    customerFocus: false,
-    searchPosition: { top: 92, left: 200 * app.globalData.rpx2px },
+    searchObj: {
+      url: app.globalData.domain + 'api/customer/search',
+      position: { top: 92, left: 200 * app.globalData.rpx2px },
+      onFocus: false
+    },
     scrollHeight: app.globalData.systemInfo.windowHeight - 185,
     listLi: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'],
   },
@@ -38,43 +41,41 @@ Page({
   initDocNoList: function () {
 
   },
-  /**
-   * 新客户
-   */
-  newCustomer: function (e) {
-
-  },
   bindCustomerFocus: function (e) {
+    var setOnFocus = "searchObj.onFocus";
     this.setData({
-      customerFocus: true
-    })
-
+      [setOnFocus]: true
+    });
   },
   bindCustomerInput: function (e) {
-    console.log(e);
+    var setCustomerNickName = "model.customerNickName";
     this.setData({
-      model: {
-        customerNickName: e.detail.value
-      }
-    })
+      [setCustomerNickName]: e.detail.value
+    });
   },
   bindCustomerConfirm: function (e) {
     this.setData({
       focusCustomer: false,
       focusGoods: true
-    })
+    });
   },
   bindCustomerBlur: function (e) {
+    var setOnFocus = "searchObj.onFocus";
     this.setData({
-      customerFocus: false
+      [setOnFocus]: false
+    });
+  },
+  changePaid: function (e) {
+    var setIsPaid = "model.isPaid";
+    this.setData({
+      [setIsPaid]: e.detail.value
     })
   },
-  changePaid:function(e){
-    this.setData({
-      model: {
-        isPaid: e.detail.value
-      }
-    })
+  /**
+   * 新客户
+   */
+  newCustomer: function (e) {
+
   },
   /**
    * 添加商品
@@ -89,10 +90,9 @@ Page({
    */
   onConfirmItemEvent: function (e) {
     console.log(e);
+    var setCustomerNickName = "model.customerNickName";
     this.setData({
-      model: {
-        customerNickName: e.detail.value
-      }
+      [setCustomerNickName]: e.detail.value
     });
   },
   /**
