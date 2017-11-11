@@ -129,7 +129,7 @@ Component({
      * 自动匹配查询项
      */
     autoBindItem: function () {
-      let findItem = this.data.list.find((item) => item.value === this.data.searchValue.trim().toLowerCase());
+      let findItem = this.data.list.find((item) => item.value.toLowerCase() === this.data.searchValue.trim().toLowerCase());
       if (findItem !== undefined) {
         this.setData({
           selectItem: {

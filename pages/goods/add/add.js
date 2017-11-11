@@ -34,7 +34,7 @@ Page({
       position: { top: 46, left: 200 * app.globalData.rpx2px },
       onFocus: false
     },
-    scrollHeight: app.globalData.systemInfo.windowHeight - 275 + 98 * app.globalData.rpx2px,
+    scrollHeight: app.globalData.systemInfo.windowHeight - 278 + 98 * app.globalData.rpx2px,
   },
   bindGoodsFocus: function (e) {
     var setOnFocus = "searchObj.onFocus";

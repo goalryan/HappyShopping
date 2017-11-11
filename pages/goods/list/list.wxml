@@ -6,7 +6,7 @@
     <view class="ec-header">
       <view class="row">
         <text>账单号</text>
-        <picker class="ec-picker" bindchange="bindDocNoChange" value="{{model.docNo}}" range="{{docNoArray}}">
+        <picker class="ec-picker" bindchange="bindDocNoChange" range="{{docNoArray}}">
           <view>
             {{docNoArray[docNoIndex]}}
           </view>
@@ -24,15 +24,15 @@
 
     <view class="ec-body">
       <scroll-view style="height:{{scrollHeight}}px" scroll-top="{{scrollTop}}" scroll-y="true" bindscroll="scrll" bindscrolltolower="loadMore">
-        <view class="block" wx:for="{{listLi}}" wx:for-item="item">
-          <text>{{item}}</text>
+        <view class="block" wx:for="{{goodsList}}" wx:for-item="item">
+          <text>{{item.goodsName}}</text>
         </view>
       </scroll-view>
     </view>
     <view class="ec-footer">
       <view class='ec-button-list'>
-        <button type="primary" hover-class="button-hover" bindtap="newCustomer">新客户</button>
-        <button type="primary" hover-class="button-hover" bindtap="addGoods">添加商品</button>
+        <button type="primary" hidden="{{goodsList.length>0}}" hover-class="button-hover" bindtap="saveCustomer">保存客户</button>
+        <button type="primary" hidden="{{goodsList.length==0}}" hover-class="button-hover" bindtap="addGoods">添加商品</button>
       </view>
     </view>
   </view>
