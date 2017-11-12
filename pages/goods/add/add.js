@@ -1,27 +1,12 @@
 var app = getApp();
 Page({
   data: {
+    docNo: '',
+    billCustomerId: '',
     model: {},
     focusGoods: false,
     focusQuantity: false,
-    items: [
-      {
-        radios: [
-          { name: 'USA', value: '168' },
-          { name: 'CHN', value: 'beautity'}]
-
-      },
-      {
-        radios: [
-          { name: 'JPN', value: '海港城' },
-          { name: 'TUR', value: '华润堂' }]
-      },
-      {
-        radios: [
-          { name: 'BRA', value: 'DFS' },
-          { name: 'ENG', value: '万宁' }]
-      }
-    ],
+    positionList: [],
     searchObj: {
       url: app.globalData.domain + 'api/goods/search',
       position: { top: 46, left: 200 * app.globalData.rpx2px },
@@ -31,25 +16,21 @@ Page({
   },
 
   onLoad: function (e) {
-    this.initGoods();
-    // this.setData({
-    //   ["model.docNo"]: e.docNo,
-    //   ["model.billCustomerId"]: e.billCustomerId
-    // });
-    //测试数据
     this.setData({
-      ["model.docNo"]: "BILL20171109001",
-      ["model.billCustomerId"]: "151054336458084148"
+      docNo: e.docNo,
+      billCustomerId: e.billCustomerId
     });
+    this.initGoods();
+    this.initPosition();
     console.log(this.data.model);
   },
-  initGoods: function (e) {
+  initGoods: function () {
     this.setData(
       {
         model: {
           id: app.getGuid(),
-          billCustomerId: '',
-          docNo: '',
+          billCustomerId: this.data.billCustomerId,
+          docNo: this.data.docNo,
           goodsId: '',
           goodsName: '',
           quantity: 1,
@@ -60,6 +41,38 @@ Page({
         }
       }
     )
+  },
+  initPosition: function () {
+    var url = app.globalData.domain + 'api/position';
+    var that = this;
+    wx.request({
+      url: url,
+      method: 'GET',
+      success: function (res) {
+        if (res.data.success) {
+          that.setData({
+            positionList: res.data.data
+          })
+        }
+      },
+      fail: function (e) {
+      },
+      complete: function () { }
+    })
+  },
+  resetPosionList: function () {
+    var resetData = [];
+    resetData = this.data.positionList.map(item => {
+      item.checked = false;
+      return item;
+    })
+    this.setData({
+      positionList: resetData
+    })
+  },
+  resetData: function () {
+    this.initGoods();
+    this.resetPosionList();
   },
   bindGoodsFocus: function (e) {
     this.setData({
@@ -102,7 +115,29 @@ Page({
       ["model.isRMB"]: e.detail.value
     })
   },
-  newCustomer: function (e) {
+  radioChange: function (e) {
+    this.setData({
+      ["model.positionId"]: e.detail.value
+    })
+  },
+  itemTap: function (e) {
+    var tapResult = [];
+    tapResult = this.data.positionList.map(item => {
+      if (item.id === e.currentTarget.dataset.id) {
+        item.checked = true;
+        this.setData({
+          ["model.positionId"]: item.id
+        })
+      } else {
+        item.checked = false;
+      }
+      return item;
+    })
+    this.setData({
+      positionList: tapResult
+    })
+  },
+  goCustomer: function (e) {
     wx.navigateBack({});
   },
   addGoods: function (e) {
@@ -127,7 +162,7 @@ Page({
             icon: 'success',
             duration: 2000
           })
-          that.initGoods();
+          that.resetData();
         } else {
           wx.showToast({
             title: '保存失败',

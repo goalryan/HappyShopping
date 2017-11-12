@@ -216,7 +216,7 @@ Page({
    * 查询商品列表
    */
   queryGoodsList: function () {
-    this.setData({ goodsList: [], ["model.id"]: '' });
+    this.setData({ goodsList: [], ["model.id"]: '', ["model.isPaid"]: false });
     //账单号和客户ID都存在才查询数据
     if (this.data.model.docNo !== '' && this.data.model.customerId !== '') {
       console.log(this.data.model.docNo, this.data.model.customerId);

@@ -26,19 +26,17 @@
       </view>
     </view>
     <view class="ec-body">
-      <scroll-view style="height:{{scrollHeight}}px" scroll-top="{{scrollTop}}" scroll-y="true" bindscroll="scrll" bindscrolltolower="loadMore">
+      <scroll-view style="height:{{scrollHeight}}px" scroll-top="" scroll-y="true" bindscroll="scrll">
         <radio-group class="radio-group" bindchange="radioChange">
-          <view class='radio-row' wx:for="{{items}}" wx:for-item="group" wx:key="unique">
-            <label class="radio-cell" wx:for="{{group.radios}}" wx:key="unique">
-              <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
-            </label>
+          <view class='radio-row' wx:for="{{positionList}}" wx:for-item="item" wx:key="unique" data-value="{{item.value}}" data-id="{{item.id}}" bindtap="itemTap">
+            <radio value="{{item.id}}" checked="{{item.checked}}" />{{item.name}}
           </view>
         </radio-group>
       </scroll-view>
     </view>
     <view class="ec-footer">
       <view class='ec-button-list'>
-        <button type="primary" hover-class="button-hover" bindtap="newCustomer">新客户</button>
+        <button type="primary" hover-class="button-hover" bindtap="goCustomer">返回</button>
         <button type="primary" hover-class="button-hover" bindtap="addGoods">继续添加</button>
       </view>
     </view>
