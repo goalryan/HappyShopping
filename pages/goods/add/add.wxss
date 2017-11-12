@@ -1,7 +1,7 @@
 @import "../../common/lib/weui.wxss";
 .radio-group {
   flex: 1;
-  margin-left: 20rpx;
+  padding-left: 32rpx;
 }
 
 .radio-row {
@@ -9,8 +9,8 @@
   flex: 1;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 6rpx;
+  justify-content: space-around;
+  padding-top: 32rpx;
 }
 
 .radio-cell {

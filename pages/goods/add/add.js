@@ -1,32 +1,25 @@
 var app = getApp();
 Page({
   data: {
-    model: {
-      docNo: '',
-      customerId: '',
-      customerNickName: '',
-      goodsId: '',
-      goodsName: '',
-      quantity: 1,
-      inUnitPrice: 0,
-      outUnitPrice: 0,
-      isRMB: false,
-      positionId: ''
-    },
+    model: {},
     focusGoods: false,
     focusQuantity: false,
     items: [
       {
         radios: [
           { name: 'USA', value: '168' },
-          { name: 'CHN', value: 'beautity', checked: 'true' },
-          { name: 'BRA', value: 'DFS' }]
+          { name: 'CHN', value: 'beautity', checked: 'true' }]
+
       },
       {
         radios: [
           { name: 'JPN', value: '海港城' },
-          { name: 'ENG', value: '万宁' },
           { name: 'TUR', value: '华润堂' }]
+      },
+      {
+        radios: [
+          { name: 'BRA', value: 'DFS' },
+          { name: 'ENG', value: '万宁' }]
       }
     ],
     searchObj: {
@@ -35,6 +28,37 @@ Page({
       onFocus: false
     },
     scrollHeight: app.globalData.systemInfo.windowHeight - 278 + 98 * app.globalData.rpx2px,
+  },
+
+  onLoad: function (e) {
+    this.initGoods();
+    // this.setData({
+    //   ["model.billCustomerId"]: e.billCustomerId
+    // });
+    this.setData({
+      ["model.billCustomerId"]: "151053156076854563"
+    });
+    console.log(this.data.model);
+  },
+  initGoods: function (e) {
+    this.setData(
+      {
+        model: {
+          id: app.getGuid(),
+          billCustomerId: '',
+          docNo: '',
+          customerId: '',
+          customerNickName: '',
+          goodsId: '',
+          goodsName: '',
+          quantity: 1,
+          inUnitPrice: 0,
+          outUnitPrice: 0,
+          isRMB: false,
+          positionId: ''
+        }
+      }
+    )
   },
   bindGoodsFocus: function (e) {
     var setOnFocus = "searchObj.onFocus";
