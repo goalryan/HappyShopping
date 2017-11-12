@@ -10,15 +10,15 @@
       </view>
       <view class='row'>
         <text>数量</text>
-        <input class="ec-input" value="{{model.quantity}}" focus="{{focusQuantity}}" type="number" />
+        <input class="ec-input" value="{{model.quantity}}" focus="{{focusQuantity}}" type="number" bindinput="bindQuantityInput" />
       </view>
       <view class='row'>
         <text>成本价格</text>
-        <input class="ec-input" value="{{model.outUnitPrice}}" focus="{{focusQuantity}}" type="digit" />
+        <input class="ec-input" value="{{model.inUnitPrice}}" focus="{{focusQuantity}}" type="digit" bindinput="bindInUnitPriceInput" />
       </view>
       <view class='row'>
         <text>卖出价格</text>
-        <input class="ec-input" value="{{model.outUnitPrice}}" focus="{{focusQuantity}}" type="digit" />
+        <input class="ec-input" value="{{model.outUnitPrice}}" focus="{{focusQuantity}}" type="digit" bindinput="bindOutUnitPriceInput" />
       </view>
       <view class='row'>
         <text>人民币</text>

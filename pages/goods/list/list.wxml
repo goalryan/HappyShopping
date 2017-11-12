@@ -32,7 +32,7 @@
     <view class="ec-footer">
       <view class='ec-button-list'>
         <button type="primary" hidden="{{model.id!==''}}" hover-class="button-hover" bindtap="saveCustomer">保存客户</button>
-        <button type="primary" hidden="{{model.id!==''}}" hover-class="button-hover" bindtap="addGoods">添加商品</button>
+        <button type="primary" hidden="{{model.id===''}}" hover-class="button-hover" bindtap="addGoods">添加商品</button>
       </view>
     </view>
   </view>

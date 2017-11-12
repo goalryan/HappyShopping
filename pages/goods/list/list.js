@@ -18,11 +18,15 @@ Page({
     this.initCustomer();
     this.initDocNoList();
   },
+  onShow: function () {
+    this.queryGoodsList();
+  },
   bindDocNoChange: function (e) {
     this.setData({
       docNoIndex: e.detail.value,
       ["model.docNo"]: this.data.docNoArray[e.detail.value]
-    })
+    });
+    this.queryGoodsList();
   },
   initCustomer: function () {
     this.setData({
@@ -184,7 +188,7 @@ Page({
    */
   addGoods: function (e) {
     wx.navigateTo({
-      url: '../add/add?billCustomerId=' + this.data.model.id,
+      url: '../add/add?billCustomerId=' + this.data.model.id + '&docNo=' + this.data.model.docNo,
     })
   },
   /**

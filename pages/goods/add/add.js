@@ -8,7 +8,7 @@ Page({
       {
         radios: [
           { name: 'USA', value: '168' },
-          { name: 'CHN', value: 'beautity', checked: 'true' }]
+          { name: 'CHN', value: 'beautity'}]
 
       },
       {
@@ -33,10 +33,13 @@ Page({
   onLoad: function (e) {
     this.initGoods();
     // this.setData({
+    //   ["model.docNo"]: e.docNo,
     //   ["model.billCustomerId"]: e.billCustomerId
     // });
+    //测试数据
     this.setData({
-      ["model.billCustomerId"]: "151053156076854563"
+      ["model.docNo"]: "BILL20171109001",
+      ["model.billCustomerId"]: "151054336458084148"
     });
     console.log(this.data.model);
   },
@@ -47,8 +50,6 @@ Page({
           id: app.getGuid(),
           billCustomerId: '',
           docNo: '',
-          customerId: '',
-          customerNickName: '',
           goodsId: '',
           goodsName: '',
           quantity: 1,
@@ -61,15 +62,13 @@ Page({
     )
   },
   bindGoodsFocus: function (e) {
-    var setOnFocus = "searchObj.onFocus";
     this.setData({
-      [setOnFocus]: true
+      ["searchObj.onFocus"]: true
     });
   },
   bindGoodsInput: function (e) {
-    var setGoodsName = "model.goodsName";
     this.setData({
-      [setGoodsName]: e.detail.value
+      ["model.goodsName"]: e.detail.value
     });
   },
   bindGoodsConfirm: function (e) {
@@ -79,31 +78,83 @@ Page({
     })
   },
   bindGoodsBlur: function (e) {
-    var setOnFocus = "searchObj.onFocus";
     this.setData({
-      [setOnFocus]: false
+      ["searchObj.onFocus"]: false
+    });
+  },
+  bindQuantityInput: function (e) {
+    this.setData({
+      ["model.quantity"]: e.detail.value
+    });
+  },
+  bindInUnitPriceInput: function (e) {
+    this.setData({
+      ["model.inUnitPrice"]: e.detail.value
+    });
+  },
+  bindOutUnitPriceInput: function (e) {
+    this.setData({
+      ["model.outUnitPrice"]: e.detail.value
     });
   },
   changeCurrency: function (e) {
-    var setIsRMB = "model.isRMB";
     this.setData({
-      [setIsRMB]: e.detail.value
+      ["model.isRMB"]: e.detail.value
     })
   },
   newCustomer: function (e) {
-    wx.navigateBack({})
+    wx.navigateBack({});
   },
   addGoods: function (e) {
-
+    if (this.data.model.goodsName === '') {
+      wx.showToast({
+        title: '商品名称必填',
+        icon: 'info',
+        duration: 2000
+      })
+      return;
+    }
+    var url = app.globalData.domain + 'api/billGoods/add';
+    var that = this;
+    wx.request({
+      url: url,
+      data: that.data.model,
+      method: 'POST',
+      success: function (res) {
+        if (res.data.success) {
+          wx.showToast({
+            title: '保存成功',
+            icon: 'success',
+            duration: 2000
+          })
+          that.initGoods();
+        } else {
+          wx.showToast({
+            title: '保存失败',
+            icon: 'warn',
+            duration: 2000
+          })
+        }
+      },
+      fail: function (e) {
+        var toastText = '获取数据失败' + JSON.stringify(e);
+        wx.showToast({
+          title: toastText,
+          icon: 'error',
+          duration: 2000
+        })
+      },
+      complete: function () { }
+    })
   },
   /**
    * 选择客户回调事件
    */
   onConfirmItemEvent: function (e) {
     console.log(e);
-    var setGoodsName = "model.goodsName";
     this.setData({
-      [setGoodsName]: e.detail.value
+      ["model.goodsId"]: e.detail.id,
+      ["model.goodsName"]: e.detail.value
     });
   },
   /**
@@ -111,5 +162,8 @@ Page({
    */
   onFindItemEvent: function (e) {
     console.log(e);
+    this.setData({
+      ["model.goodsId"]: e.detail.value
+    });
   },
 })
