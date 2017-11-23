@@ -1,4 +1,5 @@
 // require("../pages/components/search")
+var network = require("./utils/network.js")
 //app.js
 App({
   onLaunch: function () {
@@ -10,18 +11,20 @@ App({
     // 登录
     wx.login({
       success: res => {
-        debugger;
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        const params = {
-          appid: 'wx38f10165ff121063',
-          secret: '147863a10fd3c611f83afa957b8446c2',
-          js_code: res.code,
-          grant_type: 'authorization_code'
+        // appid: 'wx38f10165ff121063',
+        //   secret: '147863a10fd3c611f83afa957b8446c2',
+        //     js_code: res.code,
+        //       grant_type: 'authorization_code'
+        var params = {
+          isWx: true,
+          userName: '13510930357',
+          password: '123456'
         }
-        wx.request({
-          url: 'https://api.weixin.qq.com/sns/jscode2session',
-          data: params,
-          method: 'GET',
+        network.POST({
+          url: 'api/user/login',
+          params: params,
+          header: { 'JsCode': res.code },
           success: function (res) {
             console.log(res.data)
           },
