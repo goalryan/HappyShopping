@@ -11,24 +11,18 @@ App({
     // 登录
     wx.login({
       success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        // appid: 'wx38f10165ff121063',
-        //   secret: '147863a10fd3c611f83afa957b8446c2',
-        //     js_code: res.code,
-        //       grant_type: 'authorization_code'
-        var params = {
-          isWx: true,
-          userName: '13510930357',
-          password: '123456'
-        }
         network.POST({
-          url: 'api/user/login',
-          params: params,
-          header: { 'JsCode': res.code },
+          url: 'api/user/wxLogin',
+          params: { isWx: true },
           success: function (res) {
             console.log(res.data)
           },
-          fail: function () { }
+          fail: function () {
+            // 自动登录失败跳转到登录页面
+            wx.navigateTo({
+              url: '../add/add?billCustomerId=' + this.data.model.id + '&JsCode=' + res.code,
+            })
+          }
         })
       }
     })
