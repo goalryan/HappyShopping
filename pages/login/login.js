@@ -9,7 +9,6 @@ Page({
       userName: '',
       password: ''
     },
-    jsCode: '',
     isBindWx: false,
     focusUserName: true,
     focusPassword: false
@@ -19,9 +18,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      jsCode: wx.getStorageSync('jsCode')
-    });
     this.login();
   },
   /**
@@ -55,7 +51,6 @@ Page({
    * 登录
    */
   login: function () {
-    debugger;
     var that = this;
     var params = {
       isWx: true,
@@ -65,9 +60,10 @@ Page({
     network.POST({
       url: 'api/user/login',
       params: params,
-      header: { 'JsCode': that.data.jsCode },
+      header: { 'JsCode': wx.getStorageSync("jsCode") },
       success: function (res) {
         console.log(res.data)
+        //更新token和用户信息
       },
       fail: function () { }
     })

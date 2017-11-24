@@ -11,18 +11,14 @@ App({
     // 登录
     wx.login({
       success: res => {
+        wx.setStorageSync('jsCode', res.code);
         network.POST({
           url: 'api/user/wxLogin',
           params: { isWx: true },
           success: function (res) {
-            wx.setStorageSync('jsCode', res.code)
             console.log(res.data)
           },
-          fail: function () {
-            
-            // 自动登录失败跳转到登录页面
-           
-          }
+          fail: function () { }
         })
       }
     })

@@ -44,7 +44,7 @@ function request(method, requestHandler) {
     success: function (res) {
       //注意：可以对参数解密等处理     
       if (res.statusCode === 401) {
-        //token过期调到登录页面
+        //token过期跳到登录页面
         wx.redirectTo({
           url: '../../../pages/login/login',
         })
