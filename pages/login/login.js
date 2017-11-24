@@ -9,6 +9,7 @@ Page({
       userName: '',
       password: ''
     },
+    autoLogining: true,
     isBindWx: false,
     focusUserName: true,
     focusPassword: false
@@ -18,7 +19,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.login();
+    // this.login();
   },
   /**
    * 生命周期函数--监听页面显示
@@ -64,6 +65,8 @@ Page({
       success: function (res) {
         console.log(res.data)
         //更新token和用户信息
+        //转到主页
+        wx.switchTab({ url: '../index/index' })
       },
       fail: function () { }
     })
