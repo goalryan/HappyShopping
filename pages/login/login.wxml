@@ -7,15 +7,15 @@
 
       <view class='row'>
         <text>用户名</text>
-        <input class="ec-input" value='{{model.userName}}' focus="{{focusUserName}}" placeholder="请输入用户名" confirm-type="next" bindinput="bindUserNameInput" bindconfirm="bindUserNameConfirm" />
+        <input class="ec-input" value='{{model.userName}}' focus="{{focusUserName}}" placeholder="请输入用户名" confirm-type="next" bindinput="bindUserNameInput" bindconfirm="bindUserNameConfirm" />
       </view>
       <view class='row'>
         <text>密码</text>
-        <input class="ec-input" password='true' value='{{model.password}}' focus="{{focusPassword}}" placeholder="请输入密码" confirm-type="next" bindinput="bindPasswordInput" bindconfirm="bindPasswordConfirm" />
+        <input class="ec-input" password='true' value='{{model.password}}' focus="{{focusPassword}}" placeholder="请输入密码" confirm-type="next" bindinput="bindPasswordInput" />
       </view>
       <view class='row'>
         <text>绑定当前微信号</text>
-        <switch bindchange="bindWx" checked="{{model.isBindWx}}" />
+        <switch bindchange="bindWx" checked="{{isBindWx}}" />
       </view>
     </view>
 

@@ -42,8 +42,15 @@ function request(method, requestHandler) {
     method: method, // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
     header: header,
     success: function (res) {
-      //注意：可以对参数解密等处理
-      requestHandler.success(res);
+      //注意：可以对参数解密等处理     
+      if (res.statusCode === 401) {
+        //token过期调到登录页面
+        wx.redirectTo({
+          url: '../../../pages/login/login',
+        })
+      } else {
+        requestHandler.success(res);
+      }
     },
     fail: function () {
       requestHandler.fail();

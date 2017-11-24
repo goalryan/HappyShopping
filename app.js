@@ -15,13 +15,13 @@ App({
           url: 'api/user/wxLogin',
           params: { isWx: true },
           success: function (res) {
+            wx.setStorageSync('jsCode', res.code)
             console.log(res.data)
           },
           fail: function () {
+            
             // 自动登录失败跳转到登录页面
-            wx.navigateTo({
-              url: '../add/add?billCustomerId=' + this.data.model.id + '&JsCode=' + res.code,
-            })
+           
           }
         })
       }
