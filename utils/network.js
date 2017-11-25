@@ -1,5 +1,4 @@
-const domain = 'http://happyshopping.com/'
-
+const domain = 'http://happyshopping.com/';
 let requestHandler = {
   url: '',
   params: {},
@@ -33,8 +32,7 @@ function request(method, requestHandler) {
   var params = requestHandler.params;
   var header = requestHandler.header;
   if (header === undefined) header = {};
-  header.Authorization = wx.getStorageInfoSync('token');
-  header.EnterpriseId = wx.getStorageInfoSync('enterpriseId');
+  header.Authorization = wx.getStorageSync('token');
   header.UserName = wx.getStorageInfoSync('userName'); // 微信名称
   wx.request({
     url: domain + requestHandler.url,
@@ -45,8 +43,8 @@ function request(method, requestHandler) {
       //注意：可以对参数解密等处理     
       if (res.statusCode === 401) {
         //token过期跳到登录页面
-        wx.redirectTo({
-          url: '../../../pages/login/login',
+        wx.reLaunch({
+          url: '/pages/login/login'
         })
       } else {
         requestHandler.success(res);
@@ -56,7 +54,7 @@ function request(method, requestHandler) {
       requestHandler.fail();
     },
     complete: function () {
-      requestHandler.complete();
+      // requestHandler.complete();
     }
   })
 }

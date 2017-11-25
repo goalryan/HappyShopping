@@ -2,7 +2,7 @@
 <import src="../../common/foot.wxml" />
 
 <view class="container">
-  <view class="page-body" hidden='!autoLogining'>
+  <view class="page-body">
     <view class="ec-header">
       <view class='row'>
         <text>用户名</text>
@@ -14,7 +14,7 @@
       </view>
       <view class='row'>
         <text>绑定微信号</text>
-        <switch bindchange="bindWx" checked="{{isBindWx}}" />
+        <switch bindchange="bindWx" checked="{{model.isBindWx}}" />
       </view>
     </view>
     <view class="ec-body">
@@ -22,9 +22,5 @@
         <button type="primary" hover-class="button-hover" bindtap="login">登录</button>
       </view>
     </view>
-  </view>
-
-  <view class="page-body" hidden='autoLogining'>
-    正在加载，请稍候...
   </view>
 </view>

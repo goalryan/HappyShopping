@@ -6,11 +6,11 @@ Page({
    */
   data: {
     model: {
+      isWx: true,
       userName: '',
-      password: ''
+      password: '',
+      isBindWx: true,
     },
-    autoLogining: true,
-    isBindWx: false,
     focusUserName: true,
     focusPassword: false
   },
@@ -19,7 +19,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.login();
   },
   /**
    * 生命周期函数--监听页面显示
@@ -45,7 +44,7 @@ Page({
   },
   bindWx: function (e) {
     this.setData({
-      isBindWx: e.detail.value
+      ["model.isBindWx"]: e.detail.value
     })
   },
   /**
@@ -53,24 +52,20 @@ Page({
    */
   login: function () {
     var that = this;
-    var params = {
-      isWx: true,
-      userName: '13510930357',
-      password: '123456'
-    }
     network.POST({
       url: 'api/user/login',
-      params: params,
+      params: that.data.model,
       header: { 'JsCode': wx.getStorageSync("jsCode") },
       success: function (res) {
-        console.log(res.data)
-        //更新token和用户信息
-        //转到主页
-        wx.switchTab({ url: '../index/index' })
+        const { success, data } = res.data;
+        if (success) {
+          //更新token和用户信息
+          wx.setStorageSync('token', data.token.token_type + ' ' + data.token.access_token);
+          //转到主页
+          wx.switchTab({ url: '/pages/goods/list/list' })
+        }
       },
       fail: function () { }
     })
   }
 })
-
-

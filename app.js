@@ -12,14 +12,14 @@ App({
     wx.login({
       success: res => {
         wx.setStorageSync('jsCode', res.code);
-        network.POST({
-          url: 'api/user/wxLogin',
-          params: { isWx: true },
-          success: function (res) {
-            console.log(res.data)
-          },
-          fail: function () { }
-        })
+        // network.POST({
+        //   url: 'api/user/wxLogin',
+        //   params: { isWx: true },
+        //   success: function (res) {
+        //     console.log(res.data)
+        //   },
+        //   fail: function () { }
+        // })
       }
     })
     // 获取用户信息
