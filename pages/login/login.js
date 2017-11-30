@@ -61,6 +61,7 @@ Page({
         if (success) {
           //更新token和用户信息
           wx.setStorageSync('token', data.token.token_type + ' ' + data.token.access_token);
+          wx.setStorageSync('openId', data.user.openId)
           //转到主页
           wx.switchTab({ url: '/pages/goods/list/list' })
         }

@@ -13,12 +13,19 @@ Page({
   onLoad() {
     this.setData({ loading: false })
   },
-  start() {    
+  start() {
     network.POST({
       url: 'api/user/wxLogin',
       params: { isWx: true },
       success: function (res) {
-        wx.switchTab({ url: '/pages/goods/list/list' });
+        if (res.statusCode === 200) {
+          wx.switchTab({ url: '/pages/goods/list/list' });
+        } else {
+          //跳到登录页面
+          wx.reLaunch({
+            url: '/pages/login/login'
+          })
+        }
       },
       fail: function () { }
     })

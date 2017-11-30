@@ -33,6 +33,7 @@ function request(method, requestHandler) {
   var header = requestHandler.header;
   if (header === undefined) header = {};
   header.Authorization = wx.getStorageSync('token');
+  header.OpenId = wx.getStorageSync('openId');
   header.UserName = wx.getStorageInfoSync('userName'); // 微信名称
   wx.request({
     url: domain + requestHandler.url,
