@@ -1,0 +1,22 @@
+<scroll-view style="height:{{scrollHeight}}px" scroll-y="true" bindscroll="scrll" bindscrolltolower="loadMore">
+  <view class='goods-row' wx:for="{{goodsList}}" wx:for-item="item">
+    <view class='goods-info'>
+      <view class='goods-main'>
+        <view>{{item.goodsName}}</view>
+      </view>
+      <view class='goods-sub'>
+        <view class='goods-sub-pro'>数量 {{item.quantity}}</view>
+        <view class='goods-sub-pro'>买入 {{item.inUnitPrice}}</view>
+        <view class='goods-sub-pro'>卖出 {{item.outUnitPrice}}</view>
+      </view>
+       <view class='goods-sub'>
+        <view class='goods-sub-pro'>地点 {{item.positionName}}</view>
+      </view>
+    </view>
+    <view class='goods-operate'>
+      <view>+</view>
+      <view>-</view>
+    </view>
+
+  </view>
+</scroll-view>

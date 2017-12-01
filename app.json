@@ -1,9 +1,10 @@
 {
   "pages": [
+    "pages/bill/bills/bills",
+    "pages/express/express",
     "pages/splash/splash",
     "pages/login/login",
-    "pages/goods/list/list",
-    "pages/express/express",
+    "pages/goods/list/list",    
     "pages/goods/add/add",
     "pages/index/index",
     "pages/logs/logs"
@@ -18,7 +19,7 @@
     "selectedColor": "#d81e06",
     "list": [
       {
-        "pagePath": "pages/express/express",
+        "pagePath": "pages/bill/bills/bills",
         "text": "账单",
         "iconPath": "/css/icon/home_light.png",
         "selectedIconPath": "/css/icon/home_fill_light.png"

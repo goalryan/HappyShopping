@@ -6,9 +6,9 @@
     <view class="ec-header">
       <view class="row">
         <text>账单号</text>
-        <picker class="ec-picker" bindchange="bindDocNoChange" range="{{docNoArray}}">
+        <picker class="ec-picker" bindchange="bindDocNoChange" range-key="docNo" range="{{docNoArray}}">
           <view>
-            {{docNoArray[docNoIndex]}}
+            {{docNoArray[docNoIndex].docNo}}
           </view>
         </picker>
       </view>
@@ -23,11 +23,12 @@
     </view>
 
     <view class="ec-body">
-      <scroll-view style="height:{{scrollHeight}}px" scroll-top="{{scrollTop}}" scroll-y="true" bindscroll="scrll" bindscrolltolower="loadMore">
+      <!-- <scroll-view style="height:{{scrollHeight}}px" scroll-top="{{scrollTop}}" scroll-y="true" bindscroll="scrll" bindscrolltolower="loadMore">
         <view class="block" wx:for="{{goodsList}}" wx:for-item="item">
           <text>{{item.goodsName}}</text>
         </view>
-      </scroll-view>
+      </scroll-view> -->
+      <component-goods-list-view scroll-height="{{scrollHeight}}" goods-list="{{goodsList}}"></component-goods-list-view>
     </view>
     <view class="ec-footer">
       <view class='ec-button-list'>

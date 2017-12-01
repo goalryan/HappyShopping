@@ -1,23 +1,24 @@
+var network=require("../../../utils/network.js")
 var app = getApp();
 Page({
   data: {
-    docNo: '',
+    billId: '',
     billCustomerId: '',
     model: {},
     focusGoods: false,
     focusQuantity: false,
     positionList: [],
     searchObj: {
-      url: app.globalData.domain + 'api/goods/search',
+      url: 'api/goods/search',
       position: { top: 46, left: 200 * app.globalData.rpx2px },
       onFocus: false
     },
-    scrollHeight: app.globalData.systemInfo.windowHeight - 278 + 98 * app.globalData.rpx2px,
+    scrollHeight: app.globalData.systemInfo.windowHeight - 231 - 98 * app.globalData.rpx2px,
   },
 
   onLoad: function (e) {
     this.setData({
-      docNo: e.docNo,
+      billId: e.billId,
       billCustomerId: e.billCustomerId
     });
     this.initGoods();
@@ -30,7 +31,7 @@ Page({
         model: {
           id: app.getGuid(),
           billCustomerId: this.data.billCustomerId,
-          docNo: this.data.docNo,
+          billId: this.data.billId,
           goodsId: '',
           goodsName: '',
           quantity: 1,
@@ -43,11 +44,10 @@ Page({
     )
   },
   initPosition: function () {
-    var url = app.globalData.domain + 'api/position';
+    var url = 'api/position';
     var that = this;
-    wx.request({
+    network.GET({
       url: url,
-      method: 'GET',
       success: function (res) {
         if (res.data.success) {
           that.setData({
@@ -149,12 +149,11 @@ Page({
       })
       return;
     }
-    var url = app.globalData.domain + 'api/billGoods/add';
+    var url = 'api/billGoods/add';
     var that = this;
-    wx.request({
+    network.POST({
       url: url,
       data: that.data.model,
-      method: 'POST',
       success: function (res) {
         if (res.data.success) {
           wx.showToast({

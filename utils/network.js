@@ -1,7 +1,7 @@
 const domain = 'http://happyshopping.com/';
 let requestHandler = {
   url: '',
-  params: {},
+  data: {},
   header: {},
   success: function (res) {
     // success
@@ -29,10 +29,11 @@ function DELETE(requestHandler) {
 
 function request(method, requestHandler) {
   //注意：可以对params加密等处理
-  var params = requestHandler.params;
+  var params = requestHandler.data;
   var header = requestHandler.header;
   if (header === undefined) header = {};
   header.Authorization = wx.getStorageSync('token');
+  header.EnterpriseId = wx.getStorageSync('enterpriseId');
   header.OpenId = wx.getStorageSync('openId');
   header.UserName = wx.getStorageInfoSync('userName'); // 微信名称
   wx.request({

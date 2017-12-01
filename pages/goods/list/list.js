@@ -1,3 +1,4 @@
+var network = require("../../../utils/network.js")
 var app = getApp();
 Page({
   data: {
@@ -8,11 +9,11 @@ Page({
     isNewCustomer: true,
     focusCustomer: true,
     searchObj: {
-      url: app.globalData.domain + 'api/customer/search',
+      url: 'api/customer/search',
       position: { top: 92, left: 200 * app.globalData.rpx2px },
       onFocus: false
     },
-    scrollHeight: app.globalData.systemInfo.windowHeight - 185
+    scrollHeight: app.globalData.systemInfo.windowHeight - 232
   },
   onLoad: function () {
     this.initCustomer();
@@ -24,7 +25,8 @@ Page({
   bindDocNoChange: function (e) {
     this.setData({
       docNoIndex: e.detail.value,
-      ["model.docNo"]: this.data.docNoArray[e.detail.value]
+      ["model.billId"]: this.data.docNoArray[e.detail.value].id,
+      ["model.docNo"]: this.data.docNoArray[e.detail.value].docNo
     });
     this.queryGoodsList();
   },
@@ -43,23 +45,23 @@ Page({
    * 获取打开的账单
    */
   initDocNoList: function () {
-    var url = app.globalData.domain + 'api/bill/openBills';
+    var url = 'api/bill/openBills';
     var that = this;
-    wx.request({
+    network.GET({
       url: url,
       data: "",
-      method: 'GET',
       success: function (res) {
         var responseData = [];
         if (res.data.success) {
           res.data.data.forEach(item => {
-            responseData.push(item.docNo);
+            responseData.push({ id: item.id, docNo: item.docNo });
           });
         }
         if (responseData.length > 0) {
           that.setData({
             docNoArray: responseData,
-            ["model.docNo"]: responseData[0]
+            ["model.billId"]: responseData[0].id,
+            ["model.docNo"]: responseData[0].docNo
           });
         } else {
           that.setData({
@@ -102,12 +104,11 @@ Page({
       ["model.isPaid"]: e.detail.value
     })
     if (this.data.model.id === '') return;
-    var url = app.globalData.domain + 'api/billCustomer/updateIsPaid';
+    var url = 'api/billCustomer/updateIsPaid';
     var that = this;
-    wx.request({
+    network.POST({
       url: url,
       data: that.data.model,
-      method: 'POST',
       success: function (res) {
         if (!res.data.success) {
           wx.showToast({
@@ -138,7 +139,7 @@ Page({
    * 保存客户
    */
   saveCustomer: function (e) {
-    if (this.data.model.docNo === '' || this.data.model.customerNickName === '') {
+    if (this.data.model.billId === '' || this.data.model.customerNickName === '') {
       wx.showToast({
         title: '账单和客户名称必填',
         icon: 'info',
@@ -146,12 +147,11 @@ Page({
       })
       return;
     }
-    var url = app.globalData.domain + 'api/billCustomer/add';
+    var url = 'api/billCustomer/add';
     var that = this;
-    wx.request({
+    network.POST({
       url: url,
       data: that.data.model,
-      method: 'POST',
       success: function (res) {
         if (res.data.success) {
           that.setData({
@@ -188,7 +188,7 @@ Page({
    */
   addGoods: function (e) {
     wx.navigateTo({
-      url: '../add/add?billCustomerId=' + this.data.model.id + '&docNo=' + this.data.model.docNo,
+      url: '../add/add?billCustomerId=' + this.data.model.id + '&billId=' + this.data.model.billId,
     })
   },
   /**
@@ -218,14 +218,13 @@ Page({
   queryGoodsList: function () {
     this.setData({ goodsList: [], ["model.id"]: '', ["model.isPaid"]: false });
     //账单号和客户ID都存在才查询数据
-    if (this.data.model.docNo !== '' && this.data.model.customerId !== '') {
-      console.log(this.data.model.docNo, this.data.model.customerId);
-      var url = app.globalData.domain + 'api/billCustomer/getByDocNoAndCustomerId';
+    if (this.data.model.billId !== '' && this.data.model.customerId !== '') {
+      console.log(this.data.model.billId, this.data.model.customerId);
+      var url = 'api/billCustomer/getByDocNoAndCustomerId';
       var that = this;
-      wx.request({
+      network.POST({
         url: url,
         data: that.data.model,
-        method: 'POST',
         success: function (res) {
           if (res.data.success) {
             that.setData({

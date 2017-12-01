@@ -16,7 +16,7 @@ Page({
   start() {
     network.POST({
       url: 'api/user/wxLogin',
-      params: { isWx: true },
+      data: { isWx: true },
       success: function (res) {
         if (res.statusCode === 200) {
           wx.switchTab({ url: '/pages/goods/list/list' });

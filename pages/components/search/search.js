@@ -1,3 +1,4 @@
+var network = require("../../../utils/network.js")
 var app = getApp();
 Component({
   behaviors: [],
@@ -81,10 +82,9 @@ Component({
     fetchData: function () {
       var url = this.data.url;//查询数据的URL
       var that = this;
-      wx.request({
+      network.GET({
         url: url,
         data: { [that.data.searchKey]: this.data.searchValue },
-        method: 'GET',
         success: function (res) {
           var responseData = [];
           if (res.data.success) {

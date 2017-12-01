@@ -54,13 +54,14 @@ Page({
     var that = this;
     network.POST({
       url: 'api/user/login',
-      params: that.data.model,
+      data: that.data.model,
       header: { 'JsCode': wx.getStorageSync("jsCode") },
       success: function (res) {
         const { success, data } = res.data;
         if (success) {
           //更新token和用户信息
           wx.setStorageSync('token', data.token.token_type + ' ' + data.token.access_token);
+          wx.setStorageSync('enterpriseId', data.user.enterpriseId)
           wx.setStorageSync('openId', data.user.openId)
           //转到主页
           wx.switchTab({ url: '/pages/goods/list/list' })

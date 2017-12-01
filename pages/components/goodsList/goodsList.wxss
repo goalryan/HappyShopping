@@ -1,0 +1,39 @@
+.goods-row {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 1rpx solid #d1dbe5;
+  background-color: #fff;
+  padding: 16rpx;
+}
+
+.goods-info {
+  flex: 70%;
+}
+
+.goods-main {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.goods-sub {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.goods-sub-pro {
+  flex: 1;
+}
+
+.goods-operate {
+  display: flex;
+  flex: 30%;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}

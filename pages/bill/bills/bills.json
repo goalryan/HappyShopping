@@ -1,7 +1,6 @@
 {
-  "navigationBarTitleText": "客户",
+  "navigationBarTitleText": "账单",
   "usingComponents": {
-    "component-search-view":"../../components/search/search",
     "component-goods-list-view": "../../components/goodsList/goodsList"
   }
 }
