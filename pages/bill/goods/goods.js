@@ -4,13 +4,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dataList: [],
+    billCustomerId: '',
+    customerNickName: '',
+    goodsList: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      billCustomerId: options.billCustomerId,
+      customerNickName: options.customerNickName
+    });
     this.fetchData();
   },
 
@@ -68,23 +74,19 @@ Page({
   fetchData() {
     const that = this;
     network.GET({
-      url: 'api/bill',
+      url: 'api/billGoods/detail',
+      data: { billCustomerId: that.data.billCustomerId },
       success: function (res) {
         const { success, data } = res.data;
         if (success) {
           that.setData({
-            dataList: data
+            goodsList: data
           });
         }
       },
       fail: function (e) {
 
       }
-    })
-  },
-  itemTap(e) {
-    wx.navigateTo({
-      url: '../customers/customers?billId=' + e.currentTarget.dataset.id + '&docNo=' + e.currentTarget.dataset.docNo
     })
   }
 })

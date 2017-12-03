@@ -1,0 +1,13 @@
+<view class="container">
+  <view class="page-body">
+    <view class="ec-header">
+    </view>
+
+    <view class="ec-body">
+      <component-goods-list-view scroll-height="400" goods-list="{{goodsList}}"></component-goods-list-view>
+
+    </view>
+    <view class="ec-footer">
+    </view>
+  </view>
+</view>

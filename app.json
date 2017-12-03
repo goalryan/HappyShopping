@@ -1,10 +1,12 @@
 {
   "pages": [
     "pages/bill/bills/bills",
+    "pages/bill/customers/customers",
+    "pages/bill/goods/goods",
     "pages/express/express",
     "pages/splash/splash",
     "pages/login/login",
-    "pages/goods/list/list",    
+    "pages/goods/list/list",
     "pages/goods/add/add",
     "pages/index/index",
     "pages/logs/logs"

@@ -23,11 +23,6 @@
     </view>
 
     <view class="ec-body">
-      <!-- <scroll-view style="height:{{scrollHeight}}px" scroll-top="{{scrollTop}}" scroll-y="true" bindscroll="scrll" bindscrolltolower="loadMore">
-        <view class="block" wx:for="{{goodsList}}" wx:for-item="item">
-          <text>{{item.goodsName}}</text>
-        </view>
-      </scroll-view> -->
       <component-goods-list-view scroll-height="{{scrollHeight}}" goods-list="{{goodsList}}"></component-goods-list-view>
     </view>
     <view class="ec-footer">

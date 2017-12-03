@@ -4,6 +4,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    billId: '',
+    docNo: '',
     dataList: [],
   },
 
@@ -11,6 +13,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      billId: options.billId,
+      docNo: options.docNo
+    });
     this.fetchData();
   },
 
@@ -68,7 +74,8 @@ Page({
   fetchData() {
     const that = this;
     network.GET({
-      url: 'api/bill',
+      url: 'api/billCustomer/detail',
+      data: { billId: that.data.billId },
       success: function (res) {
         const { success, data } = res.data;
         if (success) {
@@ -84,7 +91,7 @@ Page({
   },
   itemTap(e) {
     wx.navigateTo({
-      url: '../customers/customers?billId=' + e.currentTarget.dataset.id + '&docNo=' + e.currentTarget.dataset.docNo
+      url: '../goods/goods?billCustomerId=' + e.currentTarget.dataset.id + '&customerNickName=' + e.currentTarget.dataset.name
     })
   }
 })

@@ -1,9 +1,10 @@
+var app = getApp();
 Component({
   behaviors: [],
   properties: {
     scrollHeight: {
       type: Number,
-      value: 0
+      value: app.globalData.systemInfo.windowHeight + 98
     },
     goodsList: {
       type: Object,

@@ -5,15 +5,15 @@
 
     <view class="ec-body">
       <scroll-view scroll-y="true" bindscroll="scrll">
-        <view class='goods-row' wx:for="{{dataList}}" wx:for-item="item" bindtap="itemTap" data-id="{{item.id}}" data-docNo="{{item.docNo}}">
+        <view class='goods-row' wx:for="{{dataList}}" wx:for-item="item" bindtap="itemTap" data-id="{{item.id}}" data-name="{{item.customerNickName}}">
           <view class='goods-info'>
             <view class='goods-main'>
-              <view>{{item.docNo}}</view>
+              <view>{{item.customerNickName}}</view>
             </view>
-            <view class='goods-sub'>
-              <view class='goods-sub-pro'>汇率 {{item.taxRate}}</view>
+            <!-- <view class='goods-sub'>
+              <view class='goods-sub-pro'>汇率 {{item.isPaid}}</view>
               <view class='goods-sub-pro'>利润 0</view>
-            </view>
+            </view> -->
           </view>
         </view>
       </scroll-view>
