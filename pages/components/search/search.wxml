@@ -1,6 +1,6 @@
 <scroll-view class="search-result" style="width:{{width}}px;height:{{height}}px;top:{{position.top}}px;left:{{position.left}}px" hidden="{{isHidden}}" scroll-top="{{}}" scroll-y="true" bindscroll="" bindscrolltolower="">
 
-  <view class="search-item" wx:for="{{list}}" wx:for-item="item" data-value="{{item.value}}" data-id="{{item.id}}" bindtap="itemTap">
+  <view class="search-item" wx:for="{{list}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item.value}}" data-id="{{item.id}}" bindtap="itemTap">
     <text>{{item.value}}</text>
   </view>
 </scroll-view>

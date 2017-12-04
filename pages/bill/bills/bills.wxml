@@ -5,7 +5,7 @@
 
     <view class="ec-body">
       <scroll-view scroll-y="true" bindscroll="scrll">
-        <view class='goods-row' wx:for="{{dataList}}" wx:for-item="item" bindtap="itemTap" data-id="{{item.id}}" data-docNo="{{item.docNo}}">
+        <view class='goods-row' wx:for="{{dataList}}" wx:key="{{item.id}}" wx:for-item="item" bindtap="itemTap" data-id="{{item.id}}" data-docNo="{{item.docNo}}">
           <view class='goods-info'>
             <view class='goods-main'>
               <view>{{item.docNo}}</view>
@@ -17,10 +17,11 @@
           </view>
         </view>
       </scroll-view>
-
+      <component-add-button-view bind:additemevent="onAddItemEvent" ></component-add-button-view>
     </view>
     <view class="ec-footer">
-
     </view>
   </view>
+
+
 </view>

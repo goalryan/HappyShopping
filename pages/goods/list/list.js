@@ -82,6 +82,7 @@ Page({
     });
   },
   bindCustomerInput: function (e) {
+    console.log(e.detail.value);
     var setCustomerNickName = "model.customerNickName";
     this.setData({
       [setCustomerNickName]: e.detail.value

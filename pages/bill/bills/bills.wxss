@@ -1,4 +1,5 @@
 /* pages/bill/bills/bills.wxss */
+
 .goods-row {
   display: flex;
   flex: 1;
@@ -26,7 +27,6 @@
   flex-direction: row;
   justify-content: space-between;
 }
-
 
 .goods-sub-pro {
   flex: 1;

@@ -1,4 +1,5 @@
-const domain = 'http://happyshopping.com/';
+// const domain = 'http://happyshopping.com/';
+const domain = 'https://service.easydaigou.com/';
 let requestHandler = {
   url: '',
   data: {},
@@ -56,7 +57,7 @@ function request(method, requestHandler) {
       requestHandler.fail();
     },
     complete: function () {
-      // requestHandler.complete();
+      requestHandler.complete();
     }
   })
 }

@@ -86,5 +86,11 @@ Page({
     wx.navigateTo({
       url: '../customers/customers?billId=' + e.currentTarget.dataset.id + '&docNo=' + e.currentTarget.dataset.docNo
     })
+  },
+  /**
+   * 添加账单
+   */
+  onAddItemEvent(e){
+    console.log('sss');
   }
 })
