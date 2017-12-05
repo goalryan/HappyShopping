@@ -81,7 +81,7 @@ Page({
           });
         }
       },
-      complete: function (e) {
+      complete: function () {
         if (refresh)
           wx.stopPullDownRefresh();
       }

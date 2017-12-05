@@ -41,5 +41,5 @@
       </view>
     </view>
   </view>
-  <component-search-view on-focus="{{searchObj.onFocus}}" search-value="{{model.goodsName}}" url="{{searchObj.url}}" position="{{searchObj.position}}" bind:finditemevent="onFindItemEvent" bind:confirmitemevent="onConfirmItemEvent"></component-search-view>
+  <component-search-view on-focus="{{searchObj.onFocus}}" search-value="{{model.goodsName}}" url="{{searchObj.url}}" position="{{searchObj.position}}" bind:finditemevent="onFindItemEvent" bind:confirmitemevent="onConfirmItemEvent" bind:losefocusevent="onLoseFocusEvent"></component-search-view>
 </view>

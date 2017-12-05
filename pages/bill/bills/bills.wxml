@@ -4,7 +4,7 @@
     </view>
 
     <view class="ec-body">
-      <scroll-view class="item-wrapper">
+      <scroll-view class="item-wrapper" scroll-y="true">
         <view class="item-list" wx:for="{{dataList}}" wx:for-item="item" wx:for-index="index" wx:key="that" bindtap="itemTap" data-id="{{item.id}}" data-docNo="{{item.docNo}}">
           <view class="item-info" data-index="{{index}}" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" style="left:{{item.left + 'rpx'}}">
             <!-- <image class="info-img" src="{{item.img}}"></image> -->

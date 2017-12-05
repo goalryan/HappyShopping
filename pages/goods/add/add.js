@@ -1,4 +1,4 @@
-var network=require("../../../utils/network.js")
+var network = require("../../../utils/network.js")
 var app = getApp();
 Page({
   data: {
@@ -200,4 +200,12 @@ Page({
       ["model.goodsId"]: e.detail.value
     });
   },
+  /**
+   * 输入框失去焦点
+   */
+  onLoseFocusEvent: function () {
+    this.setData({
+      focusGoods: false
+    });
+  }
 })

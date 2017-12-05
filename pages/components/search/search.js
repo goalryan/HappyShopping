@@ -92,7 +92,7 @@ Component({
           }
           that.setData({
             list: responseData,
-            height: 300,
+            height: 500,
             // height: responseData.length * 40 > 400 ? 400 : responseData.length * 40,
             isHidden: responseData.length === 0
           });
@@ -141,6 +141,22 @@ Component({
         this.initData();
       }
       this.triggerEvent('finditemevent', this.data.selectItem)
-    }
+    },
+    touchS: function (e) {  // touchstart
+      this.setData({
+        isHidden: false
+      })
+    },
+    touchM: function (e) {  // touchmove
+      this.setData({
+        isHidden: false
+      })
+      this.triggerEvent('losefocusevent')
+    },
+    touchE: function (e) {  // touchend
+      this.setData({
+        isHidden: false
+      })
+    },
   }
 })

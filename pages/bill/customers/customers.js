@@ -52,7 +52,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.fetchData(true);
   },
 
   /**
@@ -71,7 +71,7 @@ Page({
   /**
    * 查询账单数据
    */
-  fetchData() {
+  fetchData(refresh = false) {
     const that = this;
     network.GET({
       url: 'api/billCustomer/detail',
@@ -85,7 +85,10 @@ Page({
         }
       },
       fail: function (e) { },
-      complete: function () { }
+      complete: function () {
+        if (refresh)
+          wx.stopPullDownRefresh();
+      }
     })
   },
   itemTap(e) {

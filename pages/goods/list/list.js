@@ -13,7 +13,7 @@ Page({
       position: { top: 92, left: 200 * app.globalData.rpx2px },
       onFocus: false
     },
-    scrollHeight: app.globalData.systemInfo.windowHeight - 184
+    scrollHeight: app.globalData.systemInfo.windowHeight - 139 - 45 - 98 * app.globalData.rpx2px,
   },
   onLoad: function () {
     this.initCustomer();
@@ -213,6 +213,15 @@ Page({
     });
     this.queryGoodsList();
   },
+  /**
+   * 输入框失去焦点
+   */
+  onLoseFocusEvent: function () {
+    this.setData({
+      focusCustomer: false
+    });
+  }
+  ,
   /**
    * 查询商品列表
    */

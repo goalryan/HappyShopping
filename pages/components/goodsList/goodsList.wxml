@@ -1,22 +1,25 @@
-<scroll-view style="height:{{scrollHeight}}px" scroll-y="true" bindscroll="scrll" bindscrolltolower="loadMore">
-  <view class='goods-row' wx:for="{{goodsList}}" wx:key="{{item.id}}" wx:for-item="item">
-    <view class='goods-info'>
-      <view class='goods-main'>
-        <view>{{item.goodsName}}</view>
-      </view>
-      <view class='goods-sub'>
-        <view class='goods-sub-pro'>数量 {{item.quantity}}</view>
-        <view class='goods-sub-pro'>买入 {{item.inUnitPrice}}</view>
-        <view class='goods-sub-pro'>卖出 {{item.outUnitPrice}}</view>
-      </view>
-       <view class='goods-sub'>
-        <view class='goods-sub-pro'>地点 {{item.positionName}}</view>
+<scroll-view class="item-wrapper" style="{{scrollHeightStyle}}" scroll-y="{{scrollY}}">
+  <view class="item-list" wx:for="{{goodsList}}" wx:for-item="item" wx:for-index="index" wx:key="that">
+    <view class="item-info" data-index="{{index}}" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" style="left:{{item.left + 'rpx'}}">
+      <!-- <image class="info-img" src="{{item.img}}"></image> -->
+      <view class="info-wrapper">
+        <view class="info-desc">
+          <view class="name">{{item.goodsName}}</view>
+          <view class="time"></view>
+        </view>
+        <view class="info-content">
+          <view class="item">数量 {{item.quantity}}</view>
+          <view class="item">成本 {{item.inUnitPrice}}</view>
+          <view class="item">卖出 {{item.outUnitPrice}}</view>
+        </view>
+        <!-- <view class="info-content">
+            <view class="item">地点 {{item.positionName}}</view>
+          </view> -->
       </view>
     </view>
-    <view class='goods-operate'>
-      <view>+</view>
-      <view>-</view>
+    <view class="item-oper">
+      <view class="oper-delete" catchtap="itemDelete" data-index="{{index}}" data-id="{{item.id}}">删除</view>
     </view>
-
   </view>
+
 </scroll-view>
