@@ -1,10 +1,14 @@
 var network = require("../../../utils/network.js")
+var app = getApp();
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     dataList: [],
+    selectRow: {},
+    hiddenRatemodal: true,
+    focusRate: false
   },
 
   /**
@@ -46,7 +50,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.fetchData(true);
   },
 
   /**
@@ -65,7 +69,7 @@ Page({
   /**
    * 查询账单数据
    */
-  fetchData() {
+  fetchData(refresh = false) {
     const that = this;
     network.GET({
       url: 'api/bill',
@@ -77,11 +81,15 @@ Page({
           });
         }
       },
-      fail: function (e) {
-
+      complete: function (e) {
+        if (refresh)
+          wx.stopPullDownRefresh();
       }
     })
   },
+  /**
+   * 点击行
+   */
   itemTap(e) {
     wx.navigateTo({
       url: '../customers/customers?billId=' + e.currentTarget.dataset.id + '&docNo=' + e.currentTarget.dataset.docNo
@@ -90,7 +98,47 @@ Page({
   /**
    * 添加账单
    */
-  onAddItemEvent(e){
-    console.log('sss');
+  onAddItemEvent(e) {
+    this.setData({
+      hiddenRatemodal: !this.data.hiddenRatemodal,
+      focusRate: true
+    })
+  },
+  /**
+   * 取消按钮
+   */
+  cancel: function () {
+    this.setData({
+      hiddenRatemodal: true,
+      focusRate: false
+    });
+  },
+  /**
+   * 确认按钮
+   */
+  confirm: function () {
+    this.setData({
+      hiddenRatemodal: true,
+      focusRate: true
+    })
+  },
+
+
+  touchS: function (e) {  // touchstart
+    let startX = app.Touches.getClientX(e)
+    startX && this.setData({ startX })
+  },
+  touchM: function (e) {  // touchmove
+    let dataList = app.Touches.touchM(e, this.data.dataList, this.data.startX)
+    dataList && this.setData({ dataList })
+  },
+  touchE: function (e) {  // touchend
+    const width = 150  // 定义操作列表宽度
+    let dataList = app.Touches.touchE(e, this.data.dataList, this.data.startX, width)
+    dataList && this.setData({ dataList })
+  },
+  itemDelete: function (e) {  // itemDelete
+    let dataList = app.Touches.deleteItem(e, this.data.dataList)
+    dataList && this.setData({ dataList })
   }
 })

@@ -2,7 +2,6 @@
   <view class="page-body">
     <view class="ec-header">
     </view>
-
     <view class="ec-body">
       <scroll-view scroll-y="true" bindscroll="scrll">
         <view class='goods-row' wx:for="{{dataList}}" wx:key="{{item.id}}" wx:for-item="item" bindtap="itemTap" data-id="{{item.id}}" data-name="{{item.customerNickName}}">

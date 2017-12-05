@@ -1,5 +1,6 @@
 // require("../pages/components/search")
 var network = require("./utils/network.js")
+import Touches from './utils/Touches.js'
 //app.js
 App({
   onLaunch: function () {
@@ -57,5 +58,6 @@ App({
     px2rpx: 1,
     rpx2px: 1,
     domain: 'http://happyshopping.com/',
-  }
+  },
+  Touches: new Touches()
 })

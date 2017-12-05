@@ -84,9 +84,8 @@ Page({
           });
         }
       },
-      fail: function (e) {
-
-      }
+      fail: function (e) { },
+      complete: function () { }
     })
   },
   itemTap(e) {

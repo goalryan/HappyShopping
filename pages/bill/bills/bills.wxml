@@ -4,24 +4,32 @@
     </view>
 
     <view class="ec-body">
-      <scroll-view scroll-y="true" bindscroll="scrll">
-        <view class='goods-row' wx:for="{{dataList}}" wx:key="{{item.id}}" wx:for-item="item" bindtap="itemTap" data-id="{{item.id}}" data-docNo="{{item.docNo}}">
-          <view class='goods-info'>
-            <view class='goods-main'>
-              <view>{{item.docNo}}</view>
+      <scroll-view class="item-wrapper">
+        <view class="item-list" wx:for="{{dataList}}" wx:for-item="item" wx:for-index="index" wx:key="that" bindtap="itemTap" data-id="{{item.id}}" data-docNo="{{item.docNo}}">
+          <view class="item-info" data-index="{{index}}" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" style="left:{{item.left + 'rpx'}}">
+            <!-- <image class="info-img" src="{{item.img}}"></image> -->
+            <view class="info-wrapper">
+              <view class="info-desc">
+                <view class="name">{{item.docNo}}</view>
+                <view class="time"></view>
+              </view>
+              <view class="info-content">汇率 {{item.taxRate}}</view>
             </view>
-            <view class='goods-sub'>
-              <view class='goods-sub-pro'>汇率 {{item.taxRate}}</view>
-              <view class='goods-sub-pro'>利润 0</view>
-            </view>
+          </view>
+          <view class="item-oper">
+            <view class="oper-edit" catchtap="itemEdit" data-index="{{index}}">编辑</view>
+            <view class="oper-delete" catchtap="itemDelete" data-index="{{index}}">删除</view>
           </view>
         </view>
       </scroll-view>
-      <component-add-button-view bind:additemevent="onAddItemEvent" ></component-add-button-view>
+
+
+      <modal hidden="{{hiddenRatemodal}}" title="请输入汇率" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">
+        <input type='digit' placeholder="请输入内容" value="{{selectRow.taxRate}}" focus="focusRate" />
+      </modal>
+      <component-add-button-view bind:additemevent="onAddItemEvent"></component-add-button-view>
     </view>
     <view class="ec-footer">
     </view>
   </view>
-
-
 </view>

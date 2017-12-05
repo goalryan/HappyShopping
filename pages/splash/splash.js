@@ -19,7 +19,7 @@ Page({
       data: { isWx: true },
       success: function (res) {
         if (res.statusCode === 200) {
-          wx.switchTab({ url: '/pages/goods/list/list' });
+          wx.switchTab({ url: '/pages/bill/bills/bills' });
         } else {
           //跳到登录页面
           wx.reLaunch({
@@ -27,7 +27,8 @@ Page({
           })
         }
       },
-      fail: function () { }
+      fail: function () { },
+      complete: function () { }
     })
   }
 })

@@ -7,7 +7,7 @@ let requestHandler = {
   success: function (res) {
     // success
   },
-  fail: function () {
+  fail: function (e) {
     // fail
   },
   complete: function () {
@@ -50,14 +50,17 @@ function request(method, requestHandler) {
           url: '/pages/login/login'
         })
       } else {
-        requestHandler.success(res);
+        if (requestHandler.success !== undefined)
+          requestHandler.success(res);
       }
     },
-    fail: function () {
-      requestHandler.fail();
+    fail: function (e) {
+      if (requestHandler.fail !== undefined)
+        requestHandler.fail(e);
     },
     complete: function () {
-      requestHandler.complete();
+      if (requestHandler.complete !== undefined)
+        requestHandler.complete();
     }
   })
 }

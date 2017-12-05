@@ -1,33 +1,95 @@
 /* pages/bill/bills/bills.wxss */
 
-.goods-row {
+.item-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.item-list {
+  position: relative;
+  width: 100%;
+  height: 138rpx;
+  /* margin-left: 20rpx; */
+}
+
+.item-info, .item-oper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ccc;
+}
+
+.item-info {
   display: flex;
-  flex: 1;
-  flex-direction: row;
-  justify-content: space-between;
+  padding: 20rpx 20rpx 20rpx 0;
+  z-index: 2;
+  background: white;
+  transition: left 0.2s ease-in-out;
+}
+
+.item-list:first-child {
+  border-top: 0px solid #ccc;
+}
+
+.item-oper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.oper-edit {
+  display: flex;
+  justify-content: center;
   align-items: center;
-  border: 1rpx solid #d1dbe5;
-  background-color: #fff;
-  padding: 16rpx;
+  width: 150rpx;
+  z-index: 1;
+  color: white;
+  background: blue;
 }
 
-.goods-info {
-  flex: 1;
-}
-
-.goods-main {
+.oper-delete {
   display: flex;
-  flex: 1;
-  flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
+  width: 150rpx;
+  z-index: 1;
+  color: white;
+  background: red;
 }
 
-.goods-sub {
+.info-img {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.info-wrapper {
+  margin-left: 20rpx;
+  width: 588rpx;
+}
+
+.info-desc {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-top: 6rpx;
 }
 
-.goods-sub-pro {
-  flex: 1;
+.info-desc .name {
+  font-size: 32rpx;
+  color: black;
+  font-weight: 600;
+}
+
+.info-desc .time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.info-content {
+  font-size: 28rpx;
+  color: #999;
+  margin-top: 4rpx;
 }
