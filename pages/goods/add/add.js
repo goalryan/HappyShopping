@@ -5,7 +5,7 @@ Page({
     billId: '',
     billCustomerId: '',
     model: {},
-    focusGoods: false,
+    focusGoods: true,
     focusQuantity: false,
     positionList: [],
     searchObj: {
@@ -34,9 +34,9 @@ Page({
           billId: this.data.billId,
           goodsId: '',
           goodsName: '',
-          quantity: 1,
-          inUnitPrice: 0,
-          outUnitPrice: 0,
+          quantity: null,
+          inUnitPrice: null,
+          outUnitPrice: null,
           isRMB: false,
           positionId: ''
         }
@@ -140,6 +140,15 @@ Page({
   goCustomer: function (e) {
     wx.navigateBack({});
   },
+  checkData: function () {
+    if (this.data.model.quantity === null) {
+      this.setData({
+        ["model.quantity"]: this.data.model.quantity === null ? 1 : this.data.model.quantity,
+        ["model.inUnitPrice"]: this.data.model.inUnitPrice === null ? 0 : this.data.model.inUnitPrice,
+        ["model.outUnitPrice"]: this.data.model.outUnitPrice === null ? 0 : this.data.model.outUnitPrice
+      })
+    }
+  },
   addGoods: function (e) {
     if (this.data.model.goodsName === '') {
       wx.showToast({
@@ -149,6 +158,7 @@ Page({
       })
       return;
     }
+    this.checkData();
     var url = 'api/billGoods/add';
     var that = this;
     network.POST({
