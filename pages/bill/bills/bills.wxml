@@ -13,7 +13,10 @@
                 <view class="name">{{item.docNo}}</view>
                 <view class="time"></view>
               </view>
-              <view class="info-content">汇率 {{item.taxRate}}</view>
+              <view class="info-content">
+                <view class="item">汇率 {{item.taxRate}}</view>
+                <view class="item">利润 {{item.taxRate}}</view>
+              </view>
             </view>
           </view>
           <view class="item-oper">
@@ -25,7 +28,7 @@
 
 
       <modal hidden="{{hiddenRatemodal}}" title="请输入汇率" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">
-        <input type='digit' placeholder="请输入内容" value="{{selectRow.taxRate}}" focus="focusRate" />
+        <input type='digit' placeholder="请输入内容" value="{{selectRow.taxRate}}" focus="{{focusRate}}" />
       </modal>
       <component-add-button-view bind:additemevent="onAddItemEvent"></component-add-button-view>
     </view>

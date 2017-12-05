@@ -123,7 +123,6 @@ Page({
     })
   },
 
-
   touchS: function (e) {  // touchstart
     let startX = app.Touches.getClientX(e)
     startX && this.setData({ startX })
@@ -133,7 +132,7 @@ Page({
     dataList && this.setData({ dataList })
   },
   touchE: function (e) {  // touchend
-    const width = 150  // 定义操作列表宽度
+    const width = 300  // 定义操作列表宽度
     let dataList = app.Touches.touchE(e, this.data.dataList, this.data.startX, width)
     dataList && this.setData({ dataList })
   },
