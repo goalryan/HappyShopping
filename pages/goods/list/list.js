@@ -16,10 +16,12 @@ Page({
     scrollHeight: app.globalData.systemInfo.windowHeight - 139 - 45 - 98 * app.globalData.rpx2px,
   },
   onLoad: function () {
+    debugger;
     this.initCustomer();
     this.initDocNoList();
   },
   onShow: function () {
+    debugger;
     this.queryGoodsList();
   },
   bindDocNoChange: function (e) {
@@ -163,6 +165,7 @@ Page({
             icon: 'success',
             duration: 2000
           })
+          that.goAddGoodsPage();
         } else {
           wx.showToast({
             title: '保存失败',
@@ -178,9 +181,6 @@ Page({
           icon: 'error',
           duration: 2000
         })
-      },
-      complete: function () {
-        console.log(that.data);
       }
     })
   },
@@ -188,6 +188,9 @@ Page({
    * 添加商品
    */
   addGoods: function (e) {
+    this.goAddGoodsPage();
+  },
+  goAddGoodsPage:function(){
     wx.navigateTo({
       url: '../add/add?billCustomerId=' + this.data.model.id + '&billId=' + this.data.model.billId,
     })

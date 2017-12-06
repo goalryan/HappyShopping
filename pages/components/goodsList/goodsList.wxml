@@ -10,7 +10,7 @@
         <view class="info-content">
           <view class="item">数量 {{item.quantity}}</view>
           <view class="item">成本 {{item.inUnitPrice}}</view>
-          <view class="item">卖出 {{item.outUnitPrice}}</view>
+           <view class="item">卖出 {{item.outUnitPrice}}</view> 
         </view>
         <!-- <view class="info-content">
             <view class="item">地点 {{item.positionName}}</view>

@@ -63,7 +63,7 @@
 }
 
 .info-wrapper {
-  margin-left: 20rpx;
+  margin-left: 40rpx;
   width: 588rpx;
 }
 
