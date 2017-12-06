@@ -5,10 +5,10 @@
 
     <view class="ec-body">
       <scroll-view class="item-wrapper" scroll-y="true">
-        <view class="item-list" wx:for="{{dataList}}" wx:for-item="item" wx:for-index="index" wx:key="that" bindtap="itemTap" data-id="{{item.id}}" data-docNo="{{item.docNo}}">
-          <view class="item-info" data-index="{{index}}" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" style="left:{{item.left + 'rpx'}}">
+        <view class="item-list" wx:for="{{dataList}}" wx:for-item="item" wx:for-index="index" wx:key="that">
+          <view class="item-info" data-index="{{index}}" data-id="{{item.id}}" data-docNo="{{item.docNo}}" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" bindtap="itemTap" catchlongpress="showActionSheet" style="left:{{item.left + 'rpx'}}">
             <!-- <image class="info-img" src="{{item.img}}"></image> -->
-            <view class="info-wrapper">
+            <view class="infÎo-wrapper">
               <view class="info-desc">
                 <view class="name">{{item.docNo}}</view>
                 <view class="time"></view>
@@ -27,7 +27,7 @@
       </scroll-view>
 
 
-      <modal hidden="{{hiddenRatemodal}}" title="请输入汇率" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">
+      <modal hidden="{{hiddenRatemodal}}" title="请输入汇率" confirm-text="提交" cancel-text="重置" bindcancel="reset" bindconfirm="confirm">
         <input type='digit' placeholder="请输入内容" value="{{selectRow.taxRate}}" focus="{{focusRate}}" />
       </modal>
       <component-add-button-view bind:additemevent="onAddItemEvent"></component-add-button-view>

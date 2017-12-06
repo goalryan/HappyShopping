@@ -8,7 +8,9 @@ Page({
     dataList: [],
     selectRow: {},
     hiddenRatemodal: true,
-    focusRate: false
+    focusRate: false,
+    touchStart: 0,
+    touchEnd: 0
   },
 
   /**
@@ -87,14 +89,7 @@ Page({
       }
     })
   },
-  /**
-   * 点击行
-   */
-  itemTap(e) {
-    wx.navigateTo({
-      url: '../customers/customers?billId=' + e.currentTarget.dataset.id + '&docNo=' + e.currentTarget.dataset.docNo
-    })
-  },
+
   /**
    * 添加账单
    */
@@ -105,9 +100,9 @@ Page({
     })
   },
   /**
-   * 取消按钮
+   * 重置按钮
    */
-  cancel: function () {
+  reset: function () {
     this.setData({
       hiddenRatemodal: true,
       focusRate: false
@@ -122,10 +117,12 @@ Page({
       focusRate: true
     })
   },
-
   touchS: function (e) {  // touchstart
-    let startX = app.Touches.getClientX(e)
-    startX && this.setData({ startX })
+    let startX = app.Touches.getClientX(e);
+    startX && this.setData({ startX });
+    this.setData({
+      touchStart: e.timeStamp
+    })
   },
   touchM: function (e) {  // touchmove
     let dataList = app.Touches.touchM(e, this.data.dataList, this.data.startX)
@@ -134,7 +131,31 @@ Page({
   touchE: function (e) {  // touchend
     const width = 300  // 定义操作列表宽度
     let dataList = app.Touches.touchE(e, this.data.dataList, this.data.startX, width)
-    dataList && this.setData({ dataList })
+    dataList && this.setData({ dataList });
+    this.setData({
+      touchEnd: e.timeStamp
+    })
+  },
+  itemTap: function (e) {
+    let that = this;
+    //触摸时间距离页面打开的毫秒数  
+    var touchTime = that.data.touchEnd - that.data.touchStart;
+    if (touchTime < 350) {
+      wx.navigateTo({
+        url: '../customers/customers?billId=' + e.currentTarget.dataset.id + '&docNo=' + e.currentTarget.dataset.docNo
+      })
+    }
+  },
+  showActionSheet: function (e) {
+    wx.showActionSheet({
+      itemList: ['A', 'B', 'C'],
+      success: function (res) {
+        console.log(res.tapIndex)
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
   },
   itemDelete: function (e) {  // itemDelete
     let dataList = app.Touches.deleteItem(e, this.data.dataList)
