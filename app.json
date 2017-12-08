@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/splash/splash",
     "pages/bill/bills/bills",
     "pages/bill/customers/customers",
@@ -7,8 +8,7 @@
     "pages/express/express",
     "pages/login/login",
     "pages/goods/list/list",
-    "pages/goods/add/add",
-    "pages/index/index",
+    "pages/goods/add/add",    
     "pages/logs/logs"
   ],
   "window": {
