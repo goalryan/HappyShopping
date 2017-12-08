@@ -25,7 +25,6 @@
 
 .icon-right:before {
   content: "\e6a3";
-  transform: rotate(0deg);
   display: inline-block;
 }
 

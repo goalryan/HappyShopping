@@ -1,7 +1,7 @@
-.icon-right:before {
+.icon-right.unfold:before {
   transition: transform 0.3s;
 }
-.opened.icon-right:before {
+.icon-right.opened:before {
   transform: rotate(90deg);
   -ms-transform: rotate(90deg); 
   -webkit-transform: rotate(90deg);

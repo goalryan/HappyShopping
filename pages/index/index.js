@@ -2,14 +2,14 @@
 var app = getApp()
 Page({
   data: {
-    customerStyle:'iconfont icon-right'
+    customerStyle: 'iconfont icon-right'
     // customerStyle: 'iconfont opened icon-right'
   },
 
   tapCustomer() {
     console.log('sss');
     this.setData({
-      customerStyle: 'iconfont opened icon-right'
+      customerStyle: 'iconfont icon-right opened'
     })
   }
 })
