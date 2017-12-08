@@ -1,8 +1,16 @@
 .icon-right.unfold:before {
-  transition: transform 0.3s;
+   transition: transform 0.3s; 
 }
 .icon-right.opened:before {
+  margin-left: 10rpx;
   transform: rotate(90deg);
   -ms-transform: rotate(90deg); 
   -webkit-transform: rotate(90deg);
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
