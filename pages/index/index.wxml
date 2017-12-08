@@ -7,7 +7,7 @@
 
     <ul>
       <li wx:for="{{customer.goodsList}}" wx:key="{{goods.id}}" wx:for-index="goodsIndex" wx:for-item="goods">
-        <view class='detail' hidden='{{customer.isFold}}' >ssss</view>
+        <view class='detail' hidden='{{customer.isFold}}' >{{goods.goodsName}}</view>
       </li>
     </ul>
   </li>
