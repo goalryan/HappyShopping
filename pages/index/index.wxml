@@ -1,16 +1,35 @@
-<ul>
-  <li wx:for="{{customers}}" wx:key="{{customer.id}}" wx:for-index="index" wx:for-item="customer">
-    <view class='main' bindtap="tapCustomer" data-index="{{index}}" data-id="{{customer.id}}">
-      <i class="{{customer.arrowStyle}}"></i>
-      <view>{{customer.customerNickName}}</view>
+<scroll-view class="item-wrapper" scroll-y="true">
+  <view wx:for="{{customers}}" wx:key="{{customer.id}}" wx:for-index="index" wx:for-item="customer">
+    <view class='main'>
+      <view class='main-container' bindtap="tapCustomer" catchlongpress="showActionSheet" data-index="{{index}}" data-id="{{customer.id}}" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" style="left:{{customer.left + 'rpx'}}">
+        <view class='main-arrow'>
+          <i class="{{customer.arrowStyle}}"></i>
+        </view>
+        <view class='main-content'>
+          <view class='main-title'>{{customer.customerNickName}}</view>
+          <view class='main-desc'>
+            <view class='item'>数量 {{customer.quantity}}</view>
+            <view class='item'>成本 {{customer.inTotalPrice}}</view>
+            <view class='item'>卖出 {{customer.outTotalPrice}}</view>
+          </view>
+        </view>
+        <i class="iconfont icon-mobile"></i>
+      </view>
+
+      <view class="main-oper">
+        <view class="oper-edit" catchtap="itemEdit" data-index="{{index}}">编辑</view>
+        <view class="oper-delete" catchtap="itemDelete" data-index="{{index}}">删除</view>
+      </view>
     </view>
 
     <ul>
       <li wx:for="{{customer.goodsList}}" wx:key="{{goods.id}}" wx:for-index="goodsIndex" wx:for-item="goods">
+<<<<<<< HEAD
         <view class='detail' hidden='{{customer.isFold}}' >{{goods.goodsName}}</view>
+=======
+        <view class='detail' hidden='{{customer.isFold}}'>ssss</view>
+>>>>>>> origin/master
       </li>
     </ul>
-  </li>
-</ul>
-
-<!-- style="{{customer.goodsStyle}}" -->
+  </view>
+</scroll-view>
