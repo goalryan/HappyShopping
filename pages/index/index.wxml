@@ -13,23 +13,15 @@
             <view class='item'>卖出 {{customer.outTotalPrice}}</view>
           </view>
         </view>
-        <i class="iconfont icon-mobile"></i>
+        <i class="iconfont icon-mobile" bindtap="goAddGoods"></i>
       </view>
 
       <view class="main-oper">
-        <view class="oper-edit" catchtap="itemEdit" data-index="{{index}}">编辑</view>
         <view class="oper-delete" catchtap="itemDelete" data-index="{{index}}">删除</view>
       </view>
     </view>
 
-    <ul>
-      <li wx:for="{{customer.goodsList}}" wx:key="{{goods.id}}" wx:for-index="goodsIndex" wx:for-item="goods">
-<<<<<<< HEAD
-        <view class='detail' hidden='{{customer.isFold}}' >{{goods.goodsName}}</view>
-=======
-        <view class='detail' hidden='{{customer.isFold}}'>ssss</view>
->>>>>>> origin/master
-      </li>
-    </ul>
+    <component-goods-list-view is-page="true" is-hidden="{{customer.isFold}}" goods-list="{{customer.goodsList}}"></component-goods-list-view>
+
   </view>
 </scroll-view>

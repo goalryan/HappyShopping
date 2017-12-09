@@ -56,6 +56,20 @@ Page({
       that.showGoodsList(e);
     }
   },
+  showActionSheet: function (e) {
+    wx.showActionSheet({
+      itemList: ['编辑客户', '删除客户', '发送账单明细'],
+      success: function (res) {
+        console.log(res.tapIndex)
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
+  goAddGoods(e) {
+
+  },
   showGoodsList(e) {
     const index = e.currentTarget.dataset.index;
     const id = e.currentTarget.dataset.id;
@@ -114,7 +128,7 @@ Page({
     customers && this.setData({ customers })
   },
   touchE: function (e) {  // touchend
-    const width = 300  // 定义操作列表宽度
+    const width = 150  // 定义操作列表宽度
     let customers = app.Touches.touchE(e, this.data.customers, this.data.startX, width)
     customers && this.setData({ customers });
     this.setData({

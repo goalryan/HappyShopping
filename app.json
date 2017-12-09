@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/splash/splash",
     "pages/bill/bills/bills",
     "pages/bill/customers/customers",
@@ -9,7 +8,8 @@
     "pages/login/login",
     "pages/goods/list/list",
     "pages/goods/add/add",    
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/index/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

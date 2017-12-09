@@ -1,4 +1,4 @@
-<scroll-view class="item-wrapper" style="{{scrollHeightStyle}}" scroll-y="{{scrollY}}">
+<scroll-view class="item-wrapper" style="{{scrollHeightStyle}}" scroll-y="{{scrollY}}" hidden="{{isHidden}}">
   <view class="item-list" wx:for="{{goodsList}}" wx:for-item="item" wx:for-index="index" wx:key="that">
     <view class="item-info" data-index="{{index}}" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" style="left:{{item.left + 'rpx'}}">
       <!-- <image class="info-img" src="{{item.img}}"></image> -->

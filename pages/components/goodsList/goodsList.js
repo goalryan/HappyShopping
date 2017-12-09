@@ -7,6 +7,10 @@ Component({
       type: Boolean,
       value: true
     },
+    isHidden: {
+      type: Boolean,
+      value: false
+    },
     scrollHeight: {
       type: Number,
       value: app.globalData.systemInfo.windowHeight,
