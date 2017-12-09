@@ -12,6 +12,10 @@
   /* margin-left: 20rpx; */
 }
 
+.item-list:first-child {
+  border-top: 0px solid #ccc;
+}
+
 .item-info, .item-oper {
   position: absolute;
   top: 0;
@@ -30,9 +34,7 @@
   transition: left 0.2s ease-in-out;
 }
 
-.item-list:first-child {
-  border-top: 0px solid #ccc;
-}
+
 
 .item-oper {
   display: flex;
