@@ -9,19 +9,19 @@
   -webkit-transform: rotate(90deg);
 }
 
-.item-wrapper {
+.customer-wrapper {
   width: 100%;
   overflow: hidden;
+}
+
+.customer-list:first-child {
+  border-top: 1rpx solid #ccc;
 }
 
 .main {
   position: relative;
   width: 100%;
   height: 138rpx;
-}
-
-.main:first-child {
-  border-top: 0px solid #ccc;
 }
 
 .main-container, .main-oper {

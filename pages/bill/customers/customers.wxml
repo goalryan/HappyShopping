@@ -1,5 +1,5 @@
-<scroll-view class="item-wrapper" scroll-y="true">
-  <view wx:for="{{customers}}" wx:key="{{customer.id}}" wx:for-index="index" wx:for-item="customer">
+<scroll-view class="customer-wrapper" scroll-y="true">
+  <view class='customer-list' wx:for="{{customers}}" wx:key="{{customer.id}}" wx:for-index="index" wx:for-item="customer">
     <view class='main'>
       <view class='main-container' bindtap="tapCustomer" catchlongpress="showActionSheet" data-index="{{index}}" data-id="{{customer.id}}" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" style="left:{{customer.left + 'rpx'}}">
         <view class='main-arrow'>

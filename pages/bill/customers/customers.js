@@ -7,7 +7,7 @@ Page({
     docNo: '',
     customers: [],
     foldStyle: 'iconfont icon-right',
-    unFoldStyle: 'iconfont opened icon-right',
+    unFoldStyle: 'iconfont icon-right opened',
     preIndex: -1,
     touchStart: 0,
     touchEnd: 0
