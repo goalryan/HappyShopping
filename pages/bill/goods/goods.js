@@ -139,13 +139,14 @@ Page({
     wx.navigateBack({});
   },
   checkData: function () {
-    if (this.data.model.quantity === null) {
-      this.setData({
-        ["model.quantity"]: this.data.model.quantity === null ? 1 : this.data.model.quantity,
-        ["model.inUnitPrice"]: this.data.model.inUnitPrice === null ? 0 : this.data.model.inUnitPrice,
-        ["model.outUnitPrice"]: this.data.model.outUnitPrice === null ? 0 : this.data.model.outUnitPrice
-      })
-    }
+    var quantity = this.data.model.quantity === null ? 1 : this.data.model.quantity;
+    var inUnitPrice = this.data.model.inUnitPrice === null ? 0 : this.data.model.inUnitPrice;
+    var outUnitPrice = this.data.model.outUnitPrice === null ? 0 : this.data.model.outUnitPrice;
+    this.setData({
+      ["model.quantity"]: quantity,
+      ["model.inUnitPrice"]: inUnitPrice,
+      ["model.outUnitPrice"]: outUnitPrice
+    })
   },
   addGoods: function (e) {
     if (this.data.model.goodsName === '') {
