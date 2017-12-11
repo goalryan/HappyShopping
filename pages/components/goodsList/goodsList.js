@@ -69,6 +69,7 @@ Component({
       goodsList && this.setData({ goodsList })
     },
     itemDelete: function (e) {  // itemDelete
+      debugger;
       const that = this;
       network.DELETE({
         url: 'api/billGoods/' + e.currentTarget.dataset.id,
@@ -95,9 +96,10 @@ Component({
       debugger;
       var customerIndex = cusPages.data.customers.findIndex(customer => customer.id === e.currentTarget.dataset.billCustomerId);
       var goodsIndex = e.currentTarget.dataset.index;
-      var deleteGoods = 'customers[' + customerIndex + '].goodsList[' + goodsIndex + ']';
+      cusPages.data.customers[customerIndex].goodsList.splice(goodsIndex, 1);
+      var updateCustomer = 'customers[' + customerIndex + '].goodsList';
       cusPages.setData({
-        [deleteGoods]: null
+        [updateCustomer]: cusPages.data.customers[customerIndex].goodsList
       });
     }
   }
