@@ -1,6 +1,6 @@
 {
-  "navigationBarTitleText": "商品",
-  "usingComponents": {
-    "component-goods-list-view": "../../components/goodsList/goodsList"
-  }
+    "navigationBarTitleText": "添加商品",
+    "usingComponents": {
+      "component-search-view": "../../components/search/search"
+    }
 }

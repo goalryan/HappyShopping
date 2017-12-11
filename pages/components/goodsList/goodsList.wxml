@@ -10,7 +10,7 @@
         <view class="info-content">
           <view class="item">数量 {{item.quantity}}</view>
           <view class="item">成本 {{item.inUnitPrice}}</view>
-           <view class="item">卖出 {{item.outUnitPrice}}</view> 
+          <view class="item">卖出 {{item.outUnitPrice}}</view>
         </view>
         <!-- <view class="info-content">
             <view class="item">地点 {{item.positionName}}</view>
@@ -18,7 +18,7 @@
       </view>
     </view>
     <view class="item-oper">
-      <view class="oper-delete" catchtap="itemDelete" data-index="{{index}}" data-id="{{item.id}}">删除</view>
+      <view class="oper-delete" catchtap="itemDelete" data-bill-customer-id="{{item.billCustomerId}}" data-index="{{index}}" data-id="{{item.id}}">删除</view>
     </view>
   </view>
 

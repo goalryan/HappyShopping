@@ -1,13 +1,44 @@
+<import src="../../common/head.wxml" />
+<import src="../../common/foot.wxml" />
+
 <view class="container">
   <view class="page-body">
     <view class="ec-header">
+      <view class='row'>
+        <text>商品名称</text>
+        <input class="ec-input" value="{{model.goodsName}}" focus="{{focusGoods}}" placeholder="请输入商品名称" confirm-type="next" bindfocus='bindGoodsFocus' bindinput="bindGoodsInput" bindblur="bindGoodsBlur" bindconfirm="bindGoodsConfirm" />
+      </view>
+      <view class='row'>
+        <text>数量</text>
+        <input class="ec-input" value="{{model.quantity}}" focus="{{focusQuantity}}" type="number" bindinput="bindQuantityInput" />
+      </view>
+      <view class='row'>
+        <text>成本价格</text>
+        <input class="ec-input" value="{{model.inUnitPrice}}" type="digit" bindinput="bindInUnitPriceInput" />
+      </view>
+      <view class='row'>
+        <text>卖出价格</text>
+        <input class="ec-input" value="{{model.outUnitPrice}}" type="digit" bindinput="bindOutUnitPriceInput" />
+      </view>
+      <view class='row'>
+        <text>人民币</text>
+        <switch bindchange="changeCurrency" checked="{{model.isRMB}}" />
+      </view>
     </view>
-
     <view class="ec-body">
-      <component-goods-list-view is-page="true" goods-list="{{goodsList}}"></component-goods-list-view>
-
+      <scroll-view style="height:{{scrollHeight}}px" scroll-top="" scroll-y="true" bindscroll="scrll">
+        <radio-group class="radio-group" bindchange="radioChange">
+          <view class='radio-row' wx:for="{{positionList}}" wx:for-item="item" wx:key="unique" data-value="{{item.value}}" data-id="{{item.id}}" bindtap="itemTap">
+            <radio value="{{item.id}}" checked="{{item.checked}}" />{{item.name}}
+          </view>
+        </radio-group>
+      </scroll-view>
     </view>
     <view class="ec-footer">
+      <view class='ec-button-list'>
+        <button type="primary" hover-class="button-hover" bindtap="addGoods">保存</button>
+      </view>
     </view>
   </view>
+  <component-search-view on-focus="{{searchObj.onFocus}}" search-value="{{model.goodsName}}" url="{{searchObj.url}}" position="{{searchObj.position}}" bind:finditemevent="onFindItemEvent" bind:confirmitemevent="onConfirmItemEvent" bind:losefocusevent="onLoseFocusEvent"></component-search-view>
 </view>

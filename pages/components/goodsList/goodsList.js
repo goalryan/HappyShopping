@@ -77,11 +77,28 @@ Component({
           if (success) {
             let goodsList = app.Touches.deleteItem(e, that.data.goodsList)
             goodsList && that.setData({ goodsList })
+            //发送父级删除商品事件
+            that.deleteSuccessCallback(that, e);
           }
         },
         complete: function () {
         }
       })
+    },
+    /**
+     * 删除成功后
+    */
+    deleteSuccessCallback: function (that, e) {
+      //刷新客户的商品列表
+      var pages = getCurrentPages();
+      var cusPages = pages[pages.length - 1];
+      debugger;
+      var customerIndex = cusPages.data.customers.findIndex(customer => customer.id === e.currentTarget.dataset.billCustomerId);
+      var goodsIndex = e.currentTarget.dataset.index;
+      var deleteGoods = 'customers[' + customerIndex + '].goodsList[' + goodsIndex + ']';
+      cusPages.setData({
+        [deleteGoods]: null
+      });
     }
   }
 })

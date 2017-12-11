@@ -15,12 +15,15 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (e) {
     this.setData({
-      billId: options.billId,
-      docNo: options.docNo
+      billId: e.billId,
+      docNo: e.docNo
     });
     this.fetchData();
+  },
+  onShow: function (e) {
+
   },
   onPullDownRefresh: function () {
     this.fetchData(true);
@@ -74,7 +77,9 @@ Page({
     })
   },
   goAddGoods(e) {
-
+    wx.navigateTo({
+      url: '../goods/goods?billId=' + this.data.billId + '&billCustomerId=' + e.currentTarget.dataset.id + '&customerIndex=' + e.currentTarget.dataset.index
+    })
   },
   showGoodsList(e) {
     const index = e.currentTarget.dataset.index;
@@ -141,4 +146,13 @@ Page({
       touchEnd: e.timeStamp
     })
   },
+  onDeleteGoodsEvent: function (e) {
+    debugger;
+    var customerIndex = this.data.customers.findIndex(customer => customer.id === e.billCustomerId);
+    var deleteGoods = 'customers[' + customerIndex + '].goodsList[' + e.goodsIndex + ']';
+    this.setData({
+      [deleteGoods]: null
+    })
+    console.log(this.data.customers[customerIndex]);
+  }
 })

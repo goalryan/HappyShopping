@@ -13,7 +13,9 @@
             <view class='item'>卖出 {{customer.outTotalPrice}}</view>
           </view>
         </view>
-        <i class="iconfont icon-mobile" bindtap="goAddGoods"></i>
+        <view class='add-goods' catchtap="goAddGoods" data-id="{{customer.id}}" data-index="{{index}}">
+          <i class="iconfont icon-roundaddlight"></i>
+        </view>
       </view>
 
       <view class="main-oper">
@@ -21,7 +23,7 @@
       </view>
     </view>
 
-    <component-goods-list-view is-page="true" is-hidden="{{customer.isFold}}" goods-list="{{customer.goodsList}}"></component-goods-list-view>
+    <component-goods-list-view is-page="true" is-hidden="{{customer.isFold}}" goods-list="{{customer.goodsList}}"   bind:deletegoodsevent="onDeleteGoodsEvent"></component-goods-list-view>
 
   </view>
 </scroll-view>

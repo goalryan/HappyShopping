@@ -1,92 +1,241 @@
 var network = require("../../../utils/network.js")
+var app = getApp();
 Page({
-  /**
-   * 页面的初始数据
-   */
   data: {
+    billId: '',
     billCustomerId: '',
-    customerNickName: '',
-    goodsList: []
+    customerIndex: -1,
+    model: {},
+    focusGoods: false,
+    focusQuantity: false,
+    positionList: [],
+    searchObj: {
+      url: 'api/goods/search',
+      position: { top: 46, left: 200 * app.globalData.rpx2px },
+      onFocus: false
+    },
+    scrollHeight: app.globalData.systemInfo.windowHeight - 231 - 98 * app.globalData.rpx2px,
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  onLoad: function (e) {
     this.setData({
-      billCustomerId: options.billCustomerId,
-      customerNickName: options.customerNickName
+      billId: e.billId,
+      billCustomerId: e.billCustomerId,
+      customerIndex: e.customerIndex
     });
-    this.fetchData();
+    this.initGoods();
+    this.initPosition();
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  initGoods: function () {
+    this.setData(
+      {
+        focusGoods: true,
+        model: {
+          id: app.getGuid(),
+          billCustomerId: this.data.billCustomerId,
+          billId: this.data.billId,
+          goodsId: '',
+          goodsName: '',
+          quantity: null,
+          inUnitPrice: null,
+          outUnitPrice: null,
+          isRMB: false,
+          positionId: ''
+        }
+      }
+    )
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    this.fetchData(true);
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-  /**
-   * 查询账单数据
-   */
-  fetchData(refresh = false) {
-    const that = this;
+  initPosition: function () {
+    var url = 'api/position';
+    var that = this;
     network.GET({
-      url: 'api/billGoods/detail',
-      data: { billCustomerId: that.data.billCustomerId },
+      url: url,
       success: function (res) {
-        const { success, data } = res.data;
-        if (success) {
+        if (res.data.success) {
           that.setData({
-            goodsList: data
-          });
+            positionList: res.data.data
+          })
+        }
+      }
+    })
+  },
+  resetPosionList: function () {
+    var resetData = [];
+    resetData = this.data.positionList.map(item => {
+      item.checked = false;
+      return item;
+    })
+    this.setData({
+      positionList: resetData,
+    })
+  },
+  resetData: function () {
+    this.initGoods();
+    this.resetPosionList();
+  },
+  bindGoodsFocus: function (e) {
+    this.setData({
+      ["searchObj.onFocus"]: true
+    });
+  },
+  bindGoodsInput: function (e) {
+    this.setData({
+      ["model.goodsName"]: e.detail.value
+    });
+  },
+  bindGoodsConfirm: function (e) {
+    this.setData({
+      focusGoods: false,
+      focusQuantity: true
+    })
+  },
+  bindGoodsBlur: function (e) {
+    this.setData({
+      ["searchObj.onFocus"]: false
+    });
+  },
+  bindQuantityInput: function (e) {
+    this.setData({
+      ["model.quantity"]: e.detail.value
+    });
+  },
+  bindInUnitPriceInput: function (e) {
+    this.setData({
+      ["model.inUnitPrice"]: e.detail.value
+    });
+  },
+  bindOutUnitPriceInput: function (e) {
+    this.setData({
+      ["model.outUnitPrice"]: e.detail.value
+    });
+  },
+  changeCurrency: function (e) {
+    this.setData({
+      ["model.isRMB"]: e.detail.value
+    })
+  },
+  radioChange: function (e) {
+    this.setData({
+      ["model.positionId"]: e.detail.value
+    })
+  },
+  itemTap: function (e) {
+    var tapResult = [];
+    tapResult = this.data.positionList.map(item => {
+      if (item.id === e.currentTarget.dataset.id) {
+        item.checked = true;
+        this.setData({
+          ["model.positionId"]: item.id
+        })
+      } else {
+        item.checked = false;
+      }
+      return item;
+    })
+    this.setData({
+      positionList: tapResult
+    })
+  },
+  goCustomer: function (e) {
+    wx.navigateBack({});
+  },
+  checkData: function () {
+    if (this.data.model.quantity === null) {
+      this.setData({
+        ["model.quantity"]: this.data.model.quantity === null ? 1 : this.data.model.quantity,
+        ["model.inUnitPrice"]: this.data.model.inUnitPrice === null ? 0 : this.data.model.inUnitPrice,
+        ["model.outUnitPrice"]: this.data.model.outUnitPrice === null ? 0 : this.data.model.outUnitPrice
+      })
+    }
+  },
+  addGoods: function (e) {
+    if (this.data.model.goodsName === '') {
+      wx.showToast({
+        title: '商品名称必填',
+        icon: 'info',
+        duration: 2000
+      })
+      return;
+    }
+    this.checkData();
+    var url = 'api/billGoods/add';
+    var that = this;
+    network.POST({
+      url: url,
+      data: that.data.model,
+      success: function (res) {
+        if (res.data.success) {
+          wx.showToast({
+            title: '保存成功',
+            icon: 'success',
+            duration: 2000
+          })
+          that.saveSuccessCallback(that);
+        } else {
+          wx.showToast({
+            title: '保存失败',
+            icon: 'warn',
+            duration: 2000
+          })
         }
       },
-      complete: function () {
-        if (refresh)
-          wx.stopPullDownRefresh();
+      fail: function (e) {
+        var toastText = '获取数据失败' + JSON.stringify(e);
+        wx.showToast({
+          title: toastText,
+          icon: 'error',
+          duration: 2000
+        })
+      },
+      complete: function () { }
+    })
+  },
+  /**
+   * 选择客户回调事件
+   */
+  onConfirmItemEvent: function (e) {
+    console.log(e);
+    this.setData({
+      ["model.goodsId"]: e.detail.id,
+      ["model.goodsName"]: e.detail.value
+    });
+  },
+  /**
+   * 输入客户回调事件
+   */
+  onFindItemEvent: function (e) {
+    console.log(e);
+    this.setData({
+      ["model.goodsId"]: e.detail.value
+    });
+  },
+  /**
+   * 输入框失去焦点
+   */
+  onLoseFocusEvent: function () {
+    this.setData({
+      focusGoods: false
+    });
+  },
+  /**
+   * 保存成功后
+   */
+  saveSuccessCallback: function (that) {
+    //刷新客户的商品列表
+    var pages = getCurrentPages();
+    var cusPages = pages[pages.length - 2];
+    var addIndex = cusPages.data.customers[that.data.customerIndex].goodsList.length;
+    var insertGoods = 'customers[' + that.data.customerIndex + '].goodsList[' + addIndex + ']';
+    cusPages.setData({
+      [insertGoods]: that.data.model
+    })
+    //弹出下一步操作
+    wx.showActionSheet({
+      itemList: ['继续添加'],
+      success: function (res) {
+        that.resetData();
+      },
+      fail: function (res) {
+        wx.navigateBack({});
       }
     })
   }
