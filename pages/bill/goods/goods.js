@@ -30,7 +30,7 @@ Page({
       {
         focusGoods: true,
         model: {
-          id: app.getGuid(),
+          id:'',
           billCustomerId: this.data.billCustomerId,
           billId: this.data.billId,
           goodsId: '',
@@ -165,6 +165,9 @@ Page({
       data: that.data.model,
       success: function (res) {
         if (res.data.success) {
+          that.setData({
+            ["model.id"]: res.data.data
+          });
           wx.showToast({
             title: '保存成功',
             icon: 'success',

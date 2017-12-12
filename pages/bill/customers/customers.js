@@ -57,6 +57,9 @@ Page({
       item.goodsList = [];
     });
   },
+  /**
+   * 点击客户行
+   */
   tapCustomer(e) {
     let that = this;
     //触摸时间距离页面打开的毫秒数  
@@ -64,6 +67,14 @@ Page({
     if (touchTime < 350) {
       that.showGoodsList(e);
     }
+  },
+  /**
+   * 添加账单
+   */
+  onAddItemEvent(e) {
+    wx.navigateTo({
+      url: './add/add?billId=' + this.data.billId + '&docNo=' + this.data.docNo
+    })
   },
   showActionSheet: function (e) {
     wx.showActionSheet({
@@ -145,14 +156,5 @@ Page({
     this.setData({
       touchEnd: e.timeStamp
     })
-  },
-  onDeleteGoodsEvent: function (e) {
-    debugger;
-    var customerIndex = this.data.customers.findIndex(customer => customer.id === e.billCustomerId);
-    var deleteGoods = 'customers[' + customerIndex + '].goodsList[' + e.goodsIndex + ']';
-    this.setData({
-      [deleteGoods]: null
-    })
-    console.log(this.data.customers[customerIndex]);
   }
 })

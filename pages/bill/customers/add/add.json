@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "客户",
+  "usingComponents": {
+    "component-search-view":"../../../components/search/search",
+    "component-goods-list-view": "../../../components/goodsList/goodsList"
+  }
+}

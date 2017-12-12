@@ -59,5 +59,14 @@ App({
     rpx2px: 1,
     domain: 'http://happyshopping.com/',
   },
+  /**
+   * 提示图标
+   */
+  toastIcon: {
+    duration: 1500,
+    success: '/image/success.png',
+    error: '/image/error.png',
+    warning: '/image/warning.png'
+  },
   Touches: new Touches()
 })

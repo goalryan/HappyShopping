@@ -1,5 +1,8 @@
 .icon-right:before {
   transition: transform 0.3s;
+  transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
 }
 
 .icon-right.opened:before {
@@ -14,9 +17,9 @@
   overflow: hidden;
 }
 
-.customer-list:first-child {
-  border-top: 1rpx solid #ccc;
-}
+/* .customer-list:first-child {
+   border-top: 0rpx solid #ccc; 
+} */
 
 .main {
   position: relative;
@@ -89,7 +92,7 @@
   justify-content: center;
   align-items: center;
   width: 120rpx;
-  border-left:1px solid #ccc;
+  border-left: 1px solid #ccc;
 }
 
 .icon-roundaddlight {

@@ -69,7 +69,6 @@ Component({
       goodsList && this.setData({ goodsList })
     },
     itemDelete: function (e) {  // itemDelete
-      debugger;
       const that = this;
       network.DELETE({
         url: 'api/billGoods/' + e.currentTarget.dataset.id,
@@ -93,7 +92,6 @@ Component({
       //刷新客户的商品列表
       var pages = getCurrentPages();
       var cusPages = pages[pages.length - 1];
-      debugger;
       var customerIndex = cusPages.data.customers.findIndex(customer => customer.id === e.currentTarget.dataset.billCustomerId);
       var goodsIndex = e.currentTarget.dataset.index;
       cusPages.data.customers[customerIndex].goodsList.splice(goodsIndex, 1);

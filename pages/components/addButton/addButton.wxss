@@ -1,6 +1,12 @@
+@import "../../../lib/style/font.wxss";
+
 .button-add {
   position: fixed; /*悬停搜索框的关键样式*/
   left: 0;
   width: 100%;
   z-index: 999;
+}
+
+.icon-roundaddlight {
+  font-size: 96rpx;
 }

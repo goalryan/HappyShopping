@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "商品",
   "usingComponents": {
-    "component-goods-list-view": "../../components/goodsList/goodsList"
+    "component-goods-list-view": "../../components/goodsList/goodsList",
+    "component-add-button-view": "../../components/addButton/addButton"
   }
 }

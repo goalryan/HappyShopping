@@ -1,0 +1,31 @@
+<view class="container">
+  <view class="page-body">
+    <view class="ec-header">
+      <view class="row">
+        <text>账单号</text>
+        <input class='ec-input' value='{{model.docNo}}' disabled='true'></input>
+      </view>
+      <view class='row'>
+        <text>客户名称</text>
+        <input class="ec-input" value='{{model.customerNickName}}' focus="{{focusCustomer}}" placeholder="请输入客户名称" confirm-type="next" bindfocus="bindCustomerFocus" bindinput="bindCustomerInput" bindblur="bindCustomerBlur" bindconfirm="bindCustomerConfirm" />
+      </view>
+      <view class='row'>
+        <text>付款</text>
+        <switch bindchange="changePaid" checked="{{model.isPaid}}" />
+      </view>
+    </view>
+
+    <view class="ec-body">
+      <component-goods-list-view is-page="false" scroll-height="{{scrollHeight}}" goods-list="{{goodsList}}"></component-goods-list-view>
+    </view>
+    <view class="ec-footer">
+      <view class='ec-button-list'>
+        <button type="primary" hidden="{{model.id!==''}}" hover-class="button-hover" bindtap="saveCustomer">保存客户</button>
+        <button type="primary" hidden="{{model.id===''}}" hover-class="button-hover" bindtap="addGoods">添加商品</button>
+      </view>
+    </view>
+  </view>
+
+  <component-search-view on-focus="{{searchObj.onFocus}}" search-key="nickName" search-value="{{model.customerNickName}}" url="{{searchObj.url}}" position="{{searchObj.position}}" bind:finditemevent="onFindItemEvent" bind:confirmitemevent="onConfirmItemEvent"
+    bind:losefocusevent="onLoseFocusEvent"></component-search-view>
+</view>

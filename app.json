@@ -3,6 +3,7 @@
     "pages/splash/splash",
     "pages/bill/bills/bills",
     "pages/bill/customers/customers",
+    "pages/bill/customers/add/add",
     "pages/bill/goods/goods",
     "pages/express/express",
     "pages/login/login",

@@ -1,10 +1,8 @@
-var network = require("../../../utils/network.js")
+var network = require("../../../../utils/network.js")
 var app = getApp();
 Page({
   data: {
     model: {},
-    docNoIndex: 0,
-    docNoArray: [],
     goodsList: [],
     isNewCustomer: true,
     focusCustomer: true,
@@ -15,65 +13,20 @@ Page({
     },
     scrollHeight: app.globalData.systemInfo.windowHeight - 139 - 45 - 98 * app.globalData.rpx2px,
   },
-  onLoad: function () {
-    this.initCustomer();
-    this.initDocNoList();
-  },
-  onShow: function () {
-    this.queryGoodsList();
-  },
-  bindDocNoChange: function (e) {
-    this.setData({
-      docNoIndex: e.detail.value,
-      ["model.billId"]: this.data.docNoArray[e.detail.value].id,
-      ["model.docNo"]: this.data.docNoArray[e.detail.value].docNo
-    });
-    this.queryGoodsList();
-  },
-  initCustomer: function () {
+  onLoad: function (e) {
     this.setData({
       model: {
         id: '',
-        docNo: '',
+        billId: e.billId,
+        docNo: e.docNo,
         customerId: '',
         customerNickName: '',
         isPaid: false
       }
     })
   },
-  /**
-   * 获取打开的账单
-   */
-  initDocNoList: function () {
-    var url = 'api/bill/openBills';
-    var that = this;
-    network.GET({
-      url: url,
-      data: "",
-      success: function (res) {
-        var responseData = [];
-        if (res.data.success) {
-          res.data.data.forEach(item => {
-            responseData.push({ id: item.id, docNo: item.docNo });
-          });
-        }
-        if (responseData.length > 0) {
-          that.setData({
-            docNoArray: responseData,
-            ["model.billId"]: responseData[0].id,
-            ["model.docNo"]: responseData[0].docNo
-          });
-        } else {
-          that.setData({
-            docNoArray: responseData,
-          });
-        }
-      },
-      fail: function (e) {
-        var toastText = '获取数据失败' + JSON.stringify(e);
-      },
-      complete: function () { }
-    })
+  onShow: function () {
+    //this.queryGoodsList();
   },
   bindCustomerFocus: function (e) {
     var setOnFocus = "searchObj.onFocus";
@@ -142,10 +95,10 @@ Page({
   saveCustomer: function (e) {
     if (this.data.model.billId === '' || this.data.model.customerNickName === '') {
       wx.showToast({
-        title: '账单和客户名称必填',
-        icon: 'info',
-        duration: 2000
-      })
+        title: '客户名称必填',
+        image: app.toastIcon.warning,
+        duration: app.toastIcon.duration
+      });
       return;
     }
     var url = 'api/billCustomer/add';
@@ -160,15 +113,16 @@ Page({
           });
           wx.showToast({
             title: '保存成功',
-            icon: 'success',
-            duration: 2000
+            image: app.toastIcon.success,
+            duration: app.toastIcon.duration
           })
-          that.goAddGoodsPage();
+          // 弹出菜单选择是否添加客户
+          that.saveSuccessCallback(that);
         } else {
           wx.showToast({
             title: '保存失败',
-            icon: 'warn',
-            duration: 2000
+            icon: app.toastIcon.error,
+            duration: app.toastIcon.duration
           })
         }
       },
@@ -176,9 +130,25 @@ Page({
         var toastText = '获取数据失败' + JSON.stringify(e);
         wx.showToast({
           title: toastText,
-          icon: 'error',
-          duration: 2000
+          icon: app.toastIcon.success,
+          duration: app.toastIcon.duration
         })
+      }
+    })
+  },
+  /**
+   * 保存客户成功后
+   */
+  saveSuccessCallback(that) {
+    //弹出下一步操作
+    wx.showActionSheet({
+      itemList: ['添加商品'],
+      success: function (res) {
+        that.goAddGoodsPage(that);
+      },
+      fail: function (res) {
+        //更新上个页面的客户数据
+        wx.navigateBack({});
       }
     })
   },
@@ -186,11 +156,12 @@ Page({
    * 添加商品
    */
   addGoods: function (e) {
-    this.goAddGoodsPage();
+    var that = this;
+    that.goAddGoodsPage(that);
   },
-  goAddGoodsPage:function(){
+  goAddGoodsPage: function (that) {
     wx.navigateTo({
-      url: '../add/add?billCustomerId=' + this.data.model.id + '&billId=' + this.data.model.billId,
+      url: '../../goods/goods?billCustomerId=' + that.data.model.id + '&billId=' + that.data.model.billId,
     })
   },
   /**
