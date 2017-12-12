@@ -25,7 +25,7 @@
             </view>
 
             <view class="main-oper">
-              <view class="oper-delete" catchtap="itemDelete" data-index="{{index}}">删除</view>
+              <view class="oper-delete" catchtap="deleteCustomerEvent" data-index="{{index}}" data-id="{{customer.id}}" data-customer-name="{{customer.customerNickName}}">删除</view>
             </view>
           </view>
 

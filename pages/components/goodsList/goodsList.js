@@ -80,8 +80,6 @@ Component({
             //发送父级删除商品事件
             that.deleteSuccessCallback(that, e);
           }
-        },
-        complete: function () {
         }
       })
     },

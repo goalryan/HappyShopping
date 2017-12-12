@@ -69,6 +69,31 @@ Page({
     }
   },
   /**
+   * 删除客户
+   */
+  deleteCustomerEvent(e) {
+    const that = this;
+    wx.showActionSheet({
+      itemList: ['删除客户【' + e.currentTarget.dataset.customerName + '】'],
+      success: function (res) {
+        network.DELETE({
+          url: 'api/billCustomer/' + e.currentTarget.dataset.id,
+          success: function (res) {
+            const { success } = res.data;
+            if (success) {
+              that.data.customers.splice(e.currentTarget.dataset.index, 1);
+              let customers = that.data.customers;
+              that.setData({ customers })
+            }
+          }
+        })
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
+  /**
    * 添加账单
    */
   onAddItemEvent(e) {

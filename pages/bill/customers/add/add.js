@@ -11,7 +11,7 @@ Page({
       position: { top: 92, left: 200 * app.globalData.rpx2px },
       onFocus: false
     },
-    scrollHeight: app.globalData.systemInfo.windowHeight - 139 - 45 - 98 * app.globalData.rpx2px,
+    scrollHeight: app.globalData.systemInfo.windowHeight - 139 - 45,
   },
   onLoad: function (e) {
     this.setData({
