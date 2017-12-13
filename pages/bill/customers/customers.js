@@ -94,7 +94,7 @@ Page({
     })
   },
   /**
-   * 添加账单
+   * 添加客户
    */
   onAddItemEvent(e) {
     wx.navigateTo({
@@ -112,9 +112,12 @@ Page({
       }
     })
   },
+  /**
+   * 添加商品
+   */
   goAddGoods(e) {
     wx.navigateTo({
-      url: '../goods/goods?billId=' + this.data.billId + '&billCustomerId=' + e.currentTarget.dataset.id + '&customerIndex=' + e.currentTarget.dataset.index
+      url: '../goods/goods?billId=' + this.data.billId + '&billCustomerId=' + e.currentTarget.dataset.id + '&customerIndex=' + e.currentTarget.dataset.index + '&quickAdd=true'
     })
   },
   showGoodsList(e) {

@@ -38,7 +38,7 @@ Component({
   },
   methods: {
     setScrollHeightStyle() {
-      if (this.isPage) {
+      if (this.data.isPage) {
         this.setData({
           scrollY: false,
           scrollHeightStyle: ''
@@ -89,7 +89,8 @@ Component({
     deleteSuccessCallback: function (that, e) {
       //刷新客户的商品列表
       var pages = getCurrentPages();
-      var cusPages = pages[pages.length - 1];
+      var pageIndex = that.data.isPage ? 1 : 2;
+      var cusPages = pages[pages.length - pageIndex];
       var customerIndex = cusPages.data.customers.findIndex(customer => customer.id === e.currentTarget.dataset.billCustomerId);
       var goodsIndex = e.currentTarget.dataset.index;
       cusPages.data.customers[customerIndex].goodsList.splice(goodsIndex, 1);

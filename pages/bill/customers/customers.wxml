@@ -29,7 +29,7 @@
             </view>
           </view>
 
-          <component-goods-list-view is-page="true" is-hidden="{{customer.isFold}}" goods-list="{{customer.goodsList}}" bind:deletegoodsevent="onDeleteGoodsEvent"></component-goods-list-view>
+          <component-goods-list-view is-page='{{true}}' is-hidden="{{customer.isFold}}" goods-list="{{customer.goodsList}}"></component-goods-list-view>
         </view>
       </scroll-view>
       <component-add-button-view bind:additemevent="onAddItemEvent"></component-add-button-view>

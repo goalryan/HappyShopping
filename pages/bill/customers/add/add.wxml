@@ -16,7 +16,7 @@
     </view>
 
     <view class="ec-body">
-      <component-goods-list-view is-page="false" scroll-height="{{scrollHeight}}" goods-list="{{goodsList}}"></component-goods-list-view>
+      <component-goods-list-view is-page="{{false}}" scroll-height="{{scrollHeight}}" goods-list="{{goodsList}}"></component-goods-list-view>
     </view>
     <view class="ec-footer">
       <view class='ec-button-list'>

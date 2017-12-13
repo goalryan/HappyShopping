@@ -21,7 +21,11 @@ Page({
         docNo: e.docNo,
         customerId: '',
         customerNickName: '',
-        isPaid: false
+        isPaid: false,
+        loadGoods: false,
+        goodsList: [],
+        isFold: true,
+        arrowStyle: 'iconfont icon-right'
       }
     })
   },
@@ -140,6 +144,8 @@ Page({
    * 保存客户成功后
    */
   saveSuccessCallback(that) {
+    //更新上个页面的客户数据
+    that.updateCustomerListPage(that);
     //弹出下一步操作
     wx.showActionSheet({
       itemList: ['添加商品'],
@@ -147,10 +153,27 @@ Page({
         that.goAddGoodsPage(that);
       },
       fail: function (res) {
-        //更新上个页面的客户数据
         wx.navigateBack({});
       }
     })
+  },
+  /**
+   * 更新客户列表中的商品列表
+   */
+  updateCustomerListPage: function (that) {
+    var pages = getCurrentPages();
+    //目标页面回退索引数
+    var cusListPages = pages[pages.length - 2];
+    debugger;
+    var cusIndex = cusListPages.data.customers.findIndex(customer => customer.id === that.data.model.id);
+    //新增加的客户才执行更新    
+    if (cusIndex === -1) {
+      var addIndex = cusListPages.data.customers.length;
+      var insertCustomer = 'customers[' + addIndex + ']';
+      cusListPages.setData({
+        [insertCustomer]: that.data.model
+      })
+    }
   },
   /**
    * 添加商品
@@ -161,7 +184,7 @@ Page({
   },
   goAddGoodsPage: function (that) {
     wx.navigateTo({
-      url: '../../goods/goods?billCustomerId=' + that.data.model.id + '&billId=' + that.data.model.billId,
+      url: '../../goods/goods?billCustomerId=' + that.data.model.id + '&billId=' + that.data.model.billId + '&quickAdd=false',
     })
   },
   /**

@@ -2,9 +2,10 @@ var network = require("../../../utils/network.js")
 var app = getApp();
 Page({
   data: {
+    //点击客户列表的添加按钮添加
+    quickAdd: true,
     billId: '',
     billCustomerId: '',
-    customerIndex: -1,
     model: {},
     focusGoods: false,
     focusQuantity: false,
@@ -18,9 +19,9 @@ Page({
   },
   onLoad: function (e) {
     this.setData({
+      quickAdd: e.quickAdd,
       billId: e.billId,
-      billCustomerId: e.billCustomerId,
-      customerIndex: e.customerIndex
+      billCustomerId: e.billCustomerId
     });
     this.initGoods();
     this.initPosition();
@@ -30,7 +31,7 @@ Page({
       {
         focusGoods: true,
         model: {
-          id:'',
+          id: '',
           billCustomerId: this.data.billCustomerId,
           billId: this.data.billId,
           goodsId: '',
@@ -224,14 +225,13 @@ Page({
    * 保存成功后
    */
   saveSuccessCallback: function (that) {
-    //刷新客户的商品列表
-    var pages = getCurrentPages();
-    var cusPages = pages[pages.length - 2];
-    var addIndex = cusPages.data.customers[that.data.customerIndex].goodsList.length;
-    var insertGoods = 'customers[' + that.data.customerIndex + '].goodsList[' + addIndex + ']';
-    cusPages.setData({
-      [insertGoods]: that.data.model
-    })
+    //更新客户列表中的商品列表
+    if (that.data.quickAdd === 'true') {
+      that.updateCustomerListPage(that);
+    } else {
+      that.updateCustomerPage(that);
+      that.updateCustomerListPage(that);
+    }
     //弹出下一步操作
     wx.showActionSheet({
       itemList: ['继续添加'],
@@ -241,6 +241,37 @@ Page({
       fail: function (res) {
         wx.navigateBack({});
       }
+    })
+  },
+  /**
+   * 更新客户列表中的商品列表
+   */
+  updateCustomerListPage: function (that) {
+    var pages = getCurrentPages();
+    //目标页面回退索引数
+    var pageIndex = that.data.quickAdd === 'true' ? 2 : 3;
+    var cusListPages = pages[pages.length - pageIndex];    
+    var cusIndex = cusListPages.data.customers.findIndex(customer => customer.id === that.data.billCustomerId);
+    //客户列表加载过商品数据时才执行更新
+    debugger;
+    if (cusListPages.data.customers[cusIndex].loadGoods) {
+      var addIndex = cusListPages.data.customers[cusIndex].goodsList.length;
+      var insertGoods = 'customers[' + cusIndex + '].goodsList[' + addIndex + ']';
+      cusListPages.setData({
+        [insertGoods]: that.data.model
+      })
+    }
+  },
+  /**
+   * 更新单个客户的商品列表
+   */
+  updateCustomerPage: function (that) {
+    var pages = getCurrentPages();
+    var customerPages = pages[pages.length - 2];
+    var addIndex = customerPages.data.goodsList.length;
+    var insertGoods = 'goodsList[' + addIndex + ']';
+    customerPages.setData({
+      [insertGoods]: that.data.model
     })
   }
 })
