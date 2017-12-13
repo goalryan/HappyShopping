@@ -1,10 +1,13 @@
 var network = require("../../../utils/network.js")
 var app = getApp();
+// 长按行可修改汇率
+// 左滑删除
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    model: {},
     dataList: [],
     selectRow: {},
     hiddenRatemodal: true,
@@ -12,11 +15,11 @@ Page({
     touchStart: 0,
     touchEnd: 0
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.initModel();
     this.fetchData();
   },
 
@@ -69,6 +72,20 @@ Page({
 
   },
   /**
+   * 初始化账单对象
+   */
+  initModel: function () {
+    var resetData = {
+      id: '',
+      docNo: '',
+      memo: "",
+      taxRate: ''
+    }
+    this.setData({
+      model: resetData
+    })
+  },
+  /**
    * 查询账单数据
    */
   fetchData(refresh = false) {
@@ -89,7 +106,11 @@ Page({
       }
     })
   },
-
+  bindTaxRateInput: function (e) {
+    this.setData({
+      ["model.taxRate"]: e.detail.value
+    });
+  },
   /**
    * 添加账单
    */
@@ -104,17 +125,39 @@ Page({
    */
   reset: function () {
     this.setData({
-      hiddenRatemodal: true,
       focusRate: false
     });
+    this.initModel();
   },
   /**
    * 确认按钮
    */
   confirm: function () {
-    this.setData({
-      hiddenRatemodal: true,
-      focusRate: true
+    //没有汇率默认给1
+    if (this.data.model.taxRate === '') {
+      this.setData({ ["model.taxRate"]: 1 })
+    }
+    var url = 'api/bill/add';
+    var that = this;
+    network.POST({
+      url: url,
+      data: that.data.model,
+      success: function (res) {
+        if (res.data.success) {
+          that.setData({
+            hiddenRatemodal: true,
+          })
+          that.initModel();
+        }        
+      },
+      fail: function (e) {
+        var toastText = '获取数据失败' + JSON.stringify(e);
+        wx.showToast({
+          title: toastText,
+          icon: 'warn',
+          duration: 2000
+        })
+      }
     })
   },
   touchS: function (e) {  // touchstart
@@ -160,5 +203,6 @@ Page({
   itemDelete: function (e) {  // itemDelete
     let dataList = app.Touches.deleteItem(e, this.data.dataList)
     dataList && this.setData({ dataList })
-  }
+  },
+
 })

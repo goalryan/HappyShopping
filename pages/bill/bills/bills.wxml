@@ -28,7 +28,7 @@
 
 
       <modal hidden="{{hiddenRatemodal}}" title="请输入汇率" confirm-text="提交" cancel-text="重置" bindcancel="reset" bindconfirm="confirm">
-        <input type='digit' placeholder="请输入内容" value="{{selectRow.taxRate}}" focus="{{focusRate}}" />
+        <input type='digit' placeholder="请输入内容" value="{{model.taxRate}}" bindinput='bindTaxRateInput' focus="{{focusRate}}" />
       </modal>
 
       <component-add-button-view bind:additemevent="onAddItemEvent"></component-add-button-view>
