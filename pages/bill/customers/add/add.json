@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "客户",
+  "navigationBarTitleText": "添加客户",
   "usingComponents": {
     "component-search-view":"../../../components/search/search",
     "component-goods-list-view": "../../../components/goodsList/goodsList"
