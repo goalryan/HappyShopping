@@ -121,10 +121,11 @@ Page({
     })
   },
   /**
-   * 重置按钮
+   * 取消按钮
    */
-  reset: function () {
+  cancel: function () {
     this.setData({
+      hiddenRatemodal: true,
       focusRate: false
     });
     this.initModel();
@@ -148,7 +149,7 @@ Page({
             hiddenRatemodal: true,
           })
           that.initModel();
-        }        
+        }
       },
       fail: function (e) {
         var toastText = '获取数据失败' + JSON.stringify(e);

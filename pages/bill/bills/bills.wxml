@@ -27,7 +27,7 @@
       </scroll-view>
 
 
-      <modal hidden="{{hiddenRatemodal}}" title="请输入汇率" confirm-text="提交" cancel-text="重置" bindcancel="reset" bindconfirm="confirm">
+      <modal hidden="{{hiddenRatemodal}}" title="请输入汇率" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">
         <input type='digit' placeholder="请输入内容" value="{{model.taxRate}}" bindinput='bindTaxRateInput' focus="{{focusRate}}" />
       </modal>
 
