@@ -23,6 +23,10 @@ Page({
         customerNickName: '',
         isPaid: false,
         loadGoods: false,
+        quantity: 0,
+        inTotalPrice: 0,
+        outTotalPrice: 0,
+        profit: 0,
         goodsList: [],
         isFold: true,
         arrowStyle: 'iconfont icon-right'

@@ -165,16 +165,20 @@ Page({
       url: url,
       data: that.data.model,
       success: function (res) {
+        const { success, data } = res.data;
         if (res.data.success) {
           that.setData({
-            ["model.id"]: res.data.data
+            ["model.id"]: data.billGoodsId,
+            ["model.inTotalPrice"]: data.goodsInTotalPrice,
+            ["model.outTotalPrice"]: data.goodsOutTotalPrice,
+            ["model.profit"]: data.goodsProfit
           });
           wx.showToast({
             title: '保存成功',
             icon: 'success',
             duration: 2000
           })
-          that.saveSuccessCallback(that);
+          that.saveSuccessCallback(that, data);
         } else {
           wx.showToast({
             title: '保存失败',
@@ -224,13 +228,13 @@ Page({
   /**
    * 保存成功后
    */
-  saveSuccessCallback: function (that) {
+  saveSuccessCallback: function (that, profitModel) {
     //更新客户列表中的商品列表
     if (that.data.quickAdd === 'true') {
-      that.updateCustomerListPage(that);
+      that.updateCustomerListPage(that, profitModel);
     } else {
-      that.updateCustomerPage(that);
-      that.updateCustomerListPage(that);
+      that.updateCustomerPage(that, profitModel);
+      that.updateCustomerListPage(that, profitModel);
     }
     //弹出下一步操作
     wx.showActionSheet({
@@ -246,26 +250,33 @@ Page({
   /**
    * 更新客户列表中的商品列表
    */
-  updateCustomerListPage: function (that) {
+  updateCustomerListPage: function (that, profitModel) {
     var pages = getCurrentPages();
     //目标页面回退索引数
     var pageIndex = that.data.quickAdd === 'true' ? 2 : 3;
-    var cusListPages = pages[pages.length - pageIndex];    
+    var cusListPages = pages[pages.length - pageIndex];
     var cusIndex = cusListPages.data.customers.findIndex(customer => customer.id === that.data.billCustomerId);
     //客户列表加载过商品数据时才执行更新
     debugger;
     if (cusListPages.data.customers[cusIndex].loadGoods) {
       var addIndex = cusListPages.data.customers[cusIndex].goodsList.length;
       var insertGoods = 'customers[' + cusIndex + '].goodsList[' + addIndex + ']';
+      var inTotalPrice = 'customers[' + cusIndex + '].inTotalPrice';
+      var outTotalPrice = 'customers[' + cusIndex + '].outTotalPrice';
+      var profit = 'customers[' + cusIndex + '].profit';
+      debugger;
       cusListPages.setData({
-        [insertGoods]: that.data.model
+        [insertGoods]: that.data.model,
+        [inTotalPrice]: profitModel.customerGoodsInTotalPrice,
+        [outTotalPrice]: profitModel.customerGoodsOutTotalPrice,
+        [profit]: profitModel.customerGoodsProfit
       })
     }
   },
   /**
    * 更新单个客户的商品列表
    */
-  updateCustomerPage: function (that) {
+  updateCustomerPage: function (that, profitModel) {
     var pages = getCurrentPages();
     var customerPages = pages[pages.length - 2];
     var addIndex = customerPages.data.goodsList.length;
