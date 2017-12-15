@@ -10,12 +10,17 @@
             <!-- <image class="info-img" src="{{item.img}}"></image> -->
             <view class="info-wrapper">
               <view class="info-desc">
-                <view class="name">{{item.docNo}}</view>
-                <view class="time"></view>
+                <view class='info-header'>
+                  <view class="name">{{item.docNo}} </view>
+                  <view class="rate">{{item.taxRate}}</view>
+                </view>
+                <view class="info-profit">{{item.profit}}</view>
               </view>
               <view class="info-content">
-                <view class="item">汇率 {{item.taxRate}}</view>
-                <view class="item">利润 {{item.taxRate}}</view>
+                <view class="item">数量 {{item.quantity}}</view>
+                <view class="item">成本 {{item.inTotalPrice}}</view>
+                <view class="item">卖出 {{item.outTotalPrice}}</view>
+
               </view>
             </view>
           </view>

@@ -60,7 +60,21 @@
   align-items: flex-start;
 }
 
-.main-title {
+.main-header{
+  width: 100%;
+  display: flex;  
+  flex-direction: row;
+}
+
+.main-header .title{
+  flex: 2;
+  font-size: 32rpx;
+  color: black;
+  font-weight: 600;
+}
+
+.main-header .profit{
+  flex: 1;
   font-size: 32rpx;
   color: black;
   font-weight: 600;

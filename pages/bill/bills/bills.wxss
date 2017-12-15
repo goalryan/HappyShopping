@@ -34,8 +34,6 @@
   transition: left 0.2s ease-in-out;
 }
 
-
-
 .item-oper {
   display: flex;
   justify-content: flex-end;
@@ -68,24 +66,37 @@
 
 .info-wrapper {
   margin-left: 40rpx;
-  width: 588rpx;
+  width: 100%;
 }
 
 .info-desc {
-  width: 100%;
+  flex: 1;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
+  align-items: center;
   margin-top: 6rpx;
 }
 
-.info-desc .name {
+.info-header {
+  flex: 2;
+  display: flex;
+  flex-direction: row;
+}
+
+.info-profit {
+  flex: 1;
+}
+
+.info-header .name {
   font-size: 32rpx;
   color: black;
   font-weight: 600;
 }
 
-.info-desc .time {
+.info-header .rate {
+  margin-left: 20rpx;
+  margin-top: 10rpx;
   font-size: 24rpx;
   color: #999;
 }
@@ -101,5 +112,6 @@
 }
 
 .info-content .item {
+  flex: 1;
   justify-content: flex-start;
 }

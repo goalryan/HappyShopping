@@ -12,7 +12,11 @@
                 <i class="{{customer.arrowStyle}}"></i>
               </view>
               <view class='main-content'>
-                <view class='main-title'>{{customer.customerNickName}}</view>
+                <view class='main-header'>
+                  <view class='title'>{{customer.customerNickName}}</view>
+                  <view class='profit'>{{customer.profit}}</view>
+                </view>
+
                 <view class='main-desc'>
                   <view class='item'>数量 {{customer.quantity}}</view>
                   <view class='item'>成本 {{customer.inTotalPrice}}</view>

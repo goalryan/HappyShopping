@@ -87,6 +87,15 @@ Component({
      * 删除成功后
     */
     deleteSuccessCallback: function (that, e) {
+      // //更新客户列表中的商品列表
+      // if (that.data.quickAdd === 'true') {
+      //   that.updateCustomerListPage(that, profitModel);
+      //   that.updateBillPage(that, profitModel);
+      // } else {
+      //   that.updateCustomerPage(that);
+      //   that.updateCustomerListPage(that, profitModel);
+      //   that.updateBillPage(that, profitModel);
+      // }
       //刷新客户的商品列表
       var pages = getCurrentPages();
       var pageIndex = that.data.isPage ? 1 : 2;

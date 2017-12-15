@@ -232,9 +232,11 @@ Page({
     //更新客户列表中的商品列表
     if (that.data.quickAdd === 'true') {
       that.updateCustomerListPage(that, profitModel);
+      that.updateBillPage(that, profitModel);
     } else {
-      that.updateCustomerPage(that, profitModel);
+      that.updateCustomerPage(that);
       that.updateCustomerListPage(that, profitModel);
+      that.updateBillPage(that, profitModel);
     }
     //弹出下一步操作
     wx.showActionSheet({
@@ -257,16 +259,23 @@ Page({
     var cusListPages = pages[pages.length - pageIndex];
     var cusIndex = cusListPages.data.customers.findIndex(customer => customer.id === that.data.billCustomerId);
     //客户列表加载过商品数据时才执行更新
-    debugger;
+    var quantity = 'customers[' + cusIndex + '].quantity';
+    var inTotalPrice = 'customers[' + cusIndex + '].inTotalPrice';
+    var outTotalPrice = 'customers[' + cusIndex + '].outTotalPrice';
+    var profit = 'customers[' + cusIndex + '].profit';
     if (cusListPages.data.customers[cusIndex].loadGoods) {
       var addIndex = cusListPages.data.customers[cusIndex].goodsList.length;
       var insertGoods = 'customers[' + cusIndex + '].goodsList[' + addIndex + ']';
-      var inTotalPrice = 'customers[' + cusIndex + '].inTotalPrice';
-      var outTotalPrice = 'customers[' + cusIndex + '].outTotalPrice';
-      var profit = 'customers[' + cusIndex + '].profit';
-      debugger;
       cusListPages.setData({
         [insertGoods]: that.data.model,
+        [quantity]: profitModel.customerGoodsQuantity,
+        [inTotalPrice]: profitModel.customerGoodsInTotalPrice,
+        [outTotalPrice]: profitModel.customerGoodsOutTotalPrice,
+        [profit]: profitModel.customerGoodsProfit
+      })
+    } else {
+      cusListPages.setData({
+        [quantity]: profitModel.customerGoodsQuantity,
         [inTotalPrice]: profitModel.customerGoodsInTotalPrice,
         [outTotalPrice]: profitModel.customerGoodsOutTotalPrice,
         [profit]: profitModel.customerGoodsProfit
@@ -276,7 +285,7 @@ Page({
   /**
    * 更新单个客户的商品列表
    */
-  updateCustomerPage: function (that, profitModel) {
+  updateCustomerPage: function (that) {
     var pages = getCurrentPages();
     var customerPages = pages[pages.length - 2];
     var addIndex = customerPages.data.goodsList.length;
@@ -284,5 +293,23 @@ Page({
     customerPages.setData({
       [insertGoods]: that.data.model
     })
-  }
+  },
+  updateBillPage: function (that, profitModel) {
+    var pages = getCurrentPages();
+    //目标页面回退索引数
+    var pageIndex = that.data.quickAdd === 'true' ? 3 : 4;
+    var billPages = pages[pages.length - pageIndex];
+    var cusIndex = billPages.data.dataList.findIndex(bill => bill.id === that.data.billId);
+    //客户列表加载过商品数据时才执行更新
+    var quantity = 'dataList[' + cusIndex + '].quantity';
+    var inTotalPrice = 'dataList[' + cusIndex + '].inTotalPrice';
+    var outTotalPrice = 'dataList[' + cusIndex + '].outTotalPrice';
+    var profit = 'dataList[' + cusIndex + '].profit';
+    billPages.setData({
+      [quantity]: profitModel.billGoodsQuantity,
+      [inTotalPrice]: profitModel.billGoodsInTotalPrice,
+      [outTotalPrice]: profitModel.billGoodsOutTotalPrice,
+      [profit]: profitModel.billGoodsProfit
+    })
+  },
 })
