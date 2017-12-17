@@ -168,7 +168,6 @@ Page({
     var pages = getCurrentPages();
     //目标页面回退索引数
     var cusListPages = pages[pages.length - 2];
-    debugger;
     var cusIndex = cusListPages.data.customers.findIndex(customer => customer.id === that.data.model.id);
     //新增加的客户才执行更新    
     if (cusIndex === -1) {
