@@ -96,7 +96,7 @@ Component({
     deleteSuccessCallback: function (that, e, profitModel) {
       //更新客户列表中的商品列表
       that.updateCustomerListPage(that, e, profitModel);
-      that.updateBillPage(that, e, profitModel);
+      that.updateBillPage(that, profitModel);
     },
     /**
    * 更新客户列表中的商品列表
@@ -127,14 +127,14 @@ Component({
     updateBillPage: function (that, profitModel) {
       var pages = getCurrentPages();
       //目标页面回退索引数
-      var pageIndex = that.data.isPage === 'true' ? 2 : 3;
+      var pageIndex = that.data.isPage ? 2 : 3;
       var billPages = pages[pages.length - pageIndex];
-      var cusIndex = billPages.data.dataList.findIndex(bill => bill.id === that.data.billId);
+      var billIndex = billPages.data.dataList.findIndex(bill => bill.id === profitModel.billId);
       //客户列表加载过商品数据时才执行更新
-      var quantity = 'dataList[' + cusIndex + '].quantity';
-      var inTotalPrice = 'dataList[' + cusIndex + '].inTotalPrice';
-      var outTotalPrice = 'dataList[' + cusIndex + '].outTotalPrice';
-      var profit = 'dataList[' + cusIndex + '].profit';
+      var quantity = 'dataList[' + billIndex + '].quantity';
+      var inTotalPrice = 'dataList[' + billIndex + '].inTotalPrice';
+      var outTotalPrice = 'dataList[' + billIndex + '].outTotalPrice';
+      var profit = 'dataList[' + billIndex + '].profit';
       billPages.setData({
         [quantity]: profitModel.billGoodsQuantity,
         [inTotalPrice]: profitModel.billGoodsInTotalPrice,
