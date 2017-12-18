@@ -234,9 +234,13 @@ Page({
         url: url,
         data: that.data.model,
         success: function (res) {
-          if (res.data.success) {
+          let { success, data } = res.data;
+          if (success) {
+            if (data.goodsList.length === 1 && data.goodsList[0].id === '') {
+              data.goodsList = [];
+            }
             that.setData({
-              goodsList: res.data.data.goodsList,
+              goodsList: data.goodsList,
               ["model.id"]: res.data.data.id,
               ["model.isPaid"]: res.data.data.isPaid
             });

@@ -20,12 +20,7 @@ Component({
     },
     goodsList: {
       type: Object,
-      value: [],
-      observer: function (newVal, oldVal) {
-        if (newVal.length === 1 && newVal[0].id === '') {
-          this.removeNullData();
-        }
-      }
+      value: []
     }
   },
   data: {

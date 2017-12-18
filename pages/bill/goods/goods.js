@@ -240,7 +240,7 @@ Page({
     }
     //弹出下一步操作
     wx.showActionSheet({
-      itemList: ['继续添加'],
+      itemList: ['继续添加'],
       success: function (res) {
         that.resetData();
       },

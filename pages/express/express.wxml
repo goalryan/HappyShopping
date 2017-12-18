@@ -20,32 +20,5 @@
     <button size="mini" bindtap="setDemoData">示例</button>
     <button size="mini" bindtap="clear" style="margin-left:10px;">清空</button>
   </view>
-  <view>8888</view>
-</view>
-<view>
-  aaa
-</view>
-<view>
-  bbb
-</view>
-<view>
-  ccc
-</view>
-<view>
-  sss
-</view>
-<view>
-  sss
-</view>
-<view>
-  sss
-</view>
-<view>
-  sss
-</view>
-<view>
-  sss
-</view>
-<view>
-  sss
+
 </view>

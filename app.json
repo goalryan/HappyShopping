@@ -30,12 +30,6 @@
         "selectedIconPath": "/css/icon/home_fill_light.png"
       },
       {
-        "pagePath": "pages/goods/list/list",
-        "text": "购物",
-        "iconPath": "/css/icon/cart_light.png",
-        "selectedIconPath": "/css/icon/cart_fill_light.png"
-      },
-      {
         "pagePath": "pages/express/express",
         "text": "我的",
         "iconPath": "/css/icon/my_light.png",

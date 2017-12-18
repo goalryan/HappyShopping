@@ -73,17 +73,24 @@ Page({
    */
   deleteCustomerEvent(e) {
     const that = this;
+
     wx.showActionSheet({
       itemList: ['删除客户【' + e.currentTarget.dataset.customerName + '】'],
       success: function (res) {
-        network.DELETE({
-          url: 'api/billCustomer/' + e.currentTarget.dataset.id,
+        const params = {
+          billId: that.data.billId,
+          billCustomerId: e.currentTarget.dataset.id
+        }
+        network.POST({
+          url: 'api/billCustomer/removeAndReturnProfit',
+          data: params,
           success: function (res) {
-            const { success } = res.data;
+            const { success, data } = res.data;
             if (success) {
               that.data.customers.splice(e.currentTarget.dataset.index, 1);
               let customers = that.data.customers;
               that.setData({ customers })
+              that.updateBillPage(that, data);
             }
           }
         })
@@ -91,6 +98,25 @@ Page({
       fail: function (res) {
         console.log(res.errMsg)
       }
+    })
+  },
+  /**
+   * 更新账单利润
+   */
+  updateBillPage: function (that, profitModel) {
+    var pages = getCurrentPages();
+    //目标页面回退索引数
+    var billPages = pages[pages.length - 2];
+    var billIndex = billPages.data.dataList.findIndex(bill => bill.id === profitModel.billId);
+    var quantity = 'dataList[' + billIndex + '].quantity';
+    var inTotalPrice = 'dataList[' + billIndex + '].inTotalPrice';
+    var outTotalPrice = 'dataList[' + billIndex + '].outTotalPrice';
+    var profit = 'dataList[' + billIndex + '].profit';
+    billPages.setData({
+      [quantity]: profitModel.billGoodsQuantity,
+      [inTotalPrice]: profitModel.billGoodsInTotalPrice,
+      [outTotalPrice]: profitModel.billGoodsOutTotalPrice,
+      [profit]: profitModel.billGoodsProfit
     })
   },
   /**
