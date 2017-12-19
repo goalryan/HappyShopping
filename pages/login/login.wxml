@@ -1,26 +1,16 @@
-<import src="../../common/head.wxml" />
-<import src="../../common/foot.wxml" />
-
 <view class="container">
-  <view class="page-body">
-    <view class="ec-header">
-      <view class='row'>
-        <text>用户名</text>
-        <input class="ec-input" value='{{model.userName}}' focus="{{focusUserName}}" placeholder="请输入用户名" confirm-type="next" bindinput="bindUserNameInput" bindconfirm="bindUserNameConfirm" />
-      </view>
-      <view class='row'>
-        <text>密码</text>
-        <input class="ec-input" password='true' value='{{model.password}}' focus="{{focusPassword}}" placeholder="请输入密码" confirm-type="next" bindinput="bindPasswordInput" />
-      </view>
-      <view class='row'>
-        <text>绑定微信号</text>
-        <switch bindchange="bindWx" checked="{{model.isBindWx}}" />
-      </view>
-    </view>
-    <view class="ec-body">
-      <view class='ec-button-list'>
-        <button type="primary" hover-class="button-hover" bindtap="login">登录</button>
-      </view>
+  <view class="login-body">
+    <view class='login-title'>海外购物小帮手</view>
+    <input class="login-input" value='{{model.userName}}' focus="{{focusUserName}}" placeholder="手机号" confirm-type="next" bindinput="bindUserNameInput" bindconfirm="bindUserNameConfirm" />
+    <input class="login-input" password='true' value='{{model.password}}' focus="{{focusPassword}}" placeholder="密码" confirm-type="next" bindinput="bindPasswordInput" />
+    <radio class='login-rember' bindchange="bindWx" checked="{{model.isBindWx}}">记住我</radio>
+    <!-- <view>
+      <text>绑定微信号</text>
+      <switch bindchange="bindWx" checked="{{model.isBindWx}}" />
+    </view> -->
+
+    <view class='login-view'>
+      <button class='login-btn' bindtap="login">登录</button>
     </view>
   </view>
 </view>
