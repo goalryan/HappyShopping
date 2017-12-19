@@ -106,6 +106,11 @@ Page({
       itemList: ['编辑客户', '删除客户', '发送账单明细'],
       success: function (res) {
         console.log(res.tapIndex)
+        if (res.tapIndex === 2) {
+          wx.navigateTo({
+            url: '../../share/customerBill/customerBill'
+          })
+        }
       },
       fail: function (res) {
         console.log(res.errMsg)
