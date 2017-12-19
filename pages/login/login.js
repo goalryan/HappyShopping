@@ -44,7 +44,7 @@ Page({
   },
   bindWx: function (e) {
     this.setData({
-      ["model.isBindWx"]: e.detail.value
+      ["model.isBindWx"]: !this.data.model.isBindWx
     })
   },
   /**
