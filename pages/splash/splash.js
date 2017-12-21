@@ -11,7 +11,7 @@ Page({
   },
 
   onLoad() {
-    this.setData({ loading: false })
+    this.setData({ loading: false });
   },
   start() {
     network.POST({

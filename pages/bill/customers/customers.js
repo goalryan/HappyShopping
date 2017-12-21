@@ -73,7 +73,6 @@ Page({
    */
   deleteCustomerEvent(e) {
     const that = this;
-
     wx.showActionSheet({
       itemList: ['删除客户【' + e.currentTarget.dataset.customerName + '】'],
       success: function (res) {

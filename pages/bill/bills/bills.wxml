@@ -26,7 +26,7 @@
           </view>
           <view class="item-oper">
             <view class="oper-edit" catchtap="itemEdit" data-index="{{index}}">编辑</view>
-            <view class="oper-delete" catchtap="itemDelete" data-index="{{index}}">删除</view>
+            <view class="oper-delete" catchtap="itemDelete" data-index="{{index}}" data-doc-no="{{item.docNo}}" data-id="{{item.id}}">删除</view>
           </view>
         </view>
       </scroll-view>

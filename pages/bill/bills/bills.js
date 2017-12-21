@@ -137,9 +137,13 @@ Page({
       url: url,
       data: that.data.model,
       success: function (res) {
-        if (res.data.success) {
+        const { success, data } = res.data;
+        if (success) {
+          let newDataList = JSON.parse(JSON.stringify(that.data.dataList));
+          newDataList.splice(0, 0, data);
           that.setData({
             hiddenRatemodal: true,
+            dataList: newDataList
           })
           that.initModel();
         }
@@ -194,9 +198,27 @@ Page({
       }
     })
   },
-  itemDelete: function (e) {  // itemDelete
-    let dataList = app.Touches.deleteItem(e, this.data.dataList)
-    dataList && this.setData({ dataList })
+  itemDelete: function (e) {
+    const that = this;
+    wx.showActionSheet({
+      itemList: ['删除账单【' + e.currentTarget.dataset.docNo + '】'],
+      success: function (res) {
+        network.Delete({
+          url: 'api/bill/' + e.currentTarget.dataset.id,
+          data: null,
+          success: function (res) {
+            const { success } = res.data;
+            if (success) {
+              let dataList = app.Touches.deleteItem(e, this.data.dataList)
+              dataList && this.setData({ dataList })
+            }
+          }
+        })
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
   },
 
 })
