@@ -51,6 +51,7 @@ Page({
    * 登录
    */
   login: function () {
+    debugger;
     var that = this;
     network.POST({
       url: 'api/user/login',

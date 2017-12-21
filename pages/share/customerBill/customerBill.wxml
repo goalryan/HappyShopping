@@ -1,3 +1,30 @@
-<view>
-  sss
+<view class="container">
+  <view class="page-body">
+    <view class="ec-header">
+      <view class='row'>
+        <text>客户名称</text>
+        <input class="ec-input" disabled='true' value='{{model.customerNickName}}' />
+      </view>
+      <view class='row'>
+        <text>商品数量</text>
+        <input class="ec-input" disabled='true' value='{{model.total}}' />
+      </view>
+      <view class='row'>
+        <text>应付</text>
+        <input class="ec-input" disabled='true' value='{{model.totalPrice}}' />
+      </view>
+    </view>
+    <view class="ec-body">
+      <view class="goods-list" wx:for="{{model.goodsList}}" wx:for-item="item" wx:for-index="index" wx:key="that">
+        <view class="goods-title">
+          <view>{{item.goodsName}}</view>
+          <view class="goods-detail">
+            <view class='item'>数量 {{item.quantity}}</view>
+            <view class='item'>单价 {{item.outUnitPrice}}</view>
+          </view>
+        </view>
+        <view class="goods-price">{{item.outTotalPrice}}</view>
+      </view>
+    </view>
+  </view>
 </view>

@@ -1,1 +1,41 @@
 /* pages/share/customerBill/customerBill.wxss */
+
+.goods-list {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 138rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ccc;
+  padding: 0 36rpx;
+}
+
+.goods-title {
+  flex: 1;
+  font-size: 32rpx;
+  color: black;
+  /* font-weight: 600; */
+}
+
+.goods-detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.goods-detail .item {
+  flex: 1;
+  justify-content: flex-start;
+  font-size: 28rpx;
+  color: #999;
+}
+
+.goods-price {
+  width: 100rpx;
+  text-align: right;
+  font-size: 32rpx;
+  color: black;
+}

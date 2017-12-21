@@ -1,5 +1,6 @@
 {
   "pages": [    
+    "pages/share/customerBill/customerBill",
     "pages/splash/splash",
     "pages/bill/bills/bills",
     "pages/bill/customers/customers",
@@ -8,8 +9,7 @@
     "pages/express/express",
     "pages/goods/list/list",
     "pages/goods/add/add",   
-    "pages/login/login",  
-    "pages/share/customerBill/customerBill",
+    "pages/login/login", 
     "pages/logs/logs",
     "pages/index/index"
   ],
