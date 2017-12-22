@@ -1,0 +1,13 @@
+<view class="container">
+  <view class='user-body'>
+    <view class="user-info">
+      <image class="user-avatar" src="{{userInfo.avatarUrl}}"></image>
+      <view class='user-content'>
+        <view class='user-title'>{{userInfo.nickName}}</view>
+        <view class='user-desc'>{{userName}}</view>
+      </view>
+    </view>
+    <view class='user-changepwd'></view>
+    <view class='user-logout'></view>
+  </view>
+</view>

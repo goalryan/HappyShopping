@@ -1,0 +1,36 @@
+.user-body {
+  flex: 1;
+  background-color: #f3f3f3;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  margin-top: 30rpx;
+  padding: 20rpx 30rpx;
+  height: 130rpx;
+}
+
+.user-avatar {
+  width: 130rpx;
+  height: 130rpx;
+  background-color: #eee;
+  border-radius: 10rpx;
+}
+
+.user-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-left: 20rpx;
+}
+
+.user-title{
+  font-size: 32rpx;
+}
+
+.user-desc{  
+  font-size: 28rpx;
+}

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/user/user",
     "pages/splash/splash",
     "pages/login/login",
     "pages/bill/bills/bills",
@@ -9,7 +10,7 @@
     "pages/express/express",
     "pages/goods/list/list",
     "pages/goods/add/add",
-    "pages/share/customerBill/customerBill",    
+    "pages/share/customerBill/customerBill",
     "pages/logs/logs",
     "pages/index/index"
   ],
@@ -18,7 +19,8 @@
     "navigationBarBackgroundColor": "#B22222",
     "navigationBarTitleText": "海外购物小帮手",
     "navigationBarTextStyle": "white",
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh": true,
+    "backgroundColor": "#f3f3f3"
   },
   "tabBar": {
     "selectedColor": "#d81e06",
@@ -30,7 +32,7 @@
         "selectedIconPath": "/css/icon/home_fill_light.png"
       },
       {
-        "pagePath": "pages/express/express",
+        "pagePath": "pages/user/user",
         "text": "我的",
         "iconPath": "/css/icon/my_light.png",
         "selectedIconPath": "/css/icon/my_fill_light.png"

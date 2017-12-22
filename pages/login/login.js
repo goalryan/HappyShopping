@@ -68,6 +68,7 @@ Page({
           wx.setStorageSync('token', data.token.token_type + ' ' + data.token.access_token);
           wx.setStorageSync('enterpriseId', data.user.enterpriseId)
           wx.setStorageSync('openId', data.user.openId)
+          wx.setStorageSync('userName', data.user.userName)
           //转到主页
           wx.switchTab({ url: '/pages/bill/bills/bills' })
           wx.hideLoading();
