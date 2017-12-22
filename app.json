@@ -1,15 +1,15 @@
 {
-  "pages": [        
+  "pages": [
     "pages/splash/splash",
+    "pages/login/login",
     "pages/bill/bills/bills",
     "pages/bill/customers/customers",
     "pages/bill/customers/add/add",
     "pages/bill/goods/goods",
     "pages/express/express",
     "pages/goods/list/list",
-    "pages/goods/add/add",  
-    "pages/share/customerBill/customerBill", 
-    "pages/login/login", 
+    "pages/goods/add/add",
+    "pages/share/customerBill/customerBill",    
     "pages/logs/logs",
     "pages/index/index"
   ],

@@ -29,6 +29,11 @@ function DELETE(requestHandler) {
 }
 
 function request(method, requestHandler) {
+  doRequest(method, requestHandler);
+}
+
+function doRequest(method, requestHandler) {
+  var duration = 1500;
   //注意：可以对params加密等处理
   var params = requestHandler.data;
   var header = requestHandler.header;
@@ -49,14 +54,67 @@ function request(method, requestHandler) {
         wx.reLaunch({
           url: '/pages/login/login'
         })
+      } else if (res.statusCode === 408) {
+        wx.showToast({
+          title: '【408】请求超时，请重试',
+          image: '/image/error.png',
+          duration: duration
+        });
+      } else if (res.statusCode === 503) {
+        wx.showToast({
+          title: '【503】未找到服务，请联系管理员处理',
+          image: '/image/error.png',
+          duration: duration
+        });
+      } else if (res.statusCode === 500) {
+        wx.showToast({
+          title: '【500】服务发生错误，请联系管理员处理',
+          image: '/image/error.png',
+          duration: duration
+        });
       } else {
+        // 接口返回false,统一处理
+        var { success, msg } = res.data;
+        if (!success) {
+          wx.showToast({
+            title: msg,
+            image: '/image/error.png',
+            duration: duration
+          });
+        }
         if (requestHandler.success !== undefined)
           requestHandler.success(res);
       }
     },
     fail: function (e) {
-      if (requestHandler.fail !== undefined)
-        requestHandler.fail(e);
+      wx.getNetworkType({
+        success: function (res) {
+          if (res.networkType === 'none') {
+            wx.showToast({
+              title: '没有网络，请检查网络状态',
+              image: '/image/error.png',
+              duration: duration
+            });
+          } else {
+            wx.showToast({
+              title: '服务异常，请联系管理员处理',
+              image: '/image/error.png',
+              duration: duration
+            });
+          }
+        },
+        fail:function(e){
+          wx.showToast({
+            title: '网络连接有问题，请检查网络状态',
+            image: '/image/error.png',
+            duration: duration
+          });
+        },
+        complete: function () {
+          if (requestHandler.fail !== undefined)
+            requestHandler.fail(e);
+        }
+      })
     },
     complete: function () {
       if (requestHandler.complete !== undefined)

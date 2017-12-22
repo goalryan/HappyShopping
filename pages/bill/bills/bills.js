@@ -147,14 +147,6 @@ Page({
           })
           that.initModel();
         }
-      },
-      fail: function (e) {
-        var toastText = '获取数据失败' + JSON.stringify(e);
-        wx.showToast({
-          title: toastText,
-          icon: 'warn',
-          duration: 2000
-        })
       }
     })
   },

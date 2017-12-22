@@ -5,13 +5,15 @@ Page({
     loading: true,
     photos: [
       {
-        url: 'https://img.ivrfans.cn/thumb/m/mmimg/39/39903/39903_14.jpg'
+        url: '../../image/welcome.png'
       }
     ],
   },
 
   onLoad() {
+    // https://img.ivrfans.cn/thumb/m/mmimg/39/39903/39903_14.jpg
     this.setData({ loading: false });
+    this.start();
   },
   start() {
     network.POST({
