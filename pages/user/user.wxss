@@ -1,6 +1,6 @@
 .user-body {
   flex: 1;
-  background-color: #f3f3f3;
+  background-color: #F8F8F8;
 }
 
 .user-info {
@@ -10,12 +10,14 @@
   margin-top: 30rpx;
   padding: 20rpx 30rpx;
   height: 130rpx;
+  border-top: 1rpx solid #eeeeee;
+  border-bottom: 1rpx solid #eeeeee;
 }
 
 .user-avatar {
   width: 130rpx;
   height: 130rpx;
-  background-color: #eee;
+  /* background-color: #eee; */
   border-radius: 10rpx;
 }
 
@@ -27,10 +29,22 @@
   margin-left: 20rpx;
 }
 
-.user-title{
+.user-title {
   font-size: 32rpx;
 }
 
-.user-desc{  
+.user-desc {
   font-size: 28rpx;
+}
+
+.user-logout {
+  height: 90rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  margin-top: 30rpx;
+  border-top: 1rpx solid #eeeeee;
+  border-bottom: 1rpx solid #eeeeee;
 }

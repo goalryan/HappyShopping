@@ -8,6 +8,6 @@
       </view>
     </view>
     <view class='user-changepwd'></view>
-    <view class='user-logout'></view>
+    <view class='user-logout' bindtap="logout">退出登录</view>
   </view>
 </view>

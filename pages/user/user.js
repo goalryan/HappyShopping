@@ -62,7 +62,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -71,11 +71,21 @@ Page({
   onReachBottom: function () {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  logout: function (e) {
+    wx.showActionSheet({
+      itemList: ['确定退出'],
+      success: function (res) {
+        console.log(res.tapIndex)
+        if (res.tapIndex === 0) {
+          //清除token和用户信息
+          wx.removeStorageSync('token');
+          wx.removeStorageSync('enterpriseId')
+          wx.removeStorageSync('openId')
+          wx.removeStorageSync('userName')
+          //转到主页
+          wx.redirectTo({ url: '/pages/login/login' })
+        }
+      }
+    })
   }
 })
