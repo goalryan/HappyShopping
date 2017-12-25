@@ -13,9 +13,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (e) {
     this.setData({
-      id: '150972604958078802'
+      id: e.id
     });
     this.fetchData();
   },
@@ -45,7 +45,11 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    const token = wx.getStorageSync('token');
+    if(token===''){
+      //转到登录页
+      wx.redirectTo({ url: '/pages/login/login' })
+    }    
   },
 
   /**

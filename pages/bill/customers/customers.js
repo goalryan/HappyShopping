@@ -128,12 +128,13 @@ Page({
   },
   showActionSheet: function (e) {
     wx.showActionSheet({
-      itemList: ['编辑客户', '删除客户', '发送账单明细'],
+      // itemList: ['编辑客户', '删除客户', '发送账单明细'],
+      itemList: ['发送账单明细'],
       success: function (res) {
         console.log(res.tapIndex)
-        if (res.tapIndex === 2) {
+        if (res.tapIndex === 0) {
           wx.navigateTo({
-            url: '../../share/customerBill/customerBill'
+            url: '../../share/customerBill/customerBill?id=' + e.currentTarget.dataset.id
           })
         }
       },

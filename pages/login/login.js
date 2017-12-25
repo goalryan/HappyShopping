@@ -60,7 +60,7 @@ Page({
     network.POST({
       url: 'api/user/login',
       data: that.data.model,
-      header: { 'JsCode': wx.getStorageSync("jsCode") },
+      header: { 'JsCode': wx.getStorageSync("jsCode") },
       success: function (res) {
         const { success, data, msg } = res.data;
         if (success) {

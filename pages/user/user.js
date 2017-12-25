@@ -14,6 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(wx.getStorageSync('userName'));
     wx.getUserInfo({
       // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
       success: res => {
@@ -77,7 +78,7 @@ Page({
       success: function (res) {
         console.log(res.tapIndex)
         if (res.tapIndex === 0) {
-          //清除token和用户信息
+          //清除token和用户信息          
           wx.removeStorageSync('token');
           wx.removeStorageSync('enterpriseId')
           wx.removeStorageSync('openId')

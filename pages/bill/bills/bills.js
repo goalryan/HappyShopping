@@ -162,7 +162,7 @@ Page({
     dataList && this.setData({ dataList })
   },
   touchE: function (e) {  // touchend
-    const width = 300  // 定义操作列表宽度
+    const width = 150  // 定义操作列表宽度
     let dataList = app.Touches.touchE(e, this.data.dataList, this.data.startX, width)
     dataList && this.setData({ dataList });
     this.setData({
@@ -180,29 +180,29 @@ Page({
     }
   },
   showActionSheet: function (e) {
-    wx.showActionSheet({
-      itemList: ['A', 'B', 'C'],
-      success: function (res) {
-        console.log(res.tapIndex)
-      },
-      fail: function (res) {
-        console.log(res.errMsg)
-      }
-    })
+    // wx.showActionSheet({
+    //   itemList: ['A', 'B', 'C'],
+    //   success: function (res) {
+    //     console.log(res.tapIndex)
+    //   },
+    //   fail: function (res) {
+    //     console.log(res.errMsg)
+    //   }
+    // })
   },
   itemDelete: function (e) {
     const that = this;
     wx.showActionSheet({
       itemList: ['删除账单【' + e.currentTarget.dataset.docNo + '】'],
       success: function (res) {
-        network.Delete({
+        network.DELETE({
           url: 'api/bill/' + e.currentTarget.dataset.id,
           data: null,
           success: function (res) {
             const { success } = res.data;
             if (success) {
-              let dataList = app.Touches.deleteItem(e, this.data.dataList)
-              dataList && this.setData({ dataList })
+              let dataList = app.Touches.deleteItem(e, that.data.dataList)
+              dataList && that.setData({ dataList })
             }
           }
         })
