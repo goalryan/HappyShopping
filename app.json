@@ -6,6 +6,7 @@
     "pages/bill/customers/customers",
     "pages/bill/customers/add/add",
     "pages/bill/goods/goods",
+    "pages/bill/purOrder/purOrder",
     "pages/express/express",
     "pages/goods/list/list",
     "pages/goods/add/add",

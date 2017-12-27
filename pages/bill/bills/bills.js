@@ -180,15 +180,19 @@ Page({
     }
   },
   showActionSheet: function (e) {
-    // wx.showActionSheet({
-    //   itemList: ['A', 'B', 'C'],
-    //   success: function (res) {
-    //     console.log(res.tapIndex)
-    //   },
-    //   fail: function (res) {
-    //     console.log(res.errMsg)
-    //   }
-    // })
+    wx.showActionSheet({
+      itemList: ['生成采购单'],
+      success: function (res) {
+        if (res.tapIndex === 0) {
+          wx.navigateTo({
+            url: '../purOrder/purOrder?billId=' + e.currentTarget.dataset.id + '&docNo=' + e.currentTarget.dataset.docNo
+          })
+        }
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
   },
   itemDelete: function (e) {
     const that = this;

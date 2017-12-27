@@ -10,3 +10,7 @@
 .icon-roundaddlight {
   font-size: 96rpx;
 }
+
+.view-hover {
+  background: #eee;
+}

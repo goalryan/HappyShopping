@@ -133,3 +133,7 @@
   color: white;
   background: red;
 }
+
+.view-hover {
+  background: #eee;
+}

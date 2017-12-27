@@ -1,5 +1,4 @@
 /* pages/bill/bills/bills.wxss */
-
 .item-wrapper {
   width: 100%;
   overflow: hidden;
@@ -9,7 +8,6 @@
   position: relative;
   width: 100%;
   height: 138rpx;
-  /* margin-left: 20rpx; */
 }
 
 /* .item-list:first-child {
@@ -23,7 +21,7 @@
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid #eee;
 }
 
 .item-info {
@@ -33,6 +31,10 @@
   background: white;
   transition: left 0.2s ease-in-out;
 }
+
+/* .view-hover {
+  background: #eee;
+} */
 
 .item-oper {
   display: flex;
@@ -114,4 +116,15 @@
 .info-content .item {
   flex: 1;
   justify-content: flex-start;
+}
+
+.main-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 68rpx;
+}
+
+.view-hover {
+  background: #eee;
 }
