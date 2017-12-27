@@ -3,7 +3,11 @@
     <view class="ec-header">
     </view>
     <view class="ec-body">
-      <text selectable="true">ssssssssss</text>
+      <view class='group-info'>
+        <text selectable="true" class='position-info'>万宁</text>
+        <text selectable="true" class='goods-info'>可莱丝面膜</text>
+      </view>
+
     </view>
     <view class="ec-footer">
     </view>
