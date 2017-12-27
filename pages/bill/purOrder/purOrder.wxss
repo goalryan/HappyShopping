@@ -1,13 +1,16 @@
 .group-info {
   display: flex;
   flex: 1;
+  width: 100%;
   flex-direction: column;
 }
 
 .position-info {
+  flex: 1;
   font-size: 32rpx;
 }
 
 .goods-info {
+  flex: 1;
   font-size: 28rpx;
 }
