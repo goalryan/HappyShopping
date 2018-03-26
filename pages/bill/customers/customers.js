@@ -127,12 +127,16 @@ Page({
     })
   },
   showActionSheet: function (e) {
+    var that = this;
     wx.showActionSheet({
       // itemList: ['编辑客户', '删除客户', '发送账单明细'],
-      itemList: ['发送账单明细'],
+      itemList: ['复制账单','发送账单明细'],
       success: function (res) {
         console.log(res.tapIndex)
         if (res.tapIndex === 0) {
+          that.CopyCustomerBillData(e.currentTarget.dataset.id);
+        }
+        else if (res.tapIndex === 1) {
           wx.navigateTo({
             url: '../../share/customerBill/customerBill?id=' + e.currentTarget.dataset.id
           })
@@ -195,6 +199,43 @@ Page({
           });
         }
       }
+    })
+  },
+  /**
+   * 复制客户账单数据
+   */
+  CopyCustomerBillData(id) {
+    var url = 'api/share/customerBill';
+    var that = this;
+    network.GET({
+      url: url,
+      data: { id: id },
+      success: function (res) {
+        const { success, data } = res.data;
+        if (success) {
+          var strBill = "";
+          var goods = {};
+          for (var i = 0; i < data.goodsList.length;i++){
+              goods = data.goodsList[i];
+              strBill += goods.goodsName + "：" + goods.outUnitPrice + "*" + goods.quantity + "=" + goods.outTotalPrice+"\r\n";
+          }
+          strBill += "总共" + data.totalPrice + "  "+data.customerNickName;
+          wx.setClipboardData({
+            data: strBill,
+            success: function (res) {
+              wx.getClipboardData({
+                success: function (res) {
+                  console.log(res.data) // data
+                }
+              })
+            }
+          })
+        }
+      },
+      fail: function (e) {
+        var toastText = '获取数据失败' + JSON.stringify(e);
+      },
+      complete: function () { }
     })
   },
   touchS: function (e) {  // touchstart

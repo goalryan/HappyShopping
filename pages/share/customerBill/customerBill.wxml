@@ -10,7 +10,7 @@
         <input class="ec-input" disabled='true' value='{{model.total}}' />
       </view>
       <view class='row'>
-        <text>应付</text>
+        <text>应付</text>
         <input class="ec-input" disabled='true' value='{{model.totalPrice}}' />
       </view>
     </view>

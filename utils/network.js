@@ -1,5 +1,5 @@
-const domain = 'http://happyshopping.com/';
-// const domain = 'https://service.easydaigou.com/';
+//const domain = 'http://happyshopping.com/';
+const domain = 'https://service.easydaigou.com/';
 let requestHandler = {
   url: '',
   data: {},
